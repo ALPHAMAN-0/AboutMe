@@ -219,7 +219,7 @@ const lerp = (a,b,t) => a + (b-a)*t;
     p1: { tag: 'ai resume builder · 2025',   cap: 'ats scoring + jd matching · react/ts', svg: img('images/ai-resume-builder-preview.png') },
     p2: { tag: 'pos system · 2026',          cap: 'multi-role retail dashboard · mern',   svg: img('images/pos/admin/01-dashboard.png') },
     p3: { tag: 'scroll animation · 2025',    cap: 'scroll-linked canvas reveal',          svg: img('Animation/222_026.png') },
-    p4: { tag: 'megabazar · 2024',           cap: 'mern e-commerce · stripe',             svg: img('MegaBazar/01-homepage-top.png') },
+    p4: { tag: 'e-commerce · 2024',          cap: 'mern storefronts · stripe',            svg: img('MegaBazar/01-homepage-top.png') },
     p5: { tag: 'llm & agents · 2024',        cap: 'openai · rag pipelines',               svg: ph('python · openai', 68) },
     p6: { tag: 'automation · 2024',          cap: 'selenium + maps api scraper',          svg: ph('python · selenium', 12) },
   };

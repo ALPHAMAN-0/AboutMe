@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>E-Commerce — Siam Hossain</title>
+<meta name="description" content="Case study: E-Commerce projects by Siam Hossain — MegaBazar and other full-stack online storefronts." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+  .ec-wrap{padding:120px clamp(20px,4vw,56px) 80px;max-width:1400px;margin:0 auto;position:relative;z-index:1}
+  .ec-head{display:grid;grid-template-columns:200px 1fr;gap:48px;margin-bottom:56px;align-items:baseline}
+  .ec-head .num{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-dim)}
+  .ec-head .num b{color:var(--accent);font-weight:500;margin-right:8px}
+  .ec-head h1{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(48px,7vw,96px);line-height:1;letter-spacing:-.015em}
+  .ec-head p.sub{color:var(--ink-dim);margin-top:20px;font-size:14px;max-width:62ch;line-height:1.6}
+  .ec-head p.sub b{color:var(--ink);font-weight:400}
+
+  /* per-project pitch — swaps when active project changes */
+  .ec-pitch{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:40px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:28px 0}
+  .ec-pitch .item .k{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:10px}
+  .ec-pitch .item .v{font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.25;color:var(--ink)}
+  .ec-pitch .item .v small{display:block;font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.04em;color:var(--ink-dim);margin-top:6px;line-height:1.55}
+
+  .ec-tabs{display:flex;flex-direction:column;gap:18px;margin-bottom:24px}
+  .ec-tab-group{display:grid;grid-template-columns:120px 1fr;gap:24px;align-items:center}
+  .ec-tab-group .label{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-dim)}
+  .ec-tab-group .row{display:flex;flex-wrap:wrap;gap:4px;border:1px solid var(--rule);padding:4px;border-radius:999px;width:max-content;max-width:100%}
+  .ec-tab-group button{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);padding:8px 16px;border-radius:999px;transition:color .2s var(--ease),background .2s var(--ease);white-space:nowrap}
+  .ec-tab-group button:hover{color:var(--ink)}
+  .ec-tab-group button.active{background:var(--accent);color:var(--accent-ink)}
+  .ec-tab-group button.coming{opacity:.45;font-style:italic}
+
+  .ec-screen{position:relative;border:1px solid var(--rule);overflow:hidden;background:var(--bg-2);aspect-ratio:16/10}
+  .ec-screen img{width:100%;height:100%;object-fit:contain;object-position:top center;display:block;background:#0e0e0e;transition:opacity .25s var(--ease)}
+  .ec-screen img.fade{opacity:0}
+  .ec-screen .tag{position:absolute;left:14px;top:14px;font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);background:rgba(10,10,10,.7);padding:6px 10px;backdrop-filter:blur(4px);z-index:2}
+
+  .ec-caption{display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);gap:24px;flex-wrap:wrap}
+  .ec-caption .left b{color:var(--ink);font-weight:500}
+  .ec-caption .left .sep{margin:0 10px;color:var(--ink-faint)}
+  .ec-caption .counter{color:var(--ink-faint)}
+  .ec-nav{display:flex;gap:10px}
+  .ec-nav button{width:38px;height:38px;border:1px solid var(--ink-faint);border-radius:999px;color:var(--ink-dim);display:grid;place-items:center;font-size:14px;transition:all .25s var(--ease)}
+  .ec-nav button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+  .ec-nav button:disabled{opacity:.25;cursor:not-allowed}
+
+  .ec-meta{margin-top:80px;padding-top:40px;border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(4,1fr);gap:32px;font-family:var(--mono);font-size:11px;letter-spacing:.04em}
+  .ec-meta .item .k{color:var(--ink-dim);text-transform:uppercase;font-size:10px;letter-spacing:.18em;margin-bottom:10px}
+  .ec-meta .item .v{color:var(--ink);line-height:1.55}
+  .ec-meta .item .v .live{color:var(--accent)}
+
+  .ec-foot{margin-top:64px;padding-top:32px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim);gap:24px;flex-wrap:wrap}
+  .ec-foot a{transition:color .25s var(--ease)}
+  .ec-foot a:hover{color:var(--accent)}
+
+  @media (max-width:820px){
+    .ec-wrap{padding-top:96px}
+    .ec-head{grid-template-columns:1fr;gap:12px;margin-bottom:32px}
+    .ec-pitch{grid-template-columns:1fr;gap:18px;padding:20px 0}
+    .ec-tab-group{grid-template-columns:1fr;gap:10px}
+    .ec-tab-group .row{width:100%;overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch}
+    .ec-tab-group .row::-webkit-scrollbar{display:none}
+    .ec-meta{grid-template-columns:1fr 1fr;gap:24px}
+    .ec-screen{aspect-ratio:4/3}
+    .ec-screen img{object-fit:cover;object-position:top}
+  }
+  @media (max-width:600px){
+    .ec-wrap{padding:88px 16px 56px}
+    .ec-head h1{font-size:42px}
+    .ec-head p.sub{font-size:13px}
+    .ec-meta{grid-template-columns:1fr}
+    .ec-screen{aspect-ratio:3/4}
+    .ec-foot{flex-direction:column;align-items:flex-start;gap:12px}
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-bg" aria-hidden="true"><canvas id="grid"></canvas></div>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="brand"><a href="index.html#work" data-hover>[ <b>SH</b> ] ← INDEX</a></div>
+  <nav aria-label="primary">
+    <a href="index.html" data-hover>home</a>
+    <a href="index.html#work" data-hover>work</a>
+    <a href="index.html#contact" data-hover>contact</a>
+  </nav>
+  <div class="right">
+    <span class="dot" aria-hidden="true"></span>
+    <span>E-COMMERCE / DEMO</span>
+  </div>
+</header>
+
+<main class="ec-wrap">
+
+  <div class="ec-head">
+    <div class="num"><b>04</b> / case study</div>
+    <div>
+      <h1>E-Commerce.</h1>
+      <p class="sub">A collection of <b>full-stack online storefronts</b> — multi-category catalogs, search, cart, secure checkout and customer accounts. Pick a <b>project</b> and walk through it, screen by screen.</p>
+    </div>
+  </div>
+
+  <div class="ec-pitch" id="ec-pitch"><!-- filled by JS --></div>
+
+  <div class="ec-tabs">
+    <div class="ec-tab-group">
+      <div class="label">— Project</div>
+      <div class="row" id="project-tabs"><!-- filled by JS --></div>
+    </div>
+    <div class="ec-tab-group">
+      <div class="label">— Screen</div>
+      <div class="row" id="screen-tabs"><!-- filled by JS --></div>
+    </div>
+  </div>
+
+  <div class="ec-screen">
+    <div class="tag" id="screen-tag">homepage</div>
+    <img id="screen-img" alt="" src="">
+  </div>
+
+  <div class="ec-caption">
+    <div class="left">
+      <b id="cap-project">megabazar</b><span class="sep">·</span><span id="cap-screen">homepage</span>
+    </div>
+    <div class="counter"><span id="cap-idx">1</span> / <span id="cap-total">9</span></div>
+    <div class="ec-nav">
+      <button id="prev-btn" data-hover aria-label="previous screen">←</button>
+      <button id="next-btn" data-hover aria-label="next screen">→</button>
+    </div>
+  </div>
+
+  <div class="ec-meta" id="ec-meta"><!-- filled by JS --></div>
+
+  <div class="ec-foot">
+    <div>© 2026 siam hossain · e-commerce / demo</div>
+    <a href="index.html#work" data-hover>← back to work</a>
+  </div>
+</main>
+
+<script src="js/script.js"></script>
+<script>
+(function ecommerce(){
+  /* =====================================================
+     PROJECT REGISTRY
+     To add a new e-commerce project:
+       1. Drop screenshots into a folder (e.g. /AnotherStore/).
+       2. Add a new entry below — tabs render automatically.
+     ===================================================== */
+  const projects = [
+    {
+      id:    'megabazar',
+      name:  'megabazar',
+      folder:'MegaBazar',
+      screens: [
+        ['01-homepage-top',         'homepage'],
+        ['02-homepage-full',        'home · full'],
+        ['03-category-electronics', 'category'],
+        ['04-product-detail',       'product'],
+        ['05-login',                'login'],
+        ['06-search',               'search'],
+        ['07-cart',                 'cart'],
+        ['08-checkout',             'checkout'],
+        ['09-account',              'account'],
+      ],
+      pitch: [
+        { k:'— What it is',   v:'An end-to-end online store.', sub:'Browse → search → cart → pay → account.' },
+        { k:'— What it does', v:'Sells real things, online.',  sub:'Catalog, inventory, orders, invoices, auth.' },
+        { k:'— Who it\'s for',v:'Small / mid retailers.',      sub:'Local merchants going online without SaaS lock-in.' },
+      ],
+      meta: [
+        { k:'Role',    v:'Full-stack engineer<br>solo build' },
+        { k:'Stack',   v:'React · Redux · Node · Express<br>MongoDB · Stripe · JWT' },
+        { k:'Modules', v:'Catalog · Search · Cart<br>Checkout · Auth · Account' },
+        { k:'Status',  v:'<span class="live">● live demo</span><br>9 screens, prod build' },
+      ],
+    },
+    /* Add more here, same shape:
+    {
+      id:'mystore', name:'mystore', folder:'images/ecommerce/mystore',
+      screens: [['01-home','homepage'], ...],
+      pitch:   [{k,v,sub}, ...],
+      meta:    [{k,v}, ...],
+    }
+    */
+  ];
+
+  let pIdx = 0;   // active project
+  let sIdx = 0;   // active screen within active project
+
+  const $ = s => document.querySelector(s);
+  const projectTabs = $('#project-tabs');
+  const screenTabs  = $('#screen-tabs');
+  const pitch       = $('#ec-pitch');
+  const meta        = $('#ec-meta');
+  const img         = $('#screen-img');
+  const tag         = $('#screen-tag');
+  const capProject  = $('#cap-project');
+  const capScreen   = $('#cap-screen');
+  const capIdx      = $('#cap-idx');
+  const capTotal    = $('#cap-total');
+  const prevBtn     = $('#prev-btn');
+  const nextBtn     = $('#next-btn');
+
+  const project = () => projects[pIdx];
+  const screen  = () => project().screens[sIdx];
+  const srcOf   = (p, s) => `${p.folder}/${s[0]}.png`;
+
+  function preload(p){
+    p.screens.forEach(s => { const i = new Image(); i.src = srcOf(p, s); });
+  }
+
+  function buildProjectTabs(){
+    projectTabs.innerHTML = '';
+    projects.forEach((p, i) => {
+      const b = document.createElement('button');
+      b.textContent = p.name;
+      b.className = (i === pIdx ? 'active' : '');
+      b.setAttribute('data-hover', '');
+      b.addEventListener('click', () => { pIdx = i; sIdx = 0; preload(project()); render(); });
+      projectTabs.appendChild(b);
+    });
+    if (projects.length === 1){
+      const hint = document.createElement('button');
+      hint.textContent = 'more — soon';
+      hint.className = 'coming';
+      hint.disabled = true;
+      projectTabs.appendChild(hint);
+    }
+  }
+
+  function buildScreenTabs(){
+    screenTabs.innerHTML = '';
+    project().screens.forEach((s, i) => {
+      const b = document.createElement('button');
+      b.textContent = s[1];
+      b.className = (i === sIdx ? 'active' : '');
+      b.setAttribute('data-hover', '');
+      b.addEventListener('click', () => { sIdx = i; render(); });
+      screenTabs.appendChild(b);
+    });
+  }
+
+  function renderPitch(){
+    pitch.innerHTML = project().pitch.map(p => `
+      <div class="item">
+        <div class="k">${p.k}</div>
+        <div class="v">${p.v}<small>${p.sub}</small></div>
+      </div>`).join('');
+  }
+
+  function renderMeta(){
+    meta.innerHTML = project().meta.map(m => `
+      <div class="item">
+        <div class="k">${m.k}</div>
+        <div class="v">${m.v}</div>
+      </div>`).join('');
+  }
+
+  function render(){
+    buildProjectTabs();
+    buildScreenTabs();
+    renderPitch();
+    renderMeta();
+
+    const p = project();
+    const s = screen();
+    const newSrc = srcOf(p, s);
+
+    if (!img.src.endsWith(newSrc)){
+      img.classList.add('fade');
+      const tmp = new Image();
+      tmp.onload = () => {
+        img.src = newSrc;
+        img.alt = `${p.name} ${s[1]}`;
+        requestAnimationFrame(() => img.classList.remove('fade'));
+      };
+      tmp.src = newSrc;
+    }
+
+    tag.textContent = `${p.name} · ${s[1]}`;
+    capProject.textContent = p.name;
+    capScreen.textContent  = s[1];
+    capIdx.textContent     = sIdx + 1;
+    capTotal.textContent   = p.screens.length;
+
+    prevBtn.disabled = sIdx === 0;
+    nextBtn.disabled = sIdx === p.screens.length - 1;
+  }
+
+  prevBtn.addEventListener('click', () => { if (sIdx > 0){ sIdx--; render(); } });
+  nextBtn.addEventListener('click', () => {
+    if (sIdx < project().screens.length - 1){ sIdx++; render(); }
+  });
+
+  document.addEventListener('keydown', e => {
+    const len = project().screens.length;
+    if (e.key === 'ArrowLeft'  && sIdx > 0)       { sIdx--; render(); }
+    if (e.key === 'ArrowRight' && sIdx < len - 1) { sIdx++; render(); }
+  });
+
+  let tx = 0;
+  const screenEl = document.querySelector('.ec-screen');
+  screenEl.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+  screenEl.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    const len = project().screens.length;
+    if (dx >  50 && sIdx > 0)       { sIdx--; render(); }
+    if (dx < -50 && sIdx < len - 1) { sIdx++; render(); }
+  }, {passive:true});
+
+  preload(project());
+  render();
+})();
+</script>
+</body>
+</html>
