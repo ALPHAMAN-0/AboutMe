@@ -1,63 +1,230 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIAM HOSSAIN - SOFTWARE ENGINEER</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Siam Hossain — Software Engineer</title>
+<meta name="description" content="Portfolio of Siam Hossain — software engineer, full-stack developer, ML enthusiast." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-links">
-                <a href="index.html" class="nav-link active">Home</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="resume.html" class="nav-link">Resume</a>
-                <a href="portfolio.html" class="nav-link">Portfolio</a>
-            </div>
-            <div class="contact-info">
-                <i class="fas fa-phone"></i>
-                <span>+880 1766479295</span>
-            </div>
-            <div class="mobile-menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
 
-    <main class="home-container">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="hero-name">SIAM <b>HOSSAIN</b></h1>
-                <p class="hero-subtitle">Software Engineer &nbsp;|&nbsp; Full-Stack Developer &nbsp;|&nbsp; ML Enthusiast</p>
-                <div class="hero-buttons">
-                    <a href="resume.html" class="btn btn-outline">Resume</a>
-                    <a href="portfolio.html" class="btn btn-outline">Portfolio</a>
-                </div>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/siamhossain4/" class="social-link" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://www.facebook.com/" class="social-link" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="https://github.com/ALPHAMAN-0" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://x.com/SIAM_HOSSAIN47" class="social-link" target="_blank"><i class="fab fa-x"></i></a>
-                    <a href="https://api.whatsapp.com/send/?phone=8801766479295&text&type=phone_number&app_absent=0" class="social-link" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="images/SIAM.jpeg" alt="Siam Hossain Portrait" class="workspace-img">
-            </div>
-        </div>
-        <div class="fullscreen-toggle">
-            <i class="fas fa-expand"></i>
-        </div>
-    </main>
+<div class="grid-bg" aria-hidden="true"><canvas id="grid"></canvas></div>
+<div class="grain" aria-hidden="true"></div>
 
-    <script src="js/script.js"></script>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+
+<header class="topbar" data-screen-label="topbar">
+  <div class="brand">[ <b>SH</b> ] — index <span style="color:var(--ink-dim)">/ portfolio · v.26</span></div>
+  <nav aria-label="primary">
+    <a href="#about" data-hover>about</a>
+    <a href="#skills" data-hover>skills</a>
+    <a href="#work" data-hover>work</a>
+    <a href="#contact" data-hover>contact</a>
+  </nav>
+  <div class="right">
+    <span class="dot" aria-hidden="true"></span>
+    <span><span id="loc">Dhaka · 23.81°N</span> · <span id="clock">--:--:--</span></span>
+  </div>
+</header>
+
+<main class="shell">
+
+<section class="hero" id="top" data-screen-label="hero">
+  <div class="eyebrow reveal"><span class="line"></span><span>portfolio / 2026 — computer science</span></div>
+
+  <h1 aria-label="Siam Hossain">
+    <span class="row"><span class="scramble" data-text="siam">siam</span></span>
+    <span class="row"><span class="scramble" data-text="hossain">hossain</span><span class="mark" aria-hidden="true"></span></span>
+  </h1>
+
+  <div class="terminal reveal" style="transition-delay:.5s">
+    <span class="prompt">&gt;</span>
+    <span id="typed"></span><span class="caret" aria-hidden="true"></span>
+  </div>
+
+  <div class="meta">
+    <div>
+      <div>[ 01 ] hero</div>
+      <div style="color:var(--ink);margin-top:6px">currently — open to internship &amp; collaboration</div>
+    </div>
+    <div class="scroll" aria-hidden="true">
+      <div>scroll</div>
+      <div class="bar"></div>
+    </div>
+    <div style="text-align:right">
+      <div>portfolio.v26 / build 014</div>
+      <div style="color:var(--ink);margin-top:6px">© 2026 siam hossain</div>
+    </div>
+  </div>
+</section>
+
+<section id="about" data-screen-label="about">
+  <div class="sec-head reveal">
+    <div class="num"><b>01</b> / about</div>
+    <h2>a digital architect, in training.</h2>
+  </div>
+
+  <div class="about-grid">
+    <figure class="portrait reveal">
+      <img src="images/SIAM.jpeg" alt="Siam Hossain portrait" loading="lazy">
+    </figure>
+
+    <div class="bio reveal" style="transition-delay:.1s">
+      <p>I'm a <em>computer science</em> student at AIUB building <em>full-stack</em> systems across the MERN and MEAN stacks — services, APIs, and the interfaces wrapped around them.</p>
+      <p>I spend a lot of time on <em>ML &amp; AI</em>: LLMs, prompt engineering, RAG pipelines, and small agents that actually do something useful. Curious about how machines learn, more curious about how to make them useful.</p>
+      <p>On the side: networking fundamentals (TCP/IP, OSI, AWS) and <em>2000+ problems</em> on LeetCode, Codeforces, and HackerRank. Open to internships and collaboration.</p>
+    </div>
+
+    <aside class="meta-block reveal" style="transition-delay:.2s">
+      <dl>
+        <dt>Location</dt>
+        <dd>Adabor, Dhaka, BD<small>AIUB · BSc CSE</small></dd>
+
+        <dt>Status</dt>
+        <dd><span class="live">●</span> open · internship &amp; collaboration</dd>
+
+        <dt>Stack</dt>
+        <dd>MERN · MEAN · Python · OpenAI<small>react · angular · node · mongo</small></dd>
+
+        <dt>Solving</dt>
+        <dd>2000+ on LeetCode / CF / HR<small>strong DSA fundamentals</small></dd>
+
+        <dt>Focus</dt>
+        <dd>LLMs · RAG · AI agents<small>networking + cloud (AWS)</small></dd>
+
+        <dt>Languages</dt>
+        <dd>Bangla · English · German (A2)<small>native · fluent · learning</small></dd>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<section id="skills" data-screen-label="skills">
+  <div class="sec-head reveal">
+    <div class="num"><b>02</b> / instrumentation</div>
+    <h2>tools I reach for, daily.</h2>
+  </div>
+
+  <div class="marquee" aria-label="skills">
+    <div class="marquee-track" id="track">
+      <span class="chip" data-hover><span class="idx">01</span>JavaScript</span>
+      <span class="chip" data-hover><span class="star">✦</span>TypeScript</span>
+      <span class="chip" data-hover><span class="idx">02</span>Python</span>
+      <span class="chip" data-hover><span class="star">✦</span>React</span>
+      <span class="chip" data-hover><span class="idx">03</span>Angular</span>
+      <span class="chip" data-hover><span class="star">✦</span>Node.js</span>
+      <span class="chip" data-hover><span class="idx">04</span>MongoDB</span>
+      <span class="chip" data-hover><span class="star">✦</span>PyTorch</span>
+      <span class="chip" data-hover><span class="idx">05</span>OpenAI</span>
+      <span class="chip" data-hover><span class="star">✦</span>Docker</span>
+      <span class="chip" data-hover><span class="idx">06</span>AWS</span>
+      <span class="chip" data-hover><span class="star">✦</span>Linux</span>
+    </div>
+  </div>
+</section>
+
+<section id="work" data-screen-label="work">
+  <div class="sec-head reveal">
+    <div class="num"><b>03</b> / selected work</div>
+    <h2>five things, made with care.</h2>
+  </div>
+
+  <div class="projects stagger" id="projects">
+    <a class="proj" data-hover data-preview="p1" href="https://alphaman-0.github.io/AI_Resume_Builder/" target="_blank" rel="noopener" aria-label="Project: AI Resume Builder">
+      <span class="num">01</span>
+      <span class="name">AI Resume Builder<span class="yr">— 2025</span></span>
+      <span class="stack"><b>tech</b>react · typescript · tailwind · zustand</span>
+      <span class="arrow" aria-hidden="true">↗</span>
+    </a>
+    <a class="proj" data-hover data-preview="p2" href="wpdev.html" aria-label="Project: WpDev Keyboard">
+      <span class="num">02</span>
+      <span class="name">WpDev Keyboard<span class="yr">— 2025</span></span>
+      <span class="stack"><b>tech</b>html5 canvas · scrollytelling · 52-frame seq</span>
+      <span class="arrow" aria-hidden="true">↗</span>
+    </a>
+    <a class="proj" data-hover data-preview="p3" href="#contact" aria-label="Project: E-Commerce Platform">
+      <span class="num">03</span>
+      <span class="name">E-Commerce Platform<span class="yr">— 2024</span></span>
+      <span class="stack"><b>tech</b>mern · stripe · jwt · redux</span>
+      <span class="arrow" aria-hidden="true">↗</span>
+    </a>
+    <a class="proj" data-hover data-preview="p4" href="https://github.com/ALPHAMAN-0" target="_blank" rel="noopener" aria-label="Project: LLM and AI Agents">
+      <span class="num">04</span>
+      <span class="name">LLM &amp; AI Agents<span class="yr">— 2024</span></span>
+      <span class="stack"><b>tech</b>openai · rag · prompt-eng · python</span>
+      <span class="arrow" aria-hidden="true">↗</span>
+    </a>
+    <a class="proj" data-hover data-preview="p5" href="https://github.com/ALPHAMAN-0" target="_blank" rel="noopener" aria-label="Project: Location Automation">
+      <span class="num">05</span>
+      <span class="name">Location Automation<span class="yr">— 2024</span></span>
+      <span class="stack"><b>tech</b>python · selenium · google maps api</span>
+      <span class="arrow" aria-hidden="true">↗</span>
+    </a>
+  </div>
+
+  <div class="preview" id="preview" aria-hidden="true">
+    <div class="frame" id="prev-frame"></div>
+    <div class="tag" id="prev-tag">project preview</div>
+    <div class="caption" id="prev-cap">drop screenshot.png</div>
+  </div>
+</section>
+
+<section id="contact" class="contact" data-screen-label="contact">
+  <div class="sec-head reveal">
+    <div class="num"><b>04</b> / contact</div>
+    <h2>the part where we talk.</h2>
+  </div>
+
+  <div class="lead reveal">
+    let's <span class="accent underline" id="leadU">build</span><br>
+    something <span style="color:var(--ink-dim)">[</span>good<span style="color:var(--ink-dim)">]</span>.
+  </div>
+
+  <div class="socials">
+    <a class="social magnet" data-hover href="mailto:siam.cse.aiub@gmail.com">
+      <span class="label">→ email</span>
+      <span class="handle">siam.cse.aiub@gmail.com</span>
+      <span class="arrow">↗</span>
+    </a>
+    <a class="social magnet" data-hover href="https://github.com/ALPHAMAN-0" target="_blank" rel="noopener">
+      <span class="label">→ github</span>
+      <span class="handle">@ALPHAMAN-0</span>
+      <span class="arrow">↗</span>
+    </a>
+    <a class="social magnet" data-hover href="https://www.linkedin.com/in/siamhossain4/" target="_blank" rel="noopener">
+      <span class="label">→ linkedin</span>
+      <span class="handle">in/siamhossain4</span>
+      <span class="arrow">↗</span>
+    </a>
+    <a class="social magnet" data-hover href="https://x.com/SIAM_HOSSAIN47" target="_blank" rel="noopener">
+      <span class="label">→ x</span>
+      <span class="handle">@SIAM_HOSSAIN47</span>
+      <span class="arrow">↗</span>
+    </a>
+  </div>
+
+  <div class="foot">
+    <div>
+      <div>portfolio.v26 / static</div>
+      <div>handcrafted in dhaka</div>
+    </div>
+    <div class="glyph" aria-hidden="true">★</div>
+    <div style="text-align:right">
+      <div>last deploy — <span id="deploy">--</span></div>
+      <div>© 2026 siam hossain</div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script src="js/script.js"></script>
 </body>
-
 </html>
