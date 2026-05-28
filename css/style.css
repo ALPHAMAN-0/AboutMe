@@ -123,12 +123,19 @@ section{scroll-margin-top:80px}
 .hero .meta .scroll .bar{width:1px;height:48px;background:linear-gradient(var(--ink),transparent);animation:drop 2.4s var(--ease) infinite}
 @keyframes drop{0%{transform:scaleY(.2);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(.2);transform-origin:bottom}}
 
-/* hero spec — right-side terminal block */
-.hero-spec{
+/* hero right column — globe + spec card */
+.hero-aside{
   position:absolute;right:clamp(20px,4vw,56px);top:50%;transform:translateY(-50%);
   width:clamp(240px,22vw,300px);
-  font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--ink-dim);
+  display:flex;flex-direction:column;gap:32px;align-items:stretch;
 }
+
+/* canvas globe — real axial rotation */
+.hero-globe-wrap{display:flex;flex-direction:column;align-items:center;gap:10px}
+.hero-globe{width:120px;height:120px;display:block}
+.globe-label{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-dim)}
+
+.hero-spec{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--ink-dim)}
 .hero-spec .spec-head{
   color:var(--accent);font-size:10px;letter-spacing:.22em;text-transform:uppercase;
   margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--rule);
@@ -142,7 +149,7 @@ section{scroll-margin-top:80px}
 .hero-spec .spec-list .v{color:var(--ink);font-size:11px}
 .hero-spec .spec-list .v.live{color:var(--accent)}
 .hero-spec .spec-list .v .blip{display:inline-block;width:6px;height:.9em;background:var(--ink);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(2) infinite}
-@media (max-width:1023px){.hero-spec{display:none}}
+@media (max-width:1023px){.hero-aside{display:none}}
 
 /* ============================================================
    section chrome

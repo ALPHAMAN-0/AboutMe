@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>POS System — Siam Hossain</title>
+<meta name="description" content="Interactive case study: multi-role POS system by Siam Hossain — admin, cashier, manager views." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+  .pos-wrap{padding:120px clamp(20px,4vw,56px) 80px;max-width:1400px;margin:0 auto;position:relative;z-index:1}
+  .pos-head{display:grid;grid-template-columns:200px 1fr;gap:48px;margin-bottom:64px;align-items:baseline}
+  .pos-head .num{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-dim)}
+  .pos-head .num b{color:var(--accent);font-weight:500;margin-right:8px}
+  .pos-head h1{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(48px,7vw,96px);line-height:1;letter-spacing:-.015em}
+  .pos-head p.sub{color:var(--ink-dim);margin-top:20px;font-size:14px;max-width:60ch;line-height:1.6}
+
+  .pos-tabs{display:flex;flex-direction:column;gap:24px;margin-bottom:32px}
+  .pos-tab-group{display:grid;grid-template-columns:120px 1fr;gap:24px;align-items:center}
+  .pos-tab-group .label{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-dim)}
+  .pos-tab-group .row{display:flex;flex-wrap:wrap;gap:4px;border:1px solid var(--rule);padding:4px;border-radius:999px;width:max-content;max-width:100%}
+  .pos-tab-group button{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);padding:8px 16px;border-radius:999px;transition:color .2s var(--ease),background .2s var(--ease);white-space:nowrap}
+  .pos-tab-group button:hover{color:var(--ink)}
+  .pos-tab-group button.active{background:var(--accent);color:var(--accent-ink)}
+
+  .pos-screen{position:relative;border:1px solid var(--rule);overflow:hidden;background:var(--bg-2);aspect-ratio:16/10}
+  .pos-screen img{width:100%;height:100%;object-fit:contain;object-position:top center;display:block;background:#0e0e0e;transition:opacity .25s var(--ease)}
+  .pos-screen img.fade{opacity:0}
+  .pos-screen .tag{position:absolute;left:14px;top:14px;font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);background:rgba(10,10,10,.7);padding:6px 10px;backdrop-filter:blur(4px);z-index:2}
+
+  .pos-caption{display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);gap:24px;flex-wrap:wrap}
+  .pos-caption .left b{color:var(--ink);font-weight:500}
+  .pos-caption .left .sep{margin:0 10px;color:var(--ink-faint)}
+  .pos-caption .counter{color:var(--ink-faint)}
+  .pos-nav{display:flex;gap:10px}
+  .pos-nav button{width:38px;height:38px;border:1px solid var(--ink-faint);border-radius:999px;color:var(--ink-dim);display:grid;place-items:center;font-size:14px;transition:all .25s var(--ease)}
+  .pos-nav button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+  .pos-nav button:disabled{opacity:.25;cursor:not-allowed}
+
+  .pos-meta{margin-top:80px;padding-top:40px;border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(4,1fr);gap:32px;font-family:var(--mono);font-size:11px;letter-spacing:.04em}
+  .pos-meta .item .k{color:var(--ink-dim);text-transform:uppercase;font-size:10px;letter-spacing:.18em;margin-bottom:10px}
+  .pos-meta .item .v{color:var(--ink);line-height:1.55}
+  .pos-meta .item .v .live{color:var(--accent)}
+
+  .pos-foot{margin-top:64px;padding-top:32px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim);gap:24px;flex-wrap:wrap}
+  .pos-foot a{transition:color .25s var(--ease)}
+  .pos-foot a:hover{color:var(--accent)}
+
+  @media (max-width:820px){
+    .pos-wrap{padding-top:96px}
+    .pos-head{grid-template-columns:1fr;gap:12px;margin-bottom:40px}
+    .pos-tab-group{grid-template-columns:1fr;gap:10px}
+    .pos-meta{grid-template-columns:1fr 1fr;gap:24px}
+    .pos-screen{aspect-ratio:4/3}
+    .pos-screen img{object-fit:cover;object-position:top}
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-bg" aria-hidden="true"><canvas id="grid"></canvas></div>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="brand"><a href="index.html#work" data-hover>[ <b>SH</b> ] ← INDEX</a></div>
+  <nav aria-label="primary">
+    <a href="index.html" data-hover>home</a>
+    <a href="index.html#work" data-hover>work</a>
+    <a href="index.html#contact" data-hover>contact</a>
+  </nav>
+  <div class="right">
+    <span class="dot" aria-hidden="true"></span>
+    <span>POS / DEMO</span>
+  </div>
+</header>
+
+<main class="pos-wrap">
+
+  <div class="pos-head">
+    <div class="num"><b>02</b> / case study</div>
+    <div>
+      <h1>POS System.</h1>
+      <p class="sub">A multi-role point-of-sale &amp; inventory platform for small retailers — built across React, Node and MongoDB. Pick a <b style="color:var(--ink);font-weight:400">role</b> and a <b style="color:var(--ink);font-weight:400">screen</b> below to walk through the actual product.</p>
+    </div>
+  </div>
+
+  <div class="pos-tabs">
+    <div class="pos-tab-group">
+      <div class="label">— Role</div>
+      <div class="row" id="role-tabs">
+        <button class="role-btn active" data-hover data-role="admin">admin</button>
+        <button class="role-btn" data-hover data-role="manager">manager</button>
+        <button class="role-btn" data-hover data-role="cashier">cashier</button>
+      </div>
+    </div>
+    <div class="pos-tab-group">
+      <div class="label">— Screen</div>
+      <div class="row" id="screen-tabs"><!-- filled by JS --></div>
+    </div>
+  </div>
+
+  <div class="pos-screen">
+    <div class="tag" id="screen-tag">admin · login</div>
+    <img id="screen-img" alt="" src="">
+  </div>
+
+  <div class="pos-caption">
+    <div class="left">
+      <b id="cap-role">admin</b><span class="sep">·</span><span id="cap-screen">login</span>
+    </div>
+    <div class="counter"><span id="cap-idx">1</span> / <span id="cap-total">9</span></div>
+    <div class="pos-nav">
+      <button id="prev-btn" data-hover aria-label="previous screen">←</button>
+      <button id="next-btn" data-hover aria-label="next screen">→</button>
+    </div>
+  </div>
+
+  <div class="pos-meta">
+    <div class="item">
+      <div class="k">Role</div>
+      <div class="v">Full-stack engineer<br>solo build</div>
+    </div>
+    <div class="item">
+      <div class="k">Stack</div>
+      <div class="v">React · Node · Express<br>MongoDB · JWT · Tailwind</div>
+    </div>
+    <div class="item">
+      <div class="k">Roles supported</div>
+      <div class="v">Admin · Manager · Cashier<br><span class="live">● 3 access levels</span></div>
+    </div>
+    <div class="item">
+      <div class="k">Modules</div>
+      <div class="v">Billing · Inventory · Reports<br>Invoices · Customers · Staff</div>
+    </div>
+  </div>
+
+  <div class="pos-foot">
+    <div>© 2026 siam hossain · pos / demo</div>
+    <a href="index.html#work" data-hover>← back to work</a>
+  </div>
+</main>
+
+<script src="js/script.js"></script>
+<script>
+(function pos(){
+  const screens = {
+    admin: [
+      ['00-login', 'login'],
+      ['01-dashboard', 'dashboard'],
+      ['02-billing', 'billing'],
+      ['03-products', 'products'],
+      ['04-customers', 'customers'],
+      ['05-invoices', 'invoices'],
+      ['06-reports', 'reports'],
+      ['07-settings', 'settings'],
+      ['08-staff-roles', 'staff & roles'],
+    ],
+    manager: [
+      ['01-dashboard', 'dashboard'],
+      ['02-billing', 'billing'],
+      ['03-products', 'products'],
+      ['04-customers', 'customers'],
+      ['05-invoices', 'invoices'],
+      ['06-reports', 'reports'],
+      ['07-settings', 'settings'],
+    ],
+    cashier: [
+      ['01-dashboard', 'dashboard'],
+      ['02-billing', 'billing'],
+      ['03-products', 'products'],
+      ['04-customers', 'customers'],
+      ['05-invoices', 'invoices'],
+      ['06-reports', 'reports'],
+      ['07-settings', 'settings'],
+    ],
+  };
+
+  let role = 'admin';
+  let idx = 0;
+
+  const $ = s => document.querySelector(s);
+  const screenTabs = $('#screen-tabs');
+  const img        = $('#screen-img');
+  const tag        = $('#screen-tag');
+  const capRole    = $('#cap-role');
+  const capScreen  = $('#cap-screen');
+  const capIdx     = $('#cap-idx');
+  const capTotal   = $('#cap-total');
+  const prevBtn    = $('#prev-btn');
+  const nextBtn    = $('#next-btn');
+
+  // preload all images for the active role on demand
+  const preload = (r) => {
+    screens[r].forEach(s => { const i = new Image(); i.src = `images/pos/${r}/${s[0]}.png`; });
+  };
+
+  function buildScreenTabs(){
+    screenTabs.innerHTML = '';
+    screens[role].forEach((s, i) => {
+      const b = document.createElement('button');
+      b.textContent = s[1];
+      b.className = 'screen-btn' + (i === idx ? ' active' : '');
+      b.setAttribute('data-hover', '');
+      b.addEventListener('click', () => { idx = i; render(); });
+      screenTabs.appendChild(b);
+    });
+  }
+
+  function render(){
+    document.querySelectorAll('.role-btn').forEach(b => b.classList.toggle('active', b.dataset.role === role));
+    buildScreenTabs();
+
+    const [file, label] = screens[role][idx];
+    const newSrc = `images/pos/${role}/${file}.png`;
+
+    if (img.src.endsWith(newSrc)){
+      // already showing
+    } else {
+      img.classList.add('fade');
+      const tmp = new Image();
+      tmp.onload = () => {
+        img.src = newSrc;
+        img.alt = `${role} ${label}`;
+        requestAnimationFrame(() => img.classList.remove('fade'));
+      };
+      tmp.src = newSrc;
+    }
+
+    tag.textContent = `${role} · ${label}`;
+    capRole.textContent = role;
+    capScreen.textContent = label;
+    capIdx.textContent = idx + 1;
+    capTotal.textContent = screens[role].length;
+
+    prevBtn.disabled = idx === 0;
+    nextBtn.disabled = idx === screens[role].length - 1;
+  }
+
+  document.querySelectorAll('.role-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      role = b.dataset.role;
+      idx = 0;
+      preload(role);
+      render();
+    });
+  });
+  prevBtn.addEventListener('click', () => { if (idx > 0){ idx--; render(); } });
+  nextBtn.addEventListener('click', () => { if (idx < screens[role].length - 1){ idx++; render(); } });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft'  && idx > 0){ idx--; render(); }
+    if (e.key === 'ArrowRight' && idx < screens[role].length - 1){ idx++; render(); }
+  });
+
+  preload(role);
+  render();
+})();
+</script>
+</body>
+</html>

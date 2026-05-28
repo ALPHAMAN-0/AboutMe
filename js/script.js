@@ -12,14 +12,17 @@ const lerp = (a,b,t) => a + (b-a)*t;
    ============================================================ */
 (function clock(){
   const el = $('#clock'), dep = $('#deploy');
+  if (!el) return;
   function tick(){
     const d = new Date();
     const pad = n => String(n).padStart(2,'0');
     el.textContent = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
   }
   tick(); setInterval(tick, 1000);
-  const dd = new Date();
-  dep.textContent = dd.toISOString().slice(0,10) + 'T' + dd.toTimeString().slice(0,5);
+  if (dep){
+    const dd = new Date();
+    dep.textContent = dd.toISOString().slice(0,10) + 'T' + dd.toTimeString().slice(0,5);
+  }
 })();
 
 /* ============================================================
@@ -63,6 +66,7 @@ const lerp = (a,b,t) => a + (b-a)*t;
 (function typed(){
   const phrase = 'software engineer · full-stack · ml enthusiast_';
   const el = $('#typed');
+  if (!el) return;
   if (reduce){ el.textContent = phrase; return; }
   let i = 0;
   setTimeout(function step(){
@@ -83,8 +87,10 @@ const lerp = (a,b,t) => a + (b-a)*t;
   $$('.reveal, .stagger').forEach(el => io.observe(el));
 
   const u = $('#leadU');
-  const uio = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && u.classList.add('in')), {threshold:.4});
-  uio.observe(u);
+  if (u){
+    const uio = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && u.classList.add('in')), {threshold:.4});
+    uio.observe(u);
+  }
 })();
 
 /* ============================================================
@@ -92,6 +98,7 @@ const lerp = (a,b,t) => a + (b-a)*t;
    ============================================================ */
 (function marquee(){
   const track = $('#track');
+  if (!track) return;
   track.innerHTML += track.innerHTML;
 })();
 
@@ -101,6 +108,7 @@ const lerp = (a,b,t) => a + (b-a)*t;
 (function cursor(){
   if (mobile) return;
   const c = $('#cursor'), dot = $('#cursor-dot');
+  if (!c || !dot) return;
   let mx = innerWidth/2, my = innerHeight/2;
   let cx = mx, cy = my, dx = mx, dy = my;
   window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
@@ -138,7 +146,9 @@ const lerp = (a,b,t) => a + (b-a)*t;
    ============================================================ */
 (function grid(){
   if (reduce) return;
-  const cvs = $('#grid'), ctx = cvs.getContext('2d');
+  const cvs = $('#grid');
+  if (!cvs) return;
+  const ctx = cvs.getContext('2d');
   let w, h, dpr = Math.min(devicePixelRatio || 1, 2);
   let mx = -9999, my = -9999;
   const step = 56;
@@ -185,6 +195,7 @@ const lerp = (a,b,t) => a + (b-a)*t;
 (function preview(){
   if (mobile) return;
   const pv = $('#preview'), tag = $('#prev-tag'), cap = $('#prev-cap'), frame = $('#prev-frame');
+  if (!pv) return;
   let active = null, mx = 0, my = 0;
   let px = 0, py = 0, rx = 0, ry = 0;
 
@@ -206,10 +217,11 @@ const lerp = (a,b,t) => a + (b-a)*t;
 
   const data = {
     p1: { tag: 'ai resume builder · 2025',   cap: 'ats scoring + jd matching · react/ts', svg: img('images/ai-resume-builder-preview.png') },
-    p2: { tag: 'wpdev keyboard · 2025',      cap: 'scroll-linked canvas reveal',          svg: img('Animation/222_026.png') },
-    p3: { tag: 'e-commerce · 2024',          cap: 'mern + stripe payments',               svg: ph('mern · stripe', 45) },
-    p4: { tag: 'llm & agents · 2024',        cap: 'openai · rag pipelines',               svg: ph('python · openai', 68) },
-    p5: { tag: 'location automation · 2024', cap: 'selenium + maps api scraper',          svg: ph('python · selenium', 12) },
+    p2: { tag: 'pos system · 2026',          cap: 'multi-role retail dashboard · mern',   svg: img('images/pos/admin/01-dashboard.png') },
+    p3: { tag: 'scroll animation · 2025',    cap: 'scroll-linked canvas reveal',          svg: img('Animation/222_026.png') },
+    p4: { tag: 'e-commerce · 2024',          cap: 'mern + stripe payments',               svg: ph('mern · stripe', 45) },
+    p5: { tag: 'llm & agents · 2024',        cap: 'openai · rag pipelines',               svg: ph('python · openai', 68) },
+    p6: { tag: 'location automation · 2024', cap: 'selenium + maps api scraper',          svg: ph('python · selenium', 12) },
   };
 
   $$('.proj').forEach(p => {
