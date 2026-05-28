@@ -96,31 +96,6 @@ const lerp = (a,b,t) => a + (b-a)*t;
 })();
 
 /* ============================================================
-   smooth scroll (Lenis-style lag)
-   ============================================================ */
-(function smooth(){
-  if (reduce || mobile) return;
-  let current = window.scrollY, target = window.scrollY;
-  const ease = .085;
-  document.body.style.willChange = 'transform';
-  window.addEventListener('scroll', () => { target = window.scrollY; }, {passive:true});
-  $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
-    const id = a.getAttribute('href');
-    if (id.length < 2) return;
-    const t = document.querySelector(id);
-    if (!t) return;
-    e.preventDefault();
-    target = t.getBoundingClientRect().top + window.scrollY - 40;
-    window.scrollTo({top: target, behavior: 'auto'});
-  }));
-  function loop(){
-    current = lerp(current, target, ease);
-    requestAnimationFrame(loop);
-  }
-  loop();
-})();
-
-/* ============================================================
    custom cursor + magnetic + hover states
    ============================================================ */
 (function cursor(){

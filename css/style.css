@@ -17,10 +17,12 @@
 
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:var(--bg);color:var(--ink);font-family:var(--mono);font-weight:400;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-html{scroll-behavior:auto}
+html{scroll-behavior:smooth}
 body{overflow-x:hidden;cursor:none;min-height:100vh}
 a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;background:none;border:0;cursor:none}
+a[href],a:link,a:visited,button,[data-hover]{cursor:none}
+button{font:inherit;color:inherit;background:none;border:0}
+section{scroll-margin-top:80px}
 ::selection{background:var(--accent);color:var(--accent-ink)}
 
 /* film grain */
@@ -120,6 +122,27 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:none}
 .hero .meta .scroll{display:flex;flex-direction:column;align-items:center;gap:8px}
 .hero .meta .scroll .bar{width:1px;height:48px;background:linear-gradient(var(--ink),transparent);animation:drop 2.4s var(--ease) infinite}
 @keyframes drop{0%{transform:scaleY(.2);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(.2);transform-origin:bottom}}
+
+/* hero spec — right-side terminal block */
+.hero-spec{
+  position:absolute;right:clamp(20px,4vw,56px);top:50%;transform:translateY(-50%);
+  width:clamp(240px,22vw,300px);
+  font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--ink-dim);
+}
+.hero-spec .spec-head{
+  color:var(--accent);font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--rule);
+  display:flex;justify-content:space-between;
+}
+.hero-spec .spec-head .glyph{color:var(--ink-faint)}
+.hero-spec .spec-list{list-style:none;display:grid;gap:10px}
+.hero-spec .spec-list li{display:grid;grid-template-columns:72px 1fr auto;align-items:baseline;gap:8px}
+.hero-spec .spec-list .k{text-transform:uppercase;font-size:10px;letter-spacing:.18em}
+.hero-spec .spec-list .dots{border-bottom:1px dotted var(--ink-faint);height:8px;align-self:end;margin-bottom:3px}
+.hero-spec .spec-list .v{color:var(--ink);font-size:11px}
+.hero-spec .spec-list .v.live{color:var(--accent)}
+.hero-spec .spec-list .v .blip{display:inline-block;width:6px;height:.9em;background:var(--ink);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(2) infinite}
+@media (max-width:1023px){.hero-spec{display:none}}
 
 /* ============================================================
    section chrome
