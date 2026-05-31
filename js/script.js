@@ -216,7 +216,7 @@ const lerp = (a,b,t) => a + (b-a)*t;
     `<img src="${src}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">`;
 
   const data = {
-    p1: { tag: 'ai resume builder · 2025',   cap: 'ats scoring + jd matching · react/ts', svg: img('images/ai-resume-builder-preview.png') },
+    p1: { tag: 'ai + development · 2025',     cap: 'agents · rag · resume builder · automation', svg: img('images/ai-resume-builder-preview.png') },
     p2: { tag: 'pos system · 2026',          cap: 'nasema pharmacy POS · real build · mern', svg: img('parmacyShop/02-dashboard.png') },
     p3: { tag: 'scroll animation · 2025',    cap: 'scroll-linked canvas reveal',          svg: img('Animation/222_026.png') },
     p4: { tag: 'e-commerce · 2024',          cap: 'mern storefronts · stripe',            svg: img('MegaBazar/01-homepage-top.png') },
@@ -250,4 +250,72 @@ const lerp = (a,b,t) => a + (b-a)*t;
     requestAnimationFrame(loop);
   }
   loop();
+})();
+
+/* ============================================================
+   competitive programming — live stats
+   ============================================================ */
+(async function platformStats(){
+  function pulse(platform, on){
+    const el = document.querySelector(`.ps-card[data-platform="${platform}"] .ps-stat-num`);
+    if (el) el.style.opacity = on ? '.4' : '1';
+  }
+
+  async function setLive(platform, text, label){
+    const card = document.querySelector(`.ps-card[data-platform="${platform}"]`);
+    if (!card) return;
+    const numEl = card.querySelector('.ps-stat-num');
+    const labEl = card.querySelector('.ps-stat-label');
+    numEl.style.transition = 'opacity .35s';
+    numEl.style.opacity = '0';
+    await new Promise(r => setTimeout(r, 180));
+    numEl.textContent = text;
+    if (label) labEl.textContent = label;
+    numEl.style.opacity = '1';
+  }
+
+  async function fetchWithTimeout(url, ms){
+    const ctrl = new AbortController();
+    const tid = setTimeout(() => ctrl.abort(), ms);
+    try {
+      const r = await fetch(url, { signal: ctrl.signal });
+      clearTimeout(tid);
+      return r;
+    } catch(e){ clearTimeout(tid); throw e; }
+  }
+
+  async function leetcode(){
+    pulse('leetcode', true);
+    try {
+      const r = await fetchWithTimeout('https://alfa-leetcode-api.onrender.com/RedApple47/solved', 8000);
+      if (!r.ok) return;
+      const d = await r.json();
+      if (typeof d.solvedProblem === 'number'){
+        await setLive('leetcode', d.solvedProblem.toLocaleString(), 'solved');
+      }
+    } catch {}
+    pulse('leetcode', false);
+  }
+
+  async function codeforces(){
+    pulse('codeforces', true);
+    try {
+      const r = await fetchWithTimeout(
+        'https://codeforces.com/api/user.status?handle=SIAM001&from=1&count=10000', 15000
+      );
+      if (!r.ok) return;
+      const d = await r.json();
+      if (d.status !== 'OK') return;
+      const seen = new Set();
+      for (const s of d.result){
+        if (s.verdict === 'OK'){
+          seen.add(`${s.problem.contestId ?? s.problem.name}_${s.problem.index}`);
+        }
+      }
+      if (seen.size > 0) await setLive('codeforces', seen.size.toLocaleString(), 'solved');
+    } catch {}
+    pulse('codeforces', false);
+  }
+
+  Promise.allSettled([leetcode(), codeforces()]);
 })();
