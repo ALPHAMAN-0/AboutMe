@@ -8,20 +8,36 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/style.css">
 
 <style>
-  .ai-wrap{padding:120px clamp(20px,4vw,56px) 80px;max-width:1400px;margin:0 auto;position:relative;z-index:1}
+  /* effect markup whose JS was removed in the rebuild — hide so it can't break layout */
+  .grid-bg,.grain,.cursor,.cursor-dot{display:none!important}
+
+  /* shared light case-study top bar — matches index.html */
+  .topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:24px;padding:14px clamp(20px,4vw,56px);background:rgba(251,250,247,.82);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+  .topbar .brand{display:inline-flex;align-items:center;gap:8px;font-family:var(--serif);font-style:italic;font-size:20px;font-weight:500;color:var(--ink);letter-spacing:-.01em;flex-shrink:0;transition:color .2s var(--ease)}
+  .topbar .brand:hover{color:var(--accent)}
+  .topbar .brand .arr{font-style:normal;font-size:15px;color:var(--ink-3)}
+  .topbar nav{display:flex;gap:24px;margin-left:8px}
+  .topbar nav a{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--ink-2);position:relative;padding:2px 0;transition:color .2s var(--ease)}
+  .topbar nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:2px;background:var(--accent);transition:right .3s var(--ease)}
+  .topbar nav a:hover{color:var(--ink)}
+  .topbar nav a:hover::after{right:0}
+  .topbar .page-tag{margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-2);padding:6px 12px;border:1px solid var(--rule-2);border-radius:999px;background:var(--surface)}
+  @media (max-width:640px){.topbar nav{display:none}}
+
+  .ai-wrap{padding:48px clamp(20px,4vw,56px) 80px;max-width:1400px;margin:0 auto;position:relative;z-index:1}
 
   /* ── page header ── */
   .ai-page-head{display:grid;grid-template-columns:200px 1fr;gap:48px;margin-bottom:88px;align-items:baseline}
-  .ai-page-head .num{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-dim)}
-  .ai-page-head .num b{color:var(--accent);font-weight:500;margin-right:8px}
-  .ai-page-head h1{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(48px,7vw,96px);line-height:1;letter-spacing:-.015em}
-  .ai-page-head .sub{color:var(--ink-dim);margin-top:20px;font-size:14px;max-width:60ch;line-height:1.7}
-  .ai-page-head .sub b{color:var(--ink);font-weight:400}
+  .ai-page-head .num{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3)}
+  .ai-page-head .num b{color:var(--accent);font-weight:600;margin-right:8px}
+  .ai-page-head h1{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(48px,7vw,96px);line-height:1;letter-spacing:-.015em;color:var(--ink)}
+  .ai-page-head .sub{color:var(--ink-2);margin-top:20px;font-size:15px;max-width:60ch;line-height:1.7}
+  .ai-page-head .sub b{color:var(--ink);font-weight:600}
 
   /* ── project list ── */
   .ai-proj-list{display:flex;flex-direction:column}
@@ -36,37 +52,37 @@
   }
   .ai-proj:last-child{border-bottom:1px solid var(--rule)}
 
-  .ai-num{font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--ink-dim);padding-top:14px}
+  .ai-num{font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--ink-3);padding-top:14px}
 
   .ai-name{
     font-family:var(--serif);font-style:italic;font-weight:400;
     font-size:clamp(32px,4vw,60px);line-height:1;letter-spacing:-.01em;
-    margin-bottom:20px;
+    color:var(--ink);margin-bottom:20px;
   }
   .ai-yr{
     font-family:var(--mono);font-style:normal;font-size:.18em;
-    letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim);
+    letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);
     margin-left:.8em;vertical-align:.7em;
   }
   .ai-desc{
-    font-family:var(--mono);font-size:13px;line-height:1.75;
-    color:var(--ink-dim);max-width:52ch;margin-bottom:28px;
+    font-family:var(--sans);font-size:15px;line-height:1.7;
+    color:var(--ink-2);max-width:52ch;margin-bottom:28px;
   }
-  .ai-desc b{color:var(--ink);font-weight:400}
+  .ai-desc b{color:var(--ink);font-weight:600}
 
   .ai-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
   .ai-tag{
     font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--ink-dim);border:1px solid var(--rule);padding:6px 12px;
-    transition:color .25s var(--ease),border-color .25s var(--ease);
+    color:var(--ink-2);background:var(--surface-2);border:1px solid var(--rule);border-radius:7px;padding:6px 12px;
+    transition:color .25s var(--ease),border-color .25s var(--ease),background .25s var(--ease);
   }
-  .ai-proj:hover .ai-tag{color:var(--accent);border-color:var(--ink-faint)}
+  .ai-proj:hover .ai-tag{color:var(--accent-deep);border-color:var(--rule-2)}
 
   .ai-links{display:flex;gap:20px;flex-wrap:wrap}
   .ai-link{
     font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
-    color:var(--ink-dim);display:inline-flex;align-items:center;gap:6px;
-    border-bottom:1px solid var(--ink-faint);padding-bottom:2px;
+    color:var(--ink-3);display:inline-flex;align-items:center;gap:6px;
+    border-bottom:1px solid var(--rule-2);padding-bottom:2px;
     transition:color .25s var(--ease),border-color .25s var(--ease);
   }
   .ai-link:hover{color:var(--accent);border-color:var(--accent)}
@@ -76,22 +92,23 @@
   /* ── visual panel ── */
   .ai-visual{
     position:relative;overflow:hidden;
-    border:1px solid var(--rule);background:var(--bg-2);
+    border:1px solid var(--rule);border-radius:14px;background:var(--surface-2);
     aspect-ratio:16/10;
-    transition:border-color .35s var(--ease);
+    box-shadow:0 1px 2px rgba(24,25,28,.04), 0 14px 34px -18px rgba(24,25,28,.35);
+    transition:border-color .35s var(--ease),box-shadow .35s var(--ease);
   }
-  .ai-proj:hover .ai-visual{border-color:var(--ink-faint)}
+  .ai-proj:hover .ai-visual{border-color:var(--rule-2);box-shadow:0 1px 2px rgba(24,25,28,.04), 0 18px 40px -18px rgba(24,25,28,.4)}
   .ai-visual img{
     width:100%;height:100%;object-fit:cover;object-position:top;
-    display:block;filter:grayscale(.25) contrast(1.02);
+    display:block;filter:contrast(1.02);
     transition:filter .55s var(--ease);
   }
   .ai-proj:hover .ai-visual img{filter:none}
   .ai-visual .vis-tag{
     position:absolute;left:12px;top:12px;
     font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
-    color:var(--accent);background:rgba(10,10,10,.75);padding:5px 10px;
-    backdrop-filter:blur(4px);z-index:2;
+    color:var(--ink);background:rgba(255,255,255,.9);border:1px solid var(--rule);border-radius:6px;padding:5px 10px;
+    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);z-index:2;
   }
   .ai-visual .ph{
     width:100%;height:100%;display:flex;flex-direction:column;
@@ -101,7 +118,7 @@
   .ai-visual .ph svg{position:absolute;inset:0;width:100%;height:100%}
   .ai-visual .ph .ph-label{
     position:relative;font-family:var(--mono);font-size:10px;
-    letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);
+    letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);
     text-align:center;line-height:1.6;
   }
 
@@ -110,16 +127,16 @@
     display:flex;gap:40px;margin-top:28px;padding-top:24px;
     border-top:1px solid var(--rule);flex-wrap:wrap;
   }
-  .ai-stat .k{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:6px}
+  .ai-stat .k{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
   .ai-stat .v{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ink);line-height:1}
-  .ai-stat .v small{font-family:var(--mono);font-style:normal;font-size:10px;color:var(--ink-dim);display:block;margin-top:4px}
+  .ai-stat .v small{font-family:var(--mono);font-style:normal;font-size:10px;color:var(--ink-3);display:block;margin-top:4px}
 
   /* ── footer ── */
   .ai-foot{
     margin-top:64px;padding-top:32px;border-top:1px solid var(--rule);
     display:flex;justify-content:space-between;align-items:center;
     font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
-    color:var(--ink-dim);gap:24px;flex-wrap:wrap;
+    color:var(--ink-3);gap:24px;flex-wrap:wrap;
   }
   .ai-foot a{transition:color .25s var(--ease)}
   .ai-foot a:hover{color:var(--accent)}
@@ -158,16 +175,13 @@
 <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
 
 <header class="topbar">
-  <div class="brand"><a href="index.html#work" data-hover>[ <b>SH</b> ] ← INDEX</a></div>
+  <a class="brand" href="index.html#work"><span class="arr" aria-hidden="true">←</span> Siam&nbsp;Hossain</a>
   <nav aria-label="primary">
-    <a href="index.html" data-hover>home</a>
-    <a href="index.html#work" data-hover>work</a>
-    <a href="index.html#contact" data-hover>contact</a>
+    <a href="index.html#work">Work</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
   </nav>
-  <div class="right">
-    <span class="dot" aria-hidden="true"></span>
-    <span>AI + DEV / PROJECTS</span>
-  </div>
+  <span class="page-tag">AI + Dev</span>
 </header>
 
 <main class="ai-wrap">
@@ -224,19 +238,19 @@
           <svg viewBox="0 0 440 280" preserveAspectRatio="none" aria-hidden="true">
             <defs>
               <pattern id="ph2" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                <rect width="6" height="6" fill="#0e0e0e"/>
-                <line x1="0" y1="0" x2="0" y2="6" stroke="#1f1d19" stroke-width="2"/>
+                <rect width="6" height="6" fill="#FFFFFF"/>
+                <line x1="0" y1="0" x2="0" y2="6" stroke="#E7E4DD" stroke-width="2"/>
               </pattern>
             </defs>
             <rect width="440" height="280" fill="url(#ph2)"/>
-            <rect x="20" y="20" width="400" height="240" fill="none" stroke="#3a3833" stroke-dasharray="4 8"/>
-            <circle cx="220" cy="100" r="28" fill="none" stroke="#3a3833" stroke-width="1"/>
-            <line x1="220" y1="128" x2="220" y2="165" stroke="#3a3833" stroke-width="1" stroke-dasharray="3 5"/>
-            <circle cx="140" cy="185" r="18" fill="none" stroke="#3a3833" stroke-width="1"/>
-            <circle cx="220" cy="185" r="18" fill="none" stroke="#3a3833" stroke-width="1"/>
-            <circle cx="300" cy="185" r="18" fill="none" stroke="#3a3833" stroke-width="1"/>
-            <line x1="165" y1="175" x2="200" y2="175" stroke="#3a3833" stroke-width="1"/>
-            <line x1="240" y1="175" x2="280" y2="175" stroke="#3a3833" stroke-width="1"/>
+            <rect x="20" y="20" width="400" height="240" fill="none" stroke="#D9D6CD" stroke-dasharray="4 8"/>
+            <circle cx="220" cy="100" r="28" fill="none" stroke="#6B6E76" stroke-width="1"/>
+            <line x1="220" y1="128" x2="220" y2="165" stroke="#6B6E76" stroke-width="1" stroke-dasharray="3 5"/>
+            <circle cx="140" cy="185" r="18" fill="none" stroke="#6B6E76" stroke-width="1"/>
+            <circle cx="220" cy="185" r="18" fill="none" stroke="#6B6E76" stroke-width="1"/>
+            <circle cx="300" cy="185" r="18" fill="none" stroke="#6B6E76" stroke-width="1"/>
+            <line x1="165" y1="175" x2="200" y2="175" stroke="#6B6E76" stroke-width="1"/>
+            <line x1="240" y1="175" x2="280" y2="175" stroke="#6B6E76" stroke-width="1"/>
           </svg>
           <div class="ph-label">LLM agent architecture<br>github →</div>
         </div>
@@ -276,19 +290,19 @@
           <svg viewBox="0 0 440 280" preserveAspectRatio="none" aria-hidden="true">
             <defs>
               <pattern id="ph3" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(20)">
-                <rect width="6" height="6" fill="#0e0e0e"/>
-                <line x1="0" y1="0" x2="0" y2="6" stroke="#1f1d19" stroke-width="2"/>
+                <rect width="6" height="6" fill="#FFFFFF"/>
+                <line x1="0" y1="0" x2="0" y2="6" stroke="#E7E4DD" stroke-width="2"/>
               </pattern>
             </defs>
             <rect width="440" height="280" fill="url(#ph3)"/>
-            <rect x="20" y="20" width="400" height="240" fill="none" stroke="#3a3833" stroke-dasharray="4 8"/>
-            <rect x="60" y="80" width="100" height="60" fill="none" stroke="#3a3833" stroke-width="1"/>
-            <line x1="160" y1="110" x2="200" y2="110" stroke="#3a3833" stroke-width="1"/>
-            <rect x="200" y="80" width="80" height="60" fill="none" stroke="#3a3833" stroke-width="1"/>
-            <line x1="280" y1="110" x2="320" y2="110" stroke="#3a3833" stroke-width="1"/>
-            <rect x="320" y="80" width="80" height="60" fill="none" stroke="#3a3833" stroke-width="1"/>
-            <line x1="110" y1="140" x2="110" y2="180" stroke="#3a3833" stroke-width="1" stroke-dasharray="3 5"/>
-            <rect x="60" y="180" width="100" height="50" fill="none" stroke="#3a3833" stroke-width="1"/>
+            <rect x="20" y="20" width="400" height="240" fill="none" stroke="#D9D6CD" stroke-dasharray="4 8"/>
+            <rect x="60" y="80" width="100" height="60" fill="none" stroke="#6B6E76" stroke-width="1"/>
+            <line x1="160" y1="110" x2="200" y2="110" stroke="#6B6E76" stroke-width="1"/>
+            <rect x="200" y="80" width="80" height="60" fill="none" stroke="#6B6E76" stroke-width="1"/>
+            <line x1="280" y1="110" x2="320" y2="110" stroke="#6B6E76" stroke-width="1"/>
+            <rect x="320" y="80" width="80" height="60" fill="none" stroke="#6B6E76" stroke-width="1"/>
+            <line x1="110" y1="140" x2="110" y2="180" stroke="#6B6E76" stroke-width="1" stroke-dasharray="3 5"/>
+            <rect x="60" y="180" width="100" height="50" fill="none" stroke="#6B6E76" stroke-width="1"/>
           </svg>
           <div class="ph-label">scraper pipeline<br>github →</div>
         </div>

@@ -3,542 +3,420 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Siam Hossain — Software Engineer</title>
-<meta name="description" content="Portfolio of Siam Hossain — software engineer, full-stack developer, ML enthusiast." />
+<title>Siam Hossain — Software Engineer (Full-Stack &amp; AI)</title>
+<meta name="description" content="Siam Hossain — Software Engineer specialising in full-stack web (MERN/MEAN) and AI/ML (LLMs, RAG). Experience, skills, projects, and resume." />
+<meta name="theme-color" content="#fbfaf7" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div class="grid-bg" aria-hidden="true"><canvas id="grid"></canvas></div>
-<div class="grain" aria-hidden="true"></div>
-
-<div class="cursor" id="cursor" aria-hidden="true"></div>
-<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
-
-<header class="topbar" data-screen-label="topbar">
-  <div class="brand">[ <b>SH</b> ] — index <span class="sub-tag" style="color:var(--ink-dim)">/ portfolio · v.26</span></div>
+<!-- ============================================================
+     TOP BAR — name · nav · status · Download CV
+     ============================================================ -->
+<header class="topbar">
+  <a class="brand" href="#top">Siam&nbsp;Hossain</a>
   <nav aria-label="primary">
-    <a href="#about" data-hover>about</a>
-    <a href="#skills" data-hover>skills</a>
-    <a href="#work" data-hover>work</a>
-    <a href="#contact" data-hover>contact</a>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
   </nav>
-  <div class="right">
-    <span class="dot" aria-hidden="true"></span>
-    <span><span id="loc">Dhaka · 23.81°N</span> · <span id="clock">--:--:--</span></span>
+  <div class="topbar-cta">
+    <span class="status-pill"><span class="dot" aria-hidden="true"></span>Open to opportunities</span>
+    <!-- TODO: drop your real resume PDF at repo root as Siam-Hossain-CV.pdf -->
+    <a class="btn btn-primary" href="Siam-Hossain-CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a>
   </div>
 </header>
 
-<main class="shell">
+<main id="top">
 
-<section class="hero" id="top" data-screen-label="hero">
-  <div class="eyebrow reveal"><span class="line"></span><span>portfolio / 2026 — computer science</span></div>
+<!-- ============================================================
+     HERO — résumé-header summary card (the 5-second scan)
+     ============================================================ -->
+<section class="hero">
+  <div class="summary-card">
 
-  <h1 aria-label="Siam Hossain">
-    <span class="row"><span class="scramble" data-text="siam">siam</span></span>
-    <span class="row"><span class="scramble" data-text="hossain">hossain</span><span class="mark" aria-hidden="true"></span></span>
-  </h1>
+    <div class="sc-main">
+      <p class="sc-name">Siam Hossain</p>
 
-  <div class="terminal reveal" style="transition-delay:.5s">
-    <span class="prompt">&gt;</span>
-    <span id="typed"></span><span class="caret" aria-hidden="true"></span>
-  </div>
+      <h1 class="sc-role">
+        Software Engineer
+        <span class="sc-role-sub">Full-Stack&nbsp;·&nbsp;AI&nbsp;/&nbsp;ML</span>
+      </h1>
 
-  <aside class="hero-aside">
-    <div class="hero-globe-wrap">
-      <canvas class="hero-globe" id="hero-globe" aria-hidden="true"></canvas>
-      <div class="globe-label">earth · live</div>
-    </div>
+      <p class="sc-summary">
+        I build production full-stack web applications and AI features — MERN/MEAN
+        services and APIs, plus LLM- and RAG-powered tools that ship.
+      </p>
 
-    <div class="hero-spec">
-      <div class="spec-head"><span>system</span><span class="glyph">v.26</span></div>
-      <ul class="spec-list stagger">
-        <li><span class="k">uptime</span><span class="dots"></span><span class="v">~3 yrs</span></li>
-        <li><span class="k">stack</span><span class="dots"></span><span class="v">mern · py</span></li>
-        <li><span class="k">focus</span><span class="dots"></span><span class="v">llm · rag</span></li>
-        <li><span class="k">status</span><span class="dots"></span><span class="v live">open</span></li>
-        <li><span class="k">cursor</span><span class="dots"></span><span class="v">blinking<span class="blip" aria-hidden="true"></span></span></li>
-        <li><span class="k">location</span><span class="dots"></span><span class="v">dhaka, bd</span></li>
+      <p class="sc-now">
+        <span class="sc-now-label">Now</span>
+        <span><b>CS student</b> @ <b>AIUB</b> · open to software roles</span>
+        <span class="sc-sep" aria-hidden="true">·</span>
+        <span>Dhaka, Bangladesh</span>
+      </p>
+
+      <ul class="sc-skills" aria-label="core skills">
+        <li>TypeScript</li>
+        <li>React</li>
+        <li>Node.js</li>
+        <li>Python</li>
+        <li>MongoDB</li>
+        <li>LLM&nbsp;/&nbsp;RAG</li>
       </ul>
-    </div>
-  </aside>
 
-  <div class="meta">
-    <div>
-      <div>[ 01 ] hero</div>
-      <div style="color:var(--ink);margin-top:6px">currently — open to internship &amp; collaboration</div>
+      <div class="sc-cta">
+        <a class="btn btn-primary" href="Siam-Hossain-CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a>
+        <a class="btn btn-ghost" href="mailto:siam.cse.aiub@gmail.com">Email me <span aria-hidden="true">→</span></a>
+      </div>
     </div>
-    <div class="scroll" aria-hidden="true">
-      <div>scroll</div>
-      <div class="bar"></div>
-    </div>
-    <div style="text-align:right">
-      <div>portfolio.v26 / build 014</div>
-      <div style="color:var(--ink);margin-top:6px">© 2026 siam hossain</div>
-    </div>
+
+    <aside class="sc-facts" aria-label="quick facts">
+      <div class="fact">
+        <span class="fact-num">3+</span>
+        <span class="fact-label">yrs building</span>
+      </div>
+      <div class="fact">
+        <span class="fact-num">2000+</span>
+        <span class="fact-label">DSA problems</span>
+      </div>
+      <div class="fact">
+        <span class="fact-num">MERN</span>
+        <span class="fact-label">+ MEAN · Py</span>
+      </div>
+      <div class="fact">
+        <span class="fact-num">AI</span>
+        <span class="fact-label">LLM · RAG · agents</span>
+      </div>
+    </aside>
+
   </div>
 </section>
 
-<section id="about" data-screen-label="about">
-  <div class="sec-head reveal">
+<!-- ============================================================
+     01 · ABOUT
+     ============================================================ -->
+<section id="about">
+  <div class="sec-head">
     <div class="num"><b>01</b> / about</div>
-    <h2>a digital architect, in training.</h2>
+    <h2>A bit about me.</h2>
   </div>
 
   <div class="about-grid">
-    <figure class="portrait reveal">
-      <img src="images/SIAM.jpeg" alt="Siam Hossain portrait" loading="lazy">
+    <figure class="about-portrait">
+      <img src="images/SIAM.jpeg" alt="Portrait of Siam Hossain" decoding="async">
     </figure>
 
-    <div class="bio reveal" style="transition-delay:.1s">
-      <p>I'm a <em>computer science</em> student at AIUB building <em>full-stack</em> systems across the MERN and MEAN stacks — services, APIs, and the interfaces wrapped around them.</p>
-      <p>I spend a lot of time on <em>ML &amp; AI</em>: LLMs, prompt engineering, RAG pipelines, and small agents that actually do something useful. Curious about how machines learn, more curious about how to make them useful.</p>
-      <p>On the side: networking fundamentals (TCP/IP, OSI, AWS) and <em>2000+ problems</em> on LeetCode, Codeforces, and HackerRank. Open to internships and collaboration.</p>
-    </div>
+    <div class="about-bio">
+      <p>I'm a <em>computer science</em> student at AIUB who builds <em>full-stack</em> web applications across the MERN and MEAN stacks — services, APIs, and the interfaces wrapped around them.</p>
+      <p>A lot of my time goes into <em>AI &amp; ML</em>: LLMs, prompt engineering, RAG pipelines, and small agents that do something genuinely useful. I care about turning models into tools people can actually use.</p>
+      <p>On the side I keep the fundamentals sharp — networking (TCP/IP, OSI), cloud (AWS), and <em>2000+</em> solved problems across LeetCode, Codeforces and HackerRank. Open to software roles and collaboration.</p>
 
-    <aside class="meta-block reveal" style="transition-delay:.2s">
-      <dl>
-        <dt>Location</dt>
-        <dd>Adabor, Dhaka, BD<small>AIUB · BSc CSE</small></dd>
-
-        <dt>Status</dt>
-        <dd><span class="live">●</span> open · internship &amp; collaboration</dd>
-
-        <dt>Stack</dt>
-        <dd>MERN · MEAN · Python · OpenAI<small>react · angular · node · mongo</small></dd>
-
-        <dt>Solving</dt>
-        <dd>2000+ on LeetCode / CF / HR<small>strong DSA fundamentals</small></dd>
-
-        <dt>Focus</dt>
-        <dd>LLMs · RAG · AI agents<small>networking + cloud (AWS)</small></dd>
-
-        <dt>Languages</dt>
-        <dd>Bangla · English · German (A2)<small>native · fluent · learning</small></dd>
-      </dl>
-    </aside>
-  </div>
-
-  <!-- problem solving platforms -->
-  <div class="ps-row reveal" style="transition-delay:.3s">
-    <div class="ps-row-head">
-      <div class="ps-title"><b>{ }</b> problem solving</div>
-      <div class="ps-count">2000+ across platforms</div>
-    </div>
-    <div class="ps-cards">
-
-      <a class="ps-card" data-platform="leetcode" href="https://leetcode.com/u/RedApple47/" target="_blank" rel="noopener" data-hover>
-        <span class="ps-arrow">↗</span>
-        <div class="ps-logo">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
-        </div>
-        <div class="ps-meta">
-          <span class="ps-platform">LeetCode</span>
-          <span class="ps-handle">RedApple47</span>
-        </div>
-        <div class="ps-stat">
-          <span class="ps-stat-num">—</span>
-          <span class="ps-stat-label">solved</span>
-        </div>
-      </a>
-
-      <a class="ps-card" data-platform="codeforces" href="https://codeforces.com/profile/SIAM001" target="_blank" rel="noopener" data-hover>
-        <span class="ps-arrow">↗</span>
-        <div class="ps-logo">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 7.5C5.328 7.5 6 8.172 6 9v10.5c0 .828-.672 1.5-1.5 1.5h-3C.673 21 0 20.328 0 19.5V9c0-.828.673-1.5 1.5-1.5h3zm9-4.5c.828 0 1.5.672 1.5 1.5V19.5c0 .828-.672 1.5-1.5 1.5h-3c-.827 0-1.5-.672-1.5-1.5V4.5C9 3.672 9.673 3 10.5 3h3zm9 7.5c.828 0 1.5.672 1.5 1.5V19.5c0 .828-.672 1.5-1.5 1.5h-3c-.828 0-1.5-.672-1.5-1.5V10.5c0-.828.672-1.5 1.5-1.5h3z"/></svg>
-        </div>
-        <div class="ps-meta">
-          <span class="ps-platform">Codeforces</span>
-          <span class="ps-handle">SIAM001</span>
-        </div>
-        <div class="ps-stat">
-          <span class="ps-stat-num">—</span>
-          <span class="ps-stat-label">solved</span>
-        </div>
-      </a>
-
-      <a class="ps-card" data-platform="hackerrank" href="https://www.hackerrank.com/profile/BaBaYaGa_A1" target="_blank" rel="noopener" data-hover>
-        <span class="ps-arrow">↗</span>
-        <div class="ps-logo">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c1.285 0 9.75 4.886 10.392 6s.645 10.886 0 12-9.107 6-10.392 6S2.25 19.114 1.608 18s-.642-10.887 0-12C2.25 4.886 10.715 0 12 0zm2.295 6.799c-.141 0-.258.115-.258.258v1.875H9.963V7.057c0-.143-.116-.258-.258-.258h-1.5c-.143 0-.258.115-.258.258v9.886c0 .143.115.258.258.258h1.5c.142 0 .258-.115.258-.258v-3.57h4.074v3.57c0 .143.117.258.258.258h1.501c.143 0 .258-.115.258-.258V7.057c0-.143-.115-.258-.258-.258h-1.501z"/></svg>
-        </div>
-        <div class="ps-meta">
-          <span class="ps-platform">HackerRank</span>
-          <span class="ps-handle">BaBaYaGa_A1</span>
-        </div>
-        <div class="ps-stat">
-          <span class="ps-stat-num">5★</span>
-          <span class="ps-stat-label">rated</span>
-        </div>
-      </a>
-
-      <a class="ps-card" data-platform="codolio" href="https://codolio.com/profile/babaYagaa" target="_blank" rel="noopener" data-hover>
-        <span class="ps-arrow">↗</span>
-        <div class="ps-logo">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
-        </div>
-        <div class="ps-meta">
-          <span class="ps-platform">Codolio</span>
-          <span class="ps-handle">babaYagaa</span>
-        </div>
-        <div class="ps-stat">
-          <span class="ps-stat-num">1-yr</span>
-          <span class="ps-stat-label">activity log</span>
-        </div>
-      </a>
-
-    </div>
-  </div>
-
-</section>
-
-<section id="skills" data-screen-label="skills">
-  <div class="sec-head reveal">
-    <div class="num"><b>02</b> / instrumentation</div>
-    <h2>tools I reach for, daily.</h2>
-  </div>
-
-  <div class="marquee" aria-label="skills">
-    <div class="marquee-track" id="track">
-      <span class="chip" data-hover><span class="idx">01</span>JavaScript</span>
-      <span class="chip" data-hover><span class="star">✦</span>TypeScript</span>
-      <span class="chip" data-hover><span class="idx">02</span>Python</span>
-      <span class="chip" data-hover><span class="star">✦</span>React</span>
-      <span class="chip" data-hover><span class="idx">03</span>Angular</span>
-      <span class="chip" data-hover><span class="star">✦</span>Node.js</span>
-      <span class="chip" data-hover><span class="idx">04</span>MongoDB</span>
-      <span class="chip" data-hover><span class="star">✦</span>PyTorch</span>
-      <span class="chip" data-hover><span class="idx">05</span>OpenAI</span>
-      <span class="chip" data-hover><span class="star">✦</span>Docker</span>
-      <span class="chip" data-hover><span class="idx">06</span>AWS</span>
-      <span class="chip" data-hover><span class="star">✦</span>Linux</span>
+      <ul class="about-facts">
+        <li><span>Location</span><b>Dhaka, Bangladesh</b></li>
+        <li><span>Education</span><b>BSc CSE · AIUB</b></li>
+        <li><span>Focus</span><b>Full-stack · AI / ML</b></li>
+        <li><span>Languages</span><b>Bangla · English · German (A2)</b></li>
+      </ul>
     </div>
   </div>
 </section>
 
-<section id="work" data-screen-label="work">
-  <div class="sec-head reveal">
-    <div class="num"><b>03</b> / selected work</div>
-    <h2>six things, made with care.</h2>
+<!-- ============================================================
+     02 · EXPERIENCE
+     ============================================================ -->
+<section id="experience">
+  <div class="sec-head">
+    <div class="num"><b>02</b> / experience</div>
+    <h2>Experience &amp; education.</h2>
   </div>
 
-  <div class="projects stagger" id="projects">
-    <a class="proj" data-hover data-preview="p1" href="ai-dev.html" aria-label="Project: AI + Development">
-      <span class="num">01</span>
-      <span class="name">AI + Development<span class="yr">— 2025</span></span>
-      <span class="stack"><b>tech</b>openai · react · python · rag · agents</span>
-      <span class="arrow" aria-hidden="true">↗</span>
-    </a>
-    <a class="proj" data-hover data-preview="p2" href="pos.html" aria-label="Project: POS System">
-      <span class="num">02</span>
-      <span class="name">POS System<span class="yr">— 2026</span></span>
-      <span class="stack"><b>tech</b>react · node · mongo · real pharmacy</span>
-      <span class="arrow" aria-hidden="true">↗</span>
-    </a>
-    <a class="proj" data-hover data-preview="p3" href="wpdev.html" aria-label="Project: Scroll Animation">
-      <span class="num">03</span>
-      <span class="name">Scroll Animation<span class="yr">— 2025</span></span>
-      <span class="stack"><b>tech</b>html5 canvas · scrollytelling · 52-frame seq</span>
-      <span class="arrow" aria-hidden="true">↗</span>
-    </a>
-    <a class="proj" data-hover data-preview="p4" href="ecommerce.html" aria-label="Project: E-Commerce">
-      <span class="num">04</span>
-      <span class="name">E-Commerce<span class="yr">— 2024</span></span>
-      <span class="stack"><b>tech</b>mern · stripe · jwt · redux</span>
-      <span class="arrow" aria-hidden="true">↗</span>
-    </a>
-    <a class="proj" data-hover data-preview="p5" href="https://github.com/ALPHAMAN-0" target="_blank" rel="noopener" aria-label="Project: LLM and AI Agents">
-      <span class="num">05</span>
-      <span class="name">LLM &amp; AI Agents<span class="yr">— 2024</span></span>
-      <span class="stack"><b>tech</b>openai · rag · prompt-eng · python</span>
-      <span class="arrow" aria-hidden="true">↗</span>
-    </a>
-    <a class="proj" data-hover data-preview="p6" href="https://github.com/ALPHAMAN-0" target="_blank" rel="noopener" aria-label="Project: Automation">
-      <span class="num">06</span>
-      <span class="name">Automation<span class="yr">— 2024</span></span>
-      <span class="stack"><b>tech</b>python · selenium · google maps api</span>
-      <span class="arrow" aria-hidden="true">↗</span>
-    </a>
+  <!-- TODO: confirm dates &amp; details — these reflect your real builds, but verify -->
+  <ol class="timeline">
+    <li class="tl-item">
+      <div class="tl-when">2023 — Present</div>
+      <div class="tl-body">
+        <h3 class="tl-role">Full-Stack Developer <span class="tl-co">· Freelance &amp; personal projects</span></h3>
+        <p class="tl-place">Remote · self-directed</p>
+        <ul class="tl-points">
+          <li>Built a real pharmacy POS (Nasema Pharmacy) — billing, inventory, roles &amp; reporting — running on a live shop counter.</li>
+          <li>Developed MERN e-commerce storefronts with Stripe payments, JWT auth and Redux.</li>
+          <li>Shipped AI tools — an ATS resume builder and LLM/RAG experiments — owning each end-to-end: data, APIs, UI.</li>
+        </ul>
+        <ul class="tl-tags" aria-label="tech used">
+          <li>React</li><li>Node.js</li><li>MongoDB</li><li>OpenAI</li><li>Stripe</li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="tl-item">
+      <div class="tl-when">2022 — Present</div>
+      <div class="tl-body">
+        <h3 class="tl-role">BSc in Computer Science &amp; Engineering <span class="tl-co">· AIUB</span></h3>
+        <p class="tl-place">American International University-Bangladesh, Dhaka</p>
+        <ul class="tl-points">
+          <li>Strong DSA foundation — 2000+ problems solved across LeetCode, Codeforces &amp; HackerRank.</li>
+          <li>Coursework &amp; self-study in ML/AI, networking (TCP/IP, OSI), and cloud (AWS).</li>
+        </ul>
+        <ul class="tl-tags" aria-label="focus">
+          <li>Algorithms</li><li>Networking</li><li>Machine Learning</li>
+        </ul>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<!-- ============================================================
+     02 · SKILLS (scannable grid)
+     ============================================================ -->
+<section id="skills">
+  <div class="sec-head">
+    <div class="num"><b>03</b> / skills</div>
+    <h2>What I work with.</h2>
   </div>
 
-  <div class="preview" id="preview" aria-hidden="true">
-    <div class="frame" id="prev-frame"></div>
-    <div class="tag" id="prev-tag">project preview</div>
-    <div class="caption" id="prev-cap">drop screenshot.png</div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h3 class="sg-title">Frontend</h3>
+      <ul class="sg-list">
+        <li>React</li><li>Angular</li><li>TypeScript</li>
+        <li>JavaScript&nbsp;(ES6+)</li><li>HTML5&nbsp;/&nbsp;CSS3</li><li>Redux</li>
+      </ul>
+    </div>
+
+    <div class="skill-group">
+      <h3 class="sg-title">Backend</h3>
+      <ul class="sg-list">
+        <li>Node.js</li><li>Express</li><li>Python</li>
+        <li>REST&nbsp;APIs</li><li>JWT&nbsp;/&nbsp;Auth</li>
+      </ul>
+    </div>
+
+    <div class="skill-group">
+      <h3 class="sg-title">AI &amp; ML</h3>
+      <ul class="sg-list">
+        <li>OpenAI&nbsp;/&nbsp;LLMs</li><li>RAG&nbsp;pipelines</li><li>Prompt&nbsp;engineering</li>
+        <li>AI&nbsp;agents</li><li>PyTorch</li>
+      </ul>
+    </div>
+
+    <div class="skill-group">
+      <h3 class="sg-title">Data &amp; DevOps</h3>
+      <ul class="sg-list">
+        <li>MongoDB</li><li>Docker</li><li>AWS</li><li>Linux</li><li>Git</li>
+      </ul>
+    </div>
+
+    <div class="skill-group">
+      <h3 class="sg-title">CS Fundamentals</h3>
+      <ul class="sg-list">
+        <li>Data&nbsp;Structures&nbsp;&amp;&nbsp;Algorithms</li><li>Networking&nbsp;(TCP/IP,&nbsp;OSI)</li><li>System&nbsp;design&nbsp;basics</li>
+      </ul>
+    </div>
+
+    <div class="skill-group">
+      <h3 class="sg-title">Languages</h3>
+      <ul class="sg-list">
+        <li>Bangla&nbsp;(native)</li><li>English&nbsp;(fluent)</li><li>German&nbsp;(A2)</li>
+      </ul>
+    </div>
   </div>
 </section>
 
-<section id="contact" class="contact" data-screen-label="contact">
-  <div class="sec-head reveal">
-    <div class="num"><b>04</b> / contact</div>
-    <h2>the part where we talk.</h2>
+<!-- ============================================================
+     03 · SELECTED WORK
+     ============================================================ -->
+<section id="work">
+  <div class="sec-head">
+    <div class="num"><b>04</b> / selected work</div>
+    <h2>Things I've built.</h2>
   </div>
 
-  <div class="lead reveal">
-    let's <span class="accent underline" id="leadU">build</span><br>
-    something <span style="color:var(--ink-dim)">[</span>good<span style="color:var(--ink-dim)">]</span>.
+  <div class="work-grid">
+    <a class="work-card" href="ai-dev.html">
+      <div class="wc-thumb"><img src="images/ai-resume-builder-preview.png" alt="AI resume builder project preview" loading="lazy"></div>
+      <div class="wc-body">
+        <div class="wc-top"><span class="wc-name">AI + Development</span><span class="wc-yr">2025</span></div>
+        <p class="wc-desc">LLM agents, RAG, an AI resume builder, and automation tooling.</p>
+        <ul class="wc-tags"><li>OpenAI</li><li>React</li><li>Python</li><li>RAG</li></ul>
+      </div>
+      <span class="wc-arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="work-card" href="pos.html">
+      <div class="wc-thumb"><img src="parmacyShop/02-dashboard.png" alt="Pharmacy POS dashboard" loading="lazy"></div>
+      <div class="wc-body">
+        <div class="wc-top"><span class="wc-name">Pharmacy POS</span><span class="wc-yr">2026</span></div>
+        <p class="wc-desc">Real pharmacy POS — billing, inventory, roles, invoices &amp; reports.</p>
+        <ul class="wc-tags"><li>React</li><li>Node</li><li>MongoDB</li></ul>
+      </div>
+      <span class="wc-arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="work-card" href="ecommerce.html">
+      <div class="wc-thumb"><img src="MegaBazar/01-homepage-top.png" alt="MegaBazar e-commerce homepage" loading="lazy"></div>
+      <div class="wc-body">
+        <div class="wc-top"><span class="wc-name">E-Commerce</span><span class="wc-yr">2024</span></div>
+        <p class="wc-desc">MERN storefront with Stripe payments, JWT auth and Redux.</p>
+        <ul class="wc-tags"><li>MERN</li><li>Stripe</li><li>Redux</li></ul>
+      </div>
+      <span class="wc-arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="work-card" href="wpdev.html">
+      <div class="wc-thumb"><img src="Animation/222_026.png" alt="Scroll-linked canvas animation frame" loading="lazy"></div>
+      <div class="wc-body">
+        <div class="wc-top"><span class="wc-name">Scroll Animation</span><span class="wc-yr">2025</span></div>
+        <p class="wc-desc">Scroll-linked HTML5 canvas reveal — 52-frame sequence.</p>
+        <ul class="wc-tags"><li>Canvas</li><li>JavaScript</li></ul>
+      </div>
+      <span class="wc-arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="work-card" href="https://github.com/ALPHAMAN-0" target="_blank" rel="noopener">
+      <div class="wc-thumb wc-thumb-code" aria-hidden="true"><span>{ }</span></div>
+      <div class="wc-body">
+        <div class="wc-top"><span class="wc-name">LLM &amp; AI Agents</span><span class="wc-yr">2024</span></div>
+        <p class="wc-desc">OpenAI-powered RAG pipelines and prompt-engineered agents.</p>
+        <ul class="wc-tags"><li>OpenAI</li><li>RAG</li><li>Python</li></ul>
+      </div>
+      <span class="wc-arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="work-card" href="https://github.com/ALPHAMAN-0" target="_blank" rel="noopener">
+      <div class="wc-thumb wc-thumb-code" aria-hidden="true"><span>&lt;/&gt;</span></div>
+      <div class="wc-body">
+        <div class="wc-top"><span class="wc-name">Automation</span><span class="wc-yr">2024</span></div>
+        <p class="wc-desc">Selenium + Google Maps API scrapers and workflow automation.</p>
+        <ul class="wc-tags"><li>Python</li><li>Selenium</li><li>Maps API</li></ul>
+      </div>
+      <span class="wc-arrow" aria-hidden="true">↗</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============================================================
+     04 · PROBLEM SOLVING (live stats)
+     ============================================================ -->
+<section id="solving">
+  <div class="sec-head">
+    <div class="num"><b>05</b> / problem solving</div>
+    <h2>2000+ solved, across platforms.</h2>
   </div>
 
-  <div class="socials">
-    <a class="social magnet" data-hover href="mailto:siam.cse.aiub@gmail.com">
-      <span class="label">→ email</span>
-      <span class="handle">siam.cse.aiub@gmail.com</span>
-      <span class="arrow">↗</span>
+  <div class="ps-cards">
+    <a class="ps-card" data-platform="leetcode" href="https://leetcode.com/u/RedApple47/" target="_blank" rel="noopener">
+      <div class="ps-logo">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
+      </div>
+      <div class="ps-meta">
+        <span class="ps-platform">LeetCode</span>
+        <span class="ps-handle">RedApple47</span>
+      </div>
+      <div class="ps-stat">
+        <span class="ps-stat-num">303</span>
+        <span class="ps-stat-label">solved</span>
+      </div>
+      <span class="ps-arrow" aria-hidden="true">↗</span>
     </a>
-    <a class="social magnet" data-hover href="https://github.com/ALPHAMAN-0" target="_blank" rel="noopener">
-      <span class="label">→ github</span>
-      <span class="handle">@ALPHAMAN-0</span>
-      <span class="arrow">↗</span>
+
+    <a class="ps-card" data-platform="codeforces" href="https://codeforces.com/profile/SIAM001" target="_blank" rel="noopener">
+      <div class="ps-logo">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 7.5C5.328 7.5 6 8.172 6 9v10.5c0 .828-.672 1.5-1.5 1.5h-3C.673 21 0 20.328 0 19.5V9c0-.828.673-1.5 1.5-1.5h3zm9-4.5c.828 0 1.5.672 1.5 1.5V19.5c0 .828-.672 1.5-1.5 1.5h-3c-.827 0-1.5-.672-1.5-1.5V4.5C9 3.672 9.673 3 10.5 3h3zm9 7.5c.828 0 1.5.672 1.5 1.5V19.5c0 .828-.672 1.5-1.5 1.5h-3c-.828 0-1.5-.672-1.5-1.5V10.5c0-.828.672-1.5 1.5-1.5h3z"/></svg>
+      </div>
+      <div class="ps-meta">
+        <span class="ps-platform">Codeforces</span>
+        <span class="ps-handle">SIAM001</span>
+      </div>
+      <div class="ps-stat">
+        <span class="ps-stat-num">318</span>
+        <span class="ps-stat-label">solved</span>
+      </div>
+      <span class="ps-arrow" aria-hidden="true">↗</span>
     </a>
-    <a class="social magnet" data-hover href="https://www.linkedin.com/in/siamhossain4/" target="_blank" rel="noopener">
-      <span class="label">→ linkedin</span>
-      <span class="handle">in/siamhossain4</span>
-      <span class="arrow">↗</span>
+
+    <a class="ps-card" data-platform="hackerrank" href="https://www.hackerrank.com/profile/BaBaYaGa_A1" target="_blank" rel="noopener">
+      <div class="ps-logo">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c1.285 0 9.75 4.886 10.392 6s.645 10.886 0 12-9.107 6-10.392 6S2.25 19.114 1.608 18s-.642-10.887 0-12C2.25 4.886 10.715 0 12 0zm2.295 6.799c-.141 0-.258.115-.258.258v1.875H9.963V7.057c0-.143-.116-.258-.258-.258h-1.5c-.143 0-.258.115-.258.258v9.886c0 .143.115.258.258.258h1.5c.142 0 .258-.115.258-.258v-3.57h4.074v3.57c0 .143.117.258.258.258h1.501c.143 0 .258-.115.258-.258V7.057c0-.143-.115-.258-.258-.258h-1.501z"/></svg>
+      </div>
+      <div class="ps-meta">
+        <span class="ps-platform">HackerRank</span>
+        <span class="ps-handle">BaBaYaGa_A1</span>
+      </div>
+      <div class="ps-stat">
+        <span class="ps-stat-num">63</span>
+        <span class="ps-stat-label">solved</span>
+      </div>
+      <span class="ps-arrow" aria-hidden="true">↗</span>
     </a>
-    <a class="social magnet" data-hover href="https://x.com/SIAM_HOSSAIN47" target="_blank" rel="noopener">
-      <span class="label">→ x</span>
-      <span class="handle">@SIAM_HOSSAIN47</span>
-      <span class="arrow">↗</span>
+
+    <a class="ps-card" data-platform="codolio" href="https://codolio.com/profile/babaYagaa" target="_blank" rel="noopener">
+      <div class="ps-logo">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+      </div>
+      <div class="ps-meta">
+        <span class="ps-platform">Codolio</span>
+        <span class="ps-handle">babaYagaa</span>
+      </div>
+      <div class="ps-stat">
+        <!-- TODO: replace with your real Codolio "Total Questions" number so it matches the 2000+ headline -->
+        <span class="ps-stat-num">2000+</span>
+        <span class="ps-stat-label">total solved</span>
+      </div>
+      <span class="ps-arrow" aria-hidden="true">↗</span>
     </a>
   </div>
+</section>
 
-  <div class="foot">
-    <div>
-      <div>portfolio.v26 / static</div>
-      <div>handcrafted in dhaka</div>
+<!-- ============================================================
+     05 · CONTACT
+     ============================================================ -->
+<section id="contact" class="contact">
+  <div class="sec-head">
+    <div class="num"><b>06</b> / contact</div>
+    <h2>Let's talk.</h2>
+  </div>
+
+  <div class="contact-body">
+    <p class="contact-lead">
+      Open to engineering roles and collaboration. The fastest way to reach me is email —
+      or grab my CV.
+    </p>
+    <div class="contact-cta">
+      <a class="btn btn-primary" href="Siam-Hossain-CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a>
+      <a class="btn btn-ghost" href="mailto:siam.cse.aiub@gmail.com">siam.cse.aiub@gmail.com</a>
     </div>
-    <div class="glyph" aria-hidden="true">★</div>
-    <div style="text-align:right">
-      <div>last deploy — <span id="deploy">--</span></div>
-      <div>© 2026 siam hossain</div>
+
+    <div class="socials">
+      <a class="social" href="https://github.com/ALPHAMAN-0" target="_blank" rel="noopener">
+        <span class="social-label">GitHub</span><span class="social-handle">@ALPHAMAN-0</span>
+      </a>
+      <a class="social" href="https://www.linkedin.com/in/siamhossain4/" target="_blank" rel="noopener">
+        <span class="social-label">LinkedIn</span><span class="social-handle">in/siamhossain4</span>
+      </a>
+      <a class="social" href="https://x.com/SIAM_HOSSAIN47" target="_blank" rel="noopener">
+        <span class="social-label">X</span><span class="social-handle">@SIAM_HOSSAIN47</span>
+      </a>
+      <a class="social" href="mailto:siam.cse.aiub@gmail.com">
+        <span class="social-label">Email</span><span class="social-handle">siam.cse.aiub@gmail.com</span>
+      </a>
     </div>
   </div>
+
+  <footer class="foot">
+    <span>© 2026 Siam Hossain</span>
+    <span>Software Engineer · Dhaka, Bangladesh</span>
+  </footer>
 </section>
 
 </main>
 
 <script src="js/script.js"></script>
-
-<script>
-/* canvas globe — true axial rotation around the polar (Y) axis */
-(function globe3d(){
-  const cvs = document.getElementById('hero-globe');
-  if (!cvs) return;
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const ctx = cvs.getContext('2d');
-
-  const cssSize = 120;
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  cvs.width  = cssSize * dpr;
-  cvs.height = cssSize * dpr;
-  cvs.style.width  = cssSize + 'px';
-  cvs.style.height = cssSize + 'px';
-  ctx.scale(dpr, dpr);
-
-  const cx = cssSize / 2, cy = cssSize / 2;
-  const R  = cssSize * 0.4;
-  const DEG = Math.PI / 180;
-  const TAU = Math.PI * 2;
-
-  // Earth land mask — union of overlapping ellipses for organic continent shapes.
-  // Each ellipse: [latCenter, lngCenter, latRadius, lngRadius]. Inside = land.
-  const landE = [
-    // === AFRICA ===
-    [25,   0, 7, 18],   [22,  18, 8, 17],   [15, -10, 8,  8],
-    [12,   5, 9, 14],   [ 8,  25, 8, 10],   [ 3,  22, 9, 12],
-    [-8,  22, 9, 10],   [ 5,  40, 5,  6],   [-10, 35, 7,  8],
-    [-20, 27, 8,  9],   [-25, 22, 8,  8],   [-30, 22, 5,  6],
-    [-32, 19, 3,  4],   [-30, 28, 4,  4],   [10,  -5, 5,  9],
-    [-2,  12, 5,  6],
-    // Madagascar
-    [-20, 46, 6, 3],
-
-    // === EUROPE ===
-    [50,   2, 6,  8],    [50,  18, 8, 12],   [48,  28, 7, 10],
-    [42,  18, 5, 10],    [40,  -3, 5,  7],   [55,   8, 4,  7],
-    [55,  35, 7, 18],    [60,  18, 7, 15],   [65,  25, 5, 22],
-    [55,  -4, 5,  5],    [54,  -8, 3,  3],
-
-    // === RUSSIA / NORTH ASIA ===
-    [60,  55, 7, 22],    [60,  85, 7, 22],   [60, 115, 7, 22],
-    [60, 145, 6, 18],    [68,  75, 5, 32],   [68, 130, 5, 22],
-
-    // === ASIA ===
-    [40,  65, 7, 15],    [45,  88, 6, 12],   [35, 100, 8, 16],
-    [30, 110, 7, 10],    [40, 120, 7,  8],   [35, 128, 4,  4],   // Korea
-    [38, 138, 4,  4],    [42, 143, 3,  3],   [33, 131, 3,  3],   // Japan
-    [25,  80, 9, 10],    [12,  78, 5,  7],
-    [25,  70, 5,  9],    [35,  68, 5, 10],   [33,  47, 6,  8],
-    [25,  50, 9,  9],    [18,  45, 4,  5],
-
-    // === SE ASIA ===
-    [18, 100, 5,  7],    [12, 105, 5,  5],   [ 3, 102, 5,  5],
-    [-3, 115, 5, 13],    [-7, 130, 4,  8],   [12, 122, 4,  3],   // Philippines
-    [-5, 140, 4,  7],
-
-    // === AUSTRALIA + NZ ===
-    [-25, 135, 11, 17],  [-42, 147, 2, 2],
-    [-42, 173, 5, 2],    [-37, 175, 3, 2],
-
-    // === NORTH AMERICA ===
-    [60,-100, 10, 22],   [55,-125, 8, 12],   [60, -75, 9, 15],
-    [65,-150, 7, 14],    [70,-105, 5, 28],   [78, -85, 4, 22],
-    [40,-100, 9, 16],    [40, -80, 7,  7],   [38,-118, 8, 10],
-    [25,-105, 4,  7],    [18, -98, 4,  5],   [13, -85, 4,  8],
-
-    // === GREENLAND ===
-    [75, -40, 8,  9],    [70, -45, 5,  7],
-
-    // === SOUTH AMERICA ===
-    [ 5, -65, 5,  9],    [ 0, -75, 7,  6],   [-5, -65, 10, 11],
-    [-15,-50, 10, 12],   [-25,-55, 10,  9],  [-30,-65, 8,  7],
-    [-40,-68, 8,  4],    [-50,-72, 5,  3],   [-20,-68, 8,  4],
-
-    // === ANTARCTICA ===
-    [-78, -90, 7, 90],   [-78,  90, 7, 90],  [-72, 0, 4, 180],
-  ];
-  const seaR = [
-    [33, -5, 38, 28],    // Mediterranean
-    [41, 28, 47, 42],    // Black Sea
-    [37, 47, 47, 55],    // Caspian
-    [43, 58, 47, 62],    // Aral
-    [13, 33, 28, 44],    // Red Sea
-    [23, 47, 30, 57],    // Persian Gulf
-    [51,-96, 64,-75],    // Hudson Bay
-    [10,-88, 22,-62],    // Caribbean
-    [19,-98, 30,-82],    // Gulf of Mexico
-    [33,122, 41,132],    // Yellow Sea / Sea of Japan
-  ];
-  function isLand(lat, lng){
-    let onLand = false;
-    for (let i = 0; i < landE.length; i++){
-      const e = landE[i];
-      const dlat = (lat - e[0]) / e[2];
-      const dlng = (lng - e[1]) / e[3];
-      if (dlat*dlat + dlng*dlng <= 1){ onLand = true; break; }
-    }
-    if (!onLand) return false;
-    for (let i = 0; i < seaR.length; i++){
-      const r = seaR[i];
-      if (lat >= r[0] && lng >= r[1] && lat <= r[2] && lng <= r[3]) return false;
-    }
-    return true;
-  }
-  const dots = [];
-  const STEP = 3;
-  for (let lat = -84; lat <= 84; lat += STEP){
-    for (let lng = -180; lng < 180; lng += STEP){
-      if (isLand(lat, lng)) dots.push([lat, lng]);
-    }
-  }
-
-  function project(lat, lng){
-    const la = lat * DEG;
-    const lo = lng * DEG;
-    return {
-      x: Math.cos(la) * Math.sin(lo),
-      y: Math.sin(la),
-      z: Math.cos(la) * Math.cos(lo),
-    };
-  }
-
-  function drawArc(type, val, rot){
-    // type: 'parallel' (val=lat, sweep lng 0..360)
-    //       'meridian' (val=lng, sweep lat -90..90)
-    ctx.beginPath();
-    let started = false;
-    const lo = type === 'parallel' ? 0   : -90;
-    const hi = type === 'parallel' ? 360 :  90;
-    const step = 4;
-    for (let i = lo; i <= hi; i += step){
-      const lat = type === 'parallel' ? val : i;
-      const lng = (type === 'parallel' ? i : val) + rot;
-      const p = project(lat, lng);
-      if (p.z < 0){ started = false; continue; }
-      const px = cx + R * p.x;
-      const py = cy - R * p.y;
-      if (!started){ ctx.moveTo(px, py); started = true; }
-      else ctx.lineTo(px, py);
-    }
-    ctx.stroke();
-  }
-
-  let rot = 0;
-  let last = performance.now();
-
-  function frame(now){
-    const dt = (now - last) / 1000;
-    last = now;
-    if (!reduce) rot = (rot + dt * 14) % 360;   // ~14°/s — full revolution every 25.7s
-
-    ctx.clearRect(0, 0, cssSize, cssSize);
-
-    // glow halo
-    const halo = ctx.createRadialGradient(cx - R*.3, cy - R*.3, 0, cx, cy, R * 1.6);
-    halo.addColorStop(0, 'rgba(195,255,0,0.30)');
-    halo.addColorStop(.55,'rgba(195,255,0,0.04)');
-    halo.addColorStop(1,  'rgba(195,255,0,0)');
-    ctx.fillStyle = halo;
-    ctx.beginPath();
-    ctx.arc(cx, cy, R * 1.6, 0, TAU);
-    ctx.fill();
-
-    // sphere fill
-    ctx.fillStyle = 'rgba(14,14,14,0.88)';
-    ctx.beginPath();
-    ctx.arc(cx, cy, R, 0, TAU);
-    ctx.fill();
-
-    // parallels (static — they don't change under Y-axis rotation)
-    ctx.strokeStyle = 'rgba(195,255,0,0.16)';
-    ctx.lineWidth = 1;
-    for (const lat of [-60, -30, 0, 30, 60]) drawArc('parallel', lat, 0);
-
-    // meridians (rotate)
-    ctx.strokeStyle = 'rgba(195,255,0,0.30)';
-    for (let lng = 0; lng < 360; lng += 30) drawArc('meridian', lng, rot);
-
-    // continent dots — uniform "pixelated earth surface", depth-shaded alpha only
-    for (let i = 0; i < dots.length; i++){
-      const d = dots[i];
-      const p = project(d[0], d[1] + rot);
-      if (p.z < 0.04) continue; // cull back hemisphere
-      const px = cx + R * p.x;
-      const py = cy - R * p.y;
-      const depth = p.z;
-      const alpha = 0.18 + depth * 0.55;
-      ctx.fillStyle = `rgba(195,255,0,${alpha.toFixed(3)})`;
-      ctx.beginPath();
-      ctx.arc(px, py, 0.85, 0, TAU);
-      ctx.fill();
-    }
-
-    // sphere outline
-    ctx.strokeStyle = 'rgba(195,255,0,0.55)';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.arc(cx, cy, R, 0, TAU);
-    ctx.stroke();
-
-    // pulse marker (your spot — Dhaka, fixed center bullseye)
-    const pulse = 0.55 + 0.45 * Math.sin(now / 320);
-    ctx.shadowColor = 'rgba(195,255,0,0.9)';
-    ctx.shadowBlur = 7;
-    ctx.fillStyle = `rgba(195,255,0,${pulse.toFixed(3)})`;
-    ctx.beginPath();
-    ctx.arc(cx, cy, 2.4, 0, TAU);
-    ctx.fill();
-    ctx.shadowBlur = 0;
-
-    requestAnimationFrame(frame);
-  }
-  requestAnimationFrame(frame);
-})();
-</script>
 </body>
 </html>
