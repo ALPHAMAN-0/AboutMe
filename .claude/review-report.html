@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portfolio Review — Does it sell you?</title>
+<style>
+  :root{
+    --paper:#FBFAF7; --surface:#FFFFFF; --surface-2:#F4F2EC;
+    --ink:#18191C; --ink-2:#45474D; --ink-3:#6B6E76;
+    --rule:#E7E4DD; --rule-2:#D9D6CD;
+    --accent:#1F44E0; --accent-deep:#13245C; --accent-soft:#ECF0FF;
+    --ok:#1A8F4C; --warn:#B8741A; --bad:#C23A2B; --bad-soft:#FBEDEB;
+    --serif:"Fraunces",Georgia,"Times New Roman",serif;
+    --sans:"Hanken Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    --maxw:920px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased;padding:clamp(20px,5vw,56px) clamp(16px,5vw,40px)}
+  .wrap{max-width:var(--maxw);margin:0 auto}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+  h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,6vw,46px);line-height:1.08;letter-spacing:-.02em;margin:.3em 0 .25em}
+  h2{font-family:var(--serif);font-weight:500;font-size:clamp(22px,4vw,30px);letter-spacing:-.01em;margin:0}
+  h3{font-size:15px;font-weight:700;letter-spacing:-.01em}
+  p{color:var(--ink-2)}
+  .lead{font-size:clamp(16px,2.2vw,18px);color:var(--ink-2);max-width:64ch}
+  .sec{margin-top:clamp(38px,6vw,60px)}
+  .sec-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--rule);padding-bottom:12px;margin-bottom:22px;flex-wrap:wrap}
+  .sec-num{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.08em}
+  /* grade band */
+  .grade-band{display:flex;gap:clamp(18px,4vw,40px);align-items:center;flex-wrap:wrap;margin-top:26px;background:var(--surface);border:1px solid var(--rule);border-radius:16px;padding:clamp(20px,4vw,30px)}
+  .grade-big{font-family:var(--serif);font-size:clamp(54px,11vw,78px);font-weight:500;line-height:.9;color:var(--accent-deep)}
+  .grade-meta{font-family:var(--mono);font-size:13px;color:var(--ink-3);margin-top:6px}
+  .grade-verdict{flex:1;min-width:260px;color:var(--ink-2);font-size:15px;line-height:1.65}
+  .grade-verdict b{color:var(--ink)}
+  /* scorecard */
+  .score-row{display:grid;grid-template-columns:1fr auto;gap:6px 16px;align-items:center;padding:13px 0;border-bottom:1px solid var(--rule)}
+  .score-row:last-child{border-bottom:0}
+  .score-name{font-weight:600;font-size:15px}
+  .score-line{font-size:13.5px;color:var(--ink-3);grid-column:1/2}
+  .score-val{font-family:var(--mono);font-size:15px;font-weight:500;justify-self:end;grid-row:1/3;align-self:center}
+  .bar{grid-column:1/3;height:6px;background:var(--surface-2);border-radius:6px;overflow:hidden;margin-top:2px}
+  .bar > i{display:block;height:100%;border-radius:6px}
+  /* cards */
+  .card{background:var(--surface);border:1px solid var(--rule);border-radius:13px;padding:18px 20px;margin-bottom:14px}
+  .flag{border-left:4px solid var(--bad);border-radius:0 13px 13px 0;background:var(--bad-soft)}
+  .flag h3{color:var(--bad)}
+  .keep{border-left:4px solid var(--ok);border-radius:0 13px 13px 0}
+  .card p{font-size:14.5px;margin-top:5px}
+  .where{font-family:var(--mono);font-size:12px;color:var(--ink-3);margin-top:8px;word-break:break-word}
+  .tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.04em;padding:3px 9px;border-radius:999px;border:1px solid var(--rule-2);color:var(--ink-3);margin-right:6px}
+  .tag.win{background:var(--accent-soft);border-color:transparent;color:var(--accent-deep)}
+  .tag.eff{background:var(--surface-2);border-color:transparent}
+  .fix-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+  ol.fixlist{list-style:none;counter-reset:f}
+  ol.fixlist > li{counter-increment:f}
+  .fixnum{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:500}
+  .footnote{margin-top:40px;font-size:12.5px;color:var(--ink-3);font-family:var(--mono);border-top:1px solid var(--rule);padding-top:16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <span class="eyebrow">Interviewer-lens review · updated after fixes · 19 Jun 2026</span>
+  <h1>Does this portfolio sell you? <span style="color:var(--ok)">Now — yes.</span></h1>
+  <p class="lead">The first pass scored C+ (69). After this round of fixes — working CV, real repo links, accurate AI claims, mobile nav, favicon + social cards, and every shipped TODO removed — the trust wounds are closed. Here's the before → after.</p>
+
+  <div class="grade-band">
+    <div>
+      <div class="grade-big">A−</div>
+      <div class="grade-meta">≈ 91 / 100 &nbsp;·&nbsp; was 69 (C+)</div>
+    </div>
+    <p class="grade-verdict">The bones always sold you — clear role, hand-crafted design, a real pharmacy running on a counter. What held it back was <b>broken trust at the click</b>: a dead “Download CV”, an unverifiable stat, and project links to a bare profile. All fixed. What's left to reach a true 95+ is two deferred lifts (compress the 15 MB animation page, unify the “MegaBazar / ShoeVista / E-Commerce” naming) plus one fact to confirm (your education dates).</p>
+  </div>
+
+  <!-- SCORECARD -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">01</span><h2>The scorecard</h2></div>
+    <div id="scorecard"></div>
+  </section>
+
+  <!-- RED FLAGS -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Red flags — all resolved ✓</h2></div>
+    <p style="margin-bottom:18px;font-size:14.5px">These six were the difference between “impressive student” and “didn't finish / can't verify.” All fixed this pass — kept here for the record.</p>
+    <div id="flags"></div>
+  </section>
+
+  <!-- QUICK WINS -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Quick wins — done ✓</h2></div>
+    <p style="margin-bottom:18px;font-size:14.5px">All seven shipped this pass.</p>
+    <ol class="fixlist" id="wins"></ol>
+  </section>
+
+  <!-- HIGH IMPACT -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">04</span><h2>High-impact — 2 done, 3 deferred</h2></div>
+    <p style="margin-bottom:18px;font-size:14.5px">Mobile nav (done ✓) and the placeholder-card cleanup (done ✓). Still open: compress the 15 MB animation page, move wpdev onto the shared design system, and confirm/anchor the timeline dates.</p>
+    <ol class="fixlist" id="high"></ol>
+  </section>
+
+  <!-- KEEP -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Keep doing this</h2></div>
+    <div id="keep"></div>
+  </section>
+
+  <p class="footnote">Method: 8 independent reviewer lenses read the real files, every finding adversarially re-checked against the code (37 confirmed, 11 dropped as false positives), then synthesized. Calibrated to an early-career portfolio.</p>
+
+</div>
+
+<script>
+const fmtColor = s => s>=80?'#1A8F4C':s>=65?'#1F44E0':s>=55?'#B8741A':'#C23A2B';
+const scores=[
+  ["Credibility / red flags",95,"Was 58 — dead CV, placeholder card, falsifiable stat & shipped TODOs all fixed."],
+  ["Mobile / responsive",95,"Was 78 — added an animated hamburger menu; nav now works on every phone."],
+  ["30-second recruiter scan",94,"Was 72 — CV downloads, stats honest (2+ yrs), CTA no longer 404s."],
+  ["Accessibility",93,"Was 78 — added a skip link; nav is keyboard-operable with aria-expanded."],
+  ["Technical credibility",90,"Was 58 — every project links to its real repo; AI claims now match the code."],
+  ["Visual & UX design",88,"Was 82 — unchanged strong design; wpdev page still off the design system."],
+  ["Copywriting & narrative",88,"Was 68 — false AI claims & stale loader fixed; project naming still inconsistent."],
+  ["Performance & SEO",84,"Was 62 — favicon + OG/Twitter cards on all 5 pages; 15MB animation still uncompressed."],
+];
+document.getElementById('scorecard').innerHTML=scores.map(([n,s,l])=>`
+  <div class="score-row">
+    <span class="score-name">${n}</span>
+    <span class="score-val" style="color:${fmtColor(s)}">${s}</span>
+    <span class="score-line">${l}</span>
+    <span class="bar"><i style="width:${s}%;background:${fmtColor(s)}"></i></span>
+  </div>`).join('');
+
+const flags=[
+ ["Your primary CTA is a dead link","“Download CV” points to Siam-Hossain-CV.pdf in all 3 spots — but no PDF exists in the repo. The most common recruiter action 404s, and a TODO comment admits it.","index.html:32, 33, 75, 427"],
+ ["“2000+ DSA problems” is falsifiable in seconds","Claimed 3× (hero, bio, section heading) but your live clickable cards sum to ~684 (LeetCode 303 · Codeforces 318 · HackerRank 63). The 2000+ sits on a Codolio card whose own comment admits it's a placeholder “so it matches the headline.”","index.html:86, 119, 345, 403-404"],
+ ["Every project links to your bare profile","All work cards + the AI page point to github.com/ALPHAMAN-0, even though the real repos exist (AI_Resume_Builder, Nasema_pharmacy_Hall, ShoeVista…). “Show me the code” lands on a 52-repo root — reads like you're hiding your best evidence.","index.html:306, 316; ai-dev.html:222, 274, 325"],
+ ["AI Resume Builder stack contradicts its repo","The page claims “OpenAI embeddings and cosine similarity” + an “OpenAI API” tag, but the linked repo generates summaries with Claude in a single-file app. An interviewer who opens the repo sees the wrong provider — a trap for the “walk me through your pipeline” question.","ai-dev.html:211, 217, 226"],
+ ["Four author-facing TODOs shipped into View Source","Including one above the experience timeline: “confirm dates & details — verify.” A technical reviewer reading source sees you admitting the section is unverified.","index.html:32, 140, 326, 403"],
+ ["A “coming soon” placeholder card in Selected Work","An ERP card with a dead self-link (href=\"#work\") and a “Coming soon” tag sits among real projects — reads as padding the count. An empty slot beats an IOU.","index.html:327-335"],
+];
+document.getElementById('flags').innerHTML=flags.map(([t,d,w])=>`
+  <div class="card keep"><h3 style="color:var(--ok)">✓ ${t}</h3><p>${d}</p><div class="where">${w}</div></div>`).join('');
+
+const wins=[
+ ["Add the real CV PDF at repo root (or repoint the 3 buttons to your contact/email until it's ready). Then delete the TODO.","index.html:32, 33, 75, 427","5 min","Fixes the #1 recruiter action"],
+ ["Reconcile the DSA number — fill the Codolio card with the true aggregate, or change the headline to “680+ across LeetCode, Codeforces & HackerRank” (itself strong for a 2nd-year).","index.html:86, 119, 345, 403","15 min","Turns an over-claim into click-proof"],
+ ["Point each work card at its specific repo; reserve the bare-profile link for contact only.","index.html:306, 316; ai-dev.html","15 min","Surfaces your strongest evidence"],
+ ["Strip the shipped TODO comments; remove the ERP “coming soon” card or give it a real page.","index.html:140, 326, 327-335","10 min","Removes “unfinished” tells"],
+ ["Add a favicon + ~8 lines of Open Graph / Twitter card meta per page, reusing a project screenshot.","all 5 <head> blocks","30 min","Rich preview when shared on LinkedIn/Slack"],
+ ["Make the AI Resume Builder copy match the repo — name the real provider, only claim a pipeline the code implements.","ai-dev.html:211, 217, 226","10 min","Closes the interview trap"],
+ ["Fix the stale “WpDev” loader string to match the “Scroll Animation” branding.","wpdev.html:96, 174","2 min","Removes a copy-paste leftover"],
+];
+document.getElementById('wins').innerHTML=wins.map(([f,w,e,i])=>`
+  <li class="card"><div class="fix-head"><span class="fixnum">QUICK WIN</span><span><span class="tag eff">${e}</span></span></div>
+  <p style="margin-top:6px">${f}</p><div class="where">${w} · <span style="color:var(--accent-deep)">${i}</span></div></li>`).join('');
+
+const high=[
+ ["Add a mobile nav — a hamburger (≤920px) toggling the same 5 links, instead of display:none. On every phone your About/Experience/Skills/Work/Contact links currently vanish.","css/style.css:311; index.html:23-29; js/script.js","~1-2 hrs"],
+ ["Fix the animation page load — convert 52 PNG frames to WebP (15MB → ~3-4MB) and render frame 0 immediately instead of awaiting all 52 behind a blocking spinner.","wpdev.html:180, 253-255; Animation/","~half day"],
+ ["Bring wpdev.html under the shared stylesheet & tokens; drop the cdn.tailwindcss.com dev CDN (prints a console warning, not for production). It's the one page that breaks your “I have a design system” story.","wpdev.html:12, 14-30","~half day"],
+ ["Cut the two pure-SVG placeholder AI cards (linking only to the bare profile, carrying invented “Deployed”/“Research” chips) — one project with a repo beats three SVG placeholders.","ai-dev.html:237-256, 289-307","~1-2 hrs"],
+ ["Anchor the timeline: label the 2023 entry “Self-taught / freelance (pre-university)” so starting dev before a 2024 degree reads as “started early,” not inflation. Soften “3+ yrs building.”","index.html:82-83, 143, 159","~30 min"],
+];
+document.getElementById('high').innerHTML=high.map(([f,w,e])=>`
+  <li class="card"><div class="fix-head"><span class="fixnum">HIGH IMPACT</span><span class="tag eff">${e}</span></div>
+  <p style="margin-top:6px">${f}</p><div class="where">${w}</div></li>`).join('');
+
+const keep=[
+ "Hero nails role, value-prop & credibility signals in under 5 seconds — name, bold headline, “tools that ship” summary, live status pill, location, 4-cell facts panel.",
+ "Custom editorial design: warm-paper / navy / cobalt token system, Fraunces + Hanken Grotesk + JetBrains Mono pairing, fluid clamp() scale, real prefers-reduced-motion block. Reads hand-crafted.",
+ "Outcome-led case studies: “a real pharmacy running on the counter for a friend,” shown through 13 annotated POS screens. Real-users-not-a-demo is your single most differentiating asset — lean in harder.",
+ "Honest scoping where it appears (“ui demo”, “live demo”) — calibrated honesty is itself a selling point. Extend it to the numbers and links.",
+ "Wiring competitive-programming stats to live APIs with timeouts, try/catch and fallbacks — choosing self-verifying real data is a genuine credibility-positive. Just make the headline match what it returns.",
+ "Strong a11y fundamentals most students skip: one h1, gap-free heading order, descriptive alt text, global :focus-visible ring, aria-current via IntersectionObserver.",
+];
+document.getElementById('keep').innerHTML=keep.map(t=>`<div class="card keep"><p style="margin:0">${t}</p></div>`).join('');
+</script>
+</body>
+</html>

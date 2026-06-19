@@ -33,6 +33,32 @@ const $$ = (s, c = document) => [...c.querySelectorAll(s)];
 })();
 
 /* ------------------------------------------------------------
+   Mobile nav — hamburger toggles the nav panel (<=920px)
+   ------------------------------------------------------------ */
+(function mobileNav(){
+  const btn = $('.nav-toggle');
+  const nav = $('#site-nav');
+  if (!btn || !nav) return;
+
+  const close = () => {
+    nav.removeAttribute('data-open');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'Open menu');
+  };
+  const open = () => {
+    nav.setAttribute('data-open', 'true');
+    btn.setAttribute('aria-expanded', 'true');
+    btn.setAttribute('aria-label', 'Close menu');
+  };
+
+  btn.addEventListener('click', () => {
+    nav.getAttribute('data-open') === 'true' ? close() : open();
+  });
+  nav.addEventListener('click', e => { if (e.target.tagName === 'A') close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+})();
+
+/* ------------------------------------------------------------
    Competitive-programming — live solved counts
    ------------------------------------------------------------ */
 (async function platformStats(){

@@ -4,6 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Scroll Animation — Siam Hossain</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231F44E0'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' text-anchor='middle' fill='white'%3ES%3C/text%3E%3C/svg%3E" />
+  <link rel="canonical" href="https://alphaman-0.github.io/AboutMe/wpdev.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://alphaman-0.github.io/AboutMe/wpdev.html" />
+  <meta property="og:title" content="Scroll Animation — Siam Hossain" />
+  <meta property="og:description" content="A scroll-linked HTML5 canvas frame sequence — 52 stills painted to canvas, driven by scroll position, pure front-end with no libraries." />
+  <meta property="og:image" content="https://alphaman-0.github.io/AboutMe/Animation/222_026.png" />
+  <meta property="og:image:alt" content="Frame from the scroll-linked canvas animation" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Scroll Animation — Siam Hossain" />
+  <meta name="twitter:description" content="A scroll-linked HTML5 canvas frame sequence — 52 stills painted to canvas, driven by scroll position, pure front-end with no libraries." />
+  <meta name="twitter:image" content="https://alphaman-0.github.io/AboutMe/Animation/222_026.png" />
   <meta name="theme-color" content="#fbfaf7">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,7 +105,7 @@
 
   <div id="loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center" style="background-color:var(--paper);">
     <div class="spinner" aria-hidden="true"></div>
-    <p id="loader-text" class="mt-6 text-sm tracking-tight" style="color:var(--ink-3);">Loading WpDev sequence&hellip; 0%</p>
+    <p id="loader-text" class="mt-6 text-sm tracking-tight" style="color:var(--ink-3);">Loading Scroll Animation&hellip; 0%</p>
   </div>
 
   <div id="runway" class="relative h-[400vh]">
@@ -171,7 +183,7 @@
             images[i] = img;
             loaded++;
             const pct = Math.round((loaded / TOTAL_FRAMES) * 100);
-            loaderTxt.textContent = 'Loading WpDev sequence… ' + pct + '%';
+            loaderTxt.textContent = 'Loading Scroll Animation… ' + pct + '%';
             resolve();
           };
           img.onload  = done;
