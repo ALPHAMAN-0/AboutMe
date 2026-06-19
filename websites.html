@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Websites — Siam Hossain</title>
+<meta name="description" content="Case study: free web tools Siam Hossain built for friends' businesses — a stock-audit tool that syncs to Google Sheets, and a multi-business invoice generator with a dashboard." />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231F44E0'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' text-anchor='middle' fill='white'%3ES%3C/text%3E%3C/svg%3E" />
+
+<link rel="canonical" href="https://alphaman-0.github.io/AboutMe/websites.html" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://alphaman-0.github.io/AboutMe/websites.html" />
+<meta property="og:title" content="Websites — Siam Hossain" />
+<meta property="og:description" content="Free web tools built for friends' businesses — a Google-Sheets-backed stock-audit tool and a multi-business invoice generator." />
+<meta property="og:image" content="https://alphaman-0.github.io/AboutMe/images/SIAM.jpeg" />
+<meta property="og:image:alt" content="Siam Hossain — Software Engineer" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Websites — Siam Hossain" />
+<meta name="twitter:description" content="Free web tools built for friends' businesses — a stock-audit tool and a multi-business invoice generator." />
+<meta name="twitter:image" content="https://alphaman-0.github.io/AboutMe/images/SIAM.jpeg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+  .wb-wrap{padding:64px clamp(20px,4vw,56px) 80px;max-width:1080px;margin:0 auto}
+  .wb-head{display:grid;grid-template-columns:200px 1fr;gap:48px;margin-bottom:24px;align-items:baseline}
+  .wb-head .num{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .wb-head .num b{color:var(--accent);font-weight:600;margin-right:8px}
+  .wb-head h1{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(48px,7vw,88px);line-height:1.02;letter-spacing:-.015em;color:var(--ink)}
+  .wb-head p.sub{color:var(--ink-2);margin-top:20px;font-size:16px;max-width:64ch;line-height:1.65}
+  .wb-head p.sub b{color:var(--ink);font-weight:600}
+
+  .wb-project{border-top:1px solid var(--rule);padding-top:44px;margin-top:56px}
+  .wb-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,56px);align-items:start}
+  .wb-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+  .wb-project h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.6vw,40px);letter-spacing:-.01em;color:var(--ink);margin:10px 0 4px}
+  .wb-tagline{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ink-2);margin-bottom:22px}
+  .wb-story .k{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin:18px 0 6px}
+  .wb-story p{color:var(--ink-2);font-size:15px;line-height:1.7}
+  .wb-story p b{color:var(--ink);font-weight:600}
+
+  .wb-meta{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;font-family:var(--mono);font-size:11px}
+  .wb-meta .k{color:var(--ink-3);text-transform:uppercase;font-size:10px;letter-spacing:.14em;margin-bottom:6px}
+  .wb-meta .v{color:var(--ink);line-height:1.55}
+  .wb-meta .v .live{color:var(--ok)}
+
+  .wb-shots{display:flex;flex-direction:column;gap:16px;position:sticky;top:96px}
+  .shot{position:relative;border:1px solid var(--rule);border-radius:14px;overflow:hidden;background:var(--surface-2);aspect-ratio:16/10;box-shadow:0 1px 2px rgba(24,25,28,.04),0 14px 34px -20px rgba(24,25,28,.32)}
+  .shot img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;background:var(--surface)}
+  .shot-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:20px;color:var(--ink-3)}
+  .shot-ph svg{width:30px;height:30px;opacity:.55}
+  .shot-ph span{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+  .shot.has-img .shot-ph{display:none}
+  .shot:not(.has-img) img{display:none}
+  .privacy-note{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--ink-3);line-height:1.6;border:1px dashed var(--rule-2);border-radius:10px;padding:12px 14px}
+
+  .wb-foot{margin-top:72px;padding-top:32px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);gap:24px;flex-wrap:wrap}
+  .wb-foot a{transition:color .25s var(--ease)}
+  .wb-foot a:hover{color:var(--accent)}
+
+  /* shared light case-study top bar — matches index.html */
+  .topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:24px;padding:14px clamp(20px,4vw,56px);background:rgba(251,250,247,.82);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+  .topbar .brand{display:inline-flex;align-items:center;gap:8px;font-family:var(--serif);font-style:italic;font-size:20px;font-weight:500;color:var(--ink);letter-spacing:-.01em;flex-shrink:0;transition:color .2s var(--ease)}
+  .topbar .brand:hover{color:var(--accent)}
+  .topbar .brand .arr{font-style:normal;font-size:15px;color:var(--ink-3)}
+  .topbar nav{display:flex;gap:24px;margin-left:8px}
+  .topbar nav a{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--ink-2);position:relative;padding:2px 0;transition:color .2s var(--ease)}
+  .topbar nav a:hover{color:var(--ink)}
+  .topbar .page-tag{margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-2);padding:6px 12px;border:1px solid var(--rule-2);border-radius:999px;background:var(--surface)}
+
+  @media (max-width:860px){
+    .topbar nav{display:none}
+    .wb-wrap{padding-top:96px}
+    .wb-head{grid-template-columns:1fr;gap:12px;margin-bottom:8px}
+    .wb-grid{grid-template-columns:1fr;gap:28px}
+    .wb-shots{position:static}
+  }
+  @media (max-width:600px){
+    .wb-wrap{padding:88px 16px 56px}
+    .wb-head h1{font-size:42px}
+    .wb-meta{grid-template-columns:1fr}
+    .wb-foot{flex-direction:column;align-items:flex-start;gap:12px}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="index.html#work"><span class="arr" aria-hidden="true">←</span> Siam&nbsp;Hossain</a>
+  <nav aria-label="primary">
+    <a href="index.html#work">Work</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+  <span class="page-tag">Websites · Private</span>
+</header>
+
+<main class="wb-wrap">
+
+  <div class="wb-head">
+    <div class="num"><b>07</b> / case study</div>
+    <div>
+      <h1>Websites.</h1>
+      <p class="sub">Free web tools I built for <b>friends running real businesses</b>. Both are live and password-protected because they hold actual business data — so these are screen previews and the story behind each build, not public links.</p>
+    </div>
+  </div>
+
+  <!-- ===================== PROJECT 1 — STOCK AUDIT TOOL ===================== -->
+  <section class="wb-project">
+    <div class="wb-grid">
+      <div>
+        <div class="wb-eyebrow">— Project 01 · internal tool</div>
+        <h2>Stock Audit Tool</h2>
+        <p class="wb-tagline">Search a product, set price &amp; quantity — it writes straight to Google Sheets.</p>
+
+        <div class="wb-story">
+          <div class="k">The problem</div>
+          <p>A friend needed to run quick <b>stock audits</b> in his shop — pull up a product, set its price and quantity — without paying for inventory software or maintaining a database. He already lived in a Google Sheet.</p>
+
+          <div class="k">What I built</div>
+          <p>A fast <b>search-as-you-type</b> product finder. For each item you set a <b>price and quantity</b>, and every change is pushed straight into the <b>Google Sheet</b> he already uses — the spreadsheet IS the backend. No database to run, nothing new to learn.</p>
+
+          <div class="k">Why it matters</div>
+          <p><b>Zero cost, zero maintenance.</b> He keeps working in a tool he trusts; the app just makes data entry fast and error-free. It's behind a password gate because it edits live business data.</p>
+        </div>
+
+        <div class="wb-meta">
+          <div><div class="k">Role</div><div class="v">Solo build<br>design → ship</div></div>
+          <div><div class="k">Storage</div><div class="v">Google&nbsp;Sheets API<br>no separate DB</div></div>
+          <div><div class="k">Stack</div><div class="v">Web app (React)<br>Vercel</div></div>
+          <div><div class="k">Status</div><div class="v"><span class="live">● live</span><br>password-gated</div></div>
+        </div>
+      </div>
+
+      <div class="wb-shots">
+        <div class="shot">
+          <img src="images/audit/01.png" alt="Stock Audit Tool — product search and entry" onload="this.closest('.shot').classList.add('has-img')">
+          <div class="shot-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m21 17-5-4-7 6"/></svg><span>Screenshot coming soon</span></div>
+        </div>
+        <div class="shot">
+          <img src="images/audit/02.png" alt="Stock Audit Tool — Google Sheets sync" onload="this.closest('.shot').classList.add('has-img')">
+          <div class="shot-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m21 17-5-4-7 6"/></svg><span>Screenshot coming soon</span></div>
+        </div>
+        <p class="privacy-note">Live tool is password-protected — previews shown instead of a public link to protect the owner's business data.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECT 2 — INVOICE GENERATOR ===================== -->
+  <section class="wb-project">
+    <div class="wb-grid">
+      <div>
+        <div class="wb-eyebrow">— Project 02 · saas-style tool</div>
+        <h2>Invoice Generator + Dashboard</h2>
+        <p class="wb-tagline">Professional invoices for many businesses — with a dashboard, completely free.</p>
+
+        <div class="wb-story">
+          <div class="k">The problem</div>
+          <p>A friend runs <b>several businesses</b> and was paying for fragmented invoicing tools — one per business, each with a subscription. He wanted one place to issue invoices and see them at a glance.</p>
+
+          <div class="k">What I built</div>
+          <p>A <b>free invoice generator</b> that produces clean, professional invoices, plus a <b>dashboard</b> to create, view and track them <b>across all of his businesses</b> in one account — no subscription, no per-business lock-in.</p>
+
+          <div class="k">Why it matters</div>
+          <p>One <b>free</b> home for multi-business invoicing. Deployed privately because it holds real client and financial data — access is protected rather than public.</p>
+        </div>
+
+        <div class="wb-meta">
+          <div><div class="k">Role</div><div class="v">Solo build<br>design → ship</div></div>
+          <div><div class="k">Built for</div><div class="v">Multi-business<br>owner</div></div>
+          <div><div class="k">Stack</div><div class="v">Web app<br>Vercel</div></div>
+          <div><div class="k">Status</div><div class="v"><span class="live">● live</span><br>access-protected</div></div>
+        </div>
+      </div>
+
+      <div class="wb-shots">
+        <div class="shot">
+          <img src="images/invoice/01.png" alt="Invoice Generator — invoice builder" onload="this.closest('.shot').classList.add('has-img')">
+          <div class="shot-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m21 17-5-4-7 6"/></svg><span>Screenshot coming soon</span></div>
+        </div>
+        <div class="shot">
+          <img src="images/invoice/02.png" alt="Invoice Generator — multi-business dashboard" onload="this.closest('.shot').classList.add('has-img')">
+          <div class="shot-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m21 17-5-4-7 6"/></svg><span>Screenshot coming soon</span></div>
+        </div>
+        <p class="privacy-note">Live tool is access-protected — previews shown instead of a public link to protect client and financial data.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wb-foot">
+    <div>© 2026 siam hossain · websites / private builds</div>
+    <a href="index.html#work" data-hover>← back to work</a>
+  </div>
+</main>
+
+</body>
+</html>

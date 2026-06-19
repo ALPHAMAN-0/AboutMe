@@ -258,6 +258,11 @@ section{padding:clamp(56px,8vw,104px) 0;border-top:1px solid var(--rule)}
 .wc-tags li:last-child::after{content:""}
 .wc-arrow{position:absolute;right:16px;top:14px;color:#fff;background:var(--accent);width:28px;height:28px;border-radius:999px;display:grid;place-items:center;font-size:13px;opacity:0;transform:translateY(-4px);transition:opacity .25s var(--ease),transform .25s var(--ease)}
 .work-card:hover .wc-arrow{opacity:1;transform:none}
+/* placeholder "in progress" cards */
+.work-card-soon{border-style:dashed;background:transparent}
+.work-card-soon:hover{transform:none;box-shadow:none;border-color:var(--rule-2)}
+.work-card-soon .wc-name{color:var(--ink-2)}
+.work-card-soon .wc-arrow{display:none}
 
 /* ============================================================
    PROBLEM SOLVING — live stats
