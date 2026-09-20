@@ -425,3 +425,715 @@ section{padding:clamp(56px,8vw,104px) 0;border-top:1px solid var(--rule)}
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
   html{scroll-behavior:auto}
 }
+
+/* ============================================================
+   HACKER MODE — opt-in CRT/terminal aesthetic (toggle from topbar).
+   Light theme stays the default; HACKER is layered on top via
+   <html class="hacker-mode">. Every visible property uses existing
+   tokens so swapping the class is enough to re-skin the page.
+   ============================================================ */
+
+/* ---- HACKER palette tokens (light-mode defaults unchanged) ---- */
+:root{
+  --hacker-bg:        #0A0E14;
+  --hacker-bg-2:      #0F1419;
+  --hacker-bg-3:      #11171F;
+  --hacker-fg:        #00FF41;        /* terminal green primary */
+  --hacker-fg-dim:    #4A8C5C;
+  --hacker-fg-deep:   #08290F;
+  --hacker-accent:    #FFB000;        /* amber — toggles, highlights */
+  --hacker-cyan:      #00E5FF;        /* links, focus rings */
+  --hacker-magenta:   #FF00E5;        /* glitch shadow */
+  --hacker-rule:      #1F2937;
+  --hacker-rule-2:    #2A3645;
+  --hacker-danger:    #FF3355;
+  --hacker-shadow:    rgba(0, 255, 65, 0.18);
+  --hacker-amber-glow:rgba(255, 176, 0, 0.22);
+
+  --meter-fill-light: linear-gradient(90deg, #1F44E0, #00E5FF);
+  --meter-fill-hack:  linear-gradient(90deg, #00FF41, #00E5FF);
+}
+
+/* When <html class="hacker-mode"> is set, re-bind the existing
+   design tokens to the HACKER palette — every component that
+   already references var(--paper), var(--ink), var(--accent), etc.
+   automatically re-skins with no per-component edits. */
+.hacker-mode{
+  --paper:        var(--hacker-bg);
+  --surface:      var(--hacker-bg-2);
+  --surface-2:    var(--hacker-bg-3);
+  --ink:          var(--hacker-fg);
+  --ink-2:        #6FBE80;
+  --ink-3:        var(--hacker-fg-dim);
+  --rule:         var(--hacker-rule);
+  --rule-2:       var(--hacker-rule-2);
+  --accent:       var(--hacker-cyan);
+  --accent-deep:  var(--hacker-fg);
+  --accent-soft:  rgba(0, 229, 255, 0.10);
+  --ok:           var(--hacker-fg);
+  color-scheme: dark;
+}
+.hacker-mode body{
+  background: var(--hacker-bg);
+  background-image:
+    radial-gradient(ellipse at top, rgba(0,255,65,0.04), transparent 60%),
+    radial-gradient(ellipse at bottom right, rgba(255,176,0,0.03), transparent 60%);
+  color: var(--hacker-fg);
+  text-shadow: 0 0 1px rgba(0,255,65,0.25);
+}
+.hacker-mode ::selection{ background: var(--hacker-fg); color: var(--hacker-bg); }
+.hacker-mode :focus-visible{ outline-color: var(--hacker-cyan); box-shadow: 0 0 0 4px rgba(0,229,255,0.25); }
+
+/* Subtle CRT vignette + faint flicker on the whole page (HACKER only) */
+.hacker-mode::after{
+  content:"";
+  position:fixed;inset:0;
+  pointer-events:none;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.55) 100%);
+  z-index:9000;
+  mix-blend-mode: multiply;
+}
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine){
+  .hacker-mode::before{
+    content:"";
+    position:fixed;inset:0;
+    pointer-events:none;
+    z-index:9001;
+    background: rgba(0,255,65,0.02);
+    animation: hacker-flicker 3.2s steps(8) infinite;
+  }
+}
+
+/* ---- Mode toggle button in the topbar ---- */
+.mode-toggle{
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 7px 12px;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+  white-space: nowrap;
+  position: relative;
+}
+.mode-toggle::before{
+  content:"▸ ";
+  color: var(--ok);
+  margin-right: 2px;
+}
+.mode-toggle:hover{
+  color: var(--hacker-accent, var(--accent));
+  border-color: var(--hacker-accent, var(--accent));
+  background: rgba(255,176,0,0.06);
+}
+.mode-toggle[aria-pressed="true"]{
+  color: var(--hacker-accent, var(--accent));
+  border-color: var(--hacker-accent, var(--accent));
+  background: rgba(255,176,0,0.08);
+  box-shadow: 0 0 0 1px var(--hacker-accent, var(--accent)) inset, 0 0 12px var(--hacker-amber-glow);
+}
+.mode-toggle[aria-pressed="true"]::before{
+  content:"■ ";
+  color: var(--hacker-accent, var(--accent));
+  animation: boot-cursor-blink 1s steps(2) infinite;
+}
+
+/* Hide the toggle below 380px to save room on tiny screens */
+@media (max-width: 380px){
+  .mode-toggle{ font-size: 10px; padding: 6px 8px; }
+}
+
+/* ============================================================
+   SCANLINES — fixed overlay (only visible in HACKER mode)
+   ============================================================ */
+.scanlines{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 8999;
+  opacity: 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(0,255,65,0.06) 0px,
+    rgba(0,255,65,0.06) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  transition: opacity 0.5s var(--ease);
+}
+.hacker-mode .scanlines{ opacity: 1; }
+@media (prefers-reduced-motion: no-preference){
+  .scanlines{ animation: scanline-drift 6s linear infinite; background-size: 100% 6px; }
+}
+
+/* ============================================================
+   GLITCH TEXT — RGB-split on hero name (HACKER mode intensifies)
+   ============================================================ */
+.glitch{
+  position: relative;
+  display: inline-block;
+}
+.hacker-mode .glitch::before,
+.hacker-mode .glitch::after{
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: transparent;
+}
+.hacker-mode .glitch::before{
+  color: var(--hacker-magenta);
+  text-shadow: 2px 0 var(--hacker-magenta);
+  clip-path: inset(0 0 0 0);
+  animation: glitch-1 4.5s steps(3) infinite;
+}
+.hacker-mode .glitch::after{
+  color: var(--hacker-cyan);
+  text-shadow: -2px 0 var(--hacker-cyan);
+  clip-path: inset(0 0 0 0);
+  animation: glitch-2 5.2s steps(3) infinite;
+}
+
+/* ============================================================
+   SKILL XP METERS — convert .sg-list li into progress-bar chips
+   ============================================================ */
+.hacker-mode .sg-list li{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 7px 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hacker-mode .sg-list li::before{
+  content:"";
+  position:absolute;
+  inset: 0;
+  background: var(--meter-fill-hack);
+  width: var(--level, 0%);
+  opacity: 0.18;
+  z-index: -1;
+  transition: width 1.2s cubic-bezier(.2,.7,.1,1);
+}
+.hacker-mode .sg-list li.is-animated::before{ width: var(--level, 0%); }
+
+/* Light mode gets a slimmer, more subtle meter so the editorial
+   layout doesn't visually shout. */
+.sg-list li .meter{
+  display: none; /* hidden in light mode */
+}
+.hacker-mode .sg-list li .meter{
+  display: inline-block;
+  flex: 1;
+  height: 4px;
+  background: rgba(0,255,65,0.12);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+.hacker-mode .sg-list li .meter-fill{
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--meter-fill-hack);
+  border-radius: 999px;
+  transition: width 1.2s cubic-bezier(.2,.7,.1,1);
+}
+.hacker-mode .sg-list li.is-animated .meter-fill{ width: var(--level, 0%); }
+.hacker-mode .sg-list li .lvl{
+  font-size: 10px;
+  color: var(--hacker-accent);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+.sg-list li .lvl{ display: none; }
+.hacker-mode .sg-list li .lvl{ display: inline-block; }
+
+/* ============================================================
+   BOOT SCREEN — full-screen overlay with typewriter boot logs
+   ============================================================ */
+.boot-screen{
+  position: fixed;
+  inset: 0;
+  background: #000;
+  color: var(--hacker-fg);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 10vh 6vw 8vh;
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  opacity: 1;
+  transition: opacity 0.6s var(--ease);
+  cursor: pointer;
+  overflow: hidden;
+}
+.boot-screen.is-done{ opacity: 0; pointer-events: none; }
+.boot-screen[hidden]{ display: none !important; }
+
+/* ---- Window-open effect: 4 corner brackets that close in ---- */
+.boot-screen::before,
+.boot-screen::after,
+.boot-screen > .boot-corner-tl,
+.boot-screen > .boot-corner-br{
+  content: "";
+  position: absolute;
+  width: 28px; height: 28px;
+  border-color: var(--hacker-fg);
+  border-style: solid;
+  border-width: 0;
+  pointer-events: none;
+  opacity: 0;
+  box-shadow: 0 0 8px var(--hacker-fg);
+}
+.boot-screen::before{
+  top: 6vh; left: 6vw;
+  border-top-width: 2px;
+  border-left-width: 2px;
+  transform: translate(-30px, -30px);
+}
+.boot-screen::after{
+  top: 6vh; right: 6vw;
+  border-top-width: 2px;
+  border-right-width: 2px;
+  transform: translate(30px, -30px);
+}
+.boot-screen > .boot-corner-tl{
+  bottom: 6vh; left: 6vw;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+  transform: translate(-30px, 30px);
+}
+.boot-screen > .boot-corner-br{
+  bottom: 6vh; right: 6vw;
+  border-bottom-width: 2px;
+  border-right-width: 2px;
+  transform: translate(30px, 30px);
+}
+@media (prefers-reduced-motion: no-preference){
+  .boot-screen.is-opening::before,
+  .boot-screen.is-opening::after,
+  .boot-screen.is-opening > .boot-corner-tl,
+  .boot-screen.is-opening > .boot-corner-br{
+    animation: corner-snap 0.55s cubic-bezier(.2,.7,.1,1) forwards;
+  }
+  .boot-screen.is-opening::before{ animation-delay: 0s; }
+  .boot-screen.is-opening::after{ animation-delay: 0.05s; }
+  .boot-screen.is-opening > .boot-corner-tl{ animation-delay: 0.1s; }
+  .boot-screen.is-opening > .boot-corner-br{ animation-delay: 0.15s; }
+}
+
+/* ---- Title bar at top of boot screen ---- */
+.boot-screen > .boot-title{
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  background: linear-gradient(180deg, rgba(0,255,65,0.10), rgba(0,255,65,0.02));
+  border-bottom: 1px solid var(--hacker-rule);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--hacker-fg-dim);
+  opacity: 0;
+  transform: translateY(-100%);
+}
+.boot-screen.is-opening > .boot-title{
+  animation: title-drop 0.4s cubic-bezier(.2,.7,.1,1) 0.25s forwards;
+}
+.boot-screen > .boot-title::before{
+  content: "●";
+  color: var(--hacker-fg);
+  font-size: 9px;
+  animation: boot-cursor-blink 1.2s steps(2) infinite;
+}
+.boot-screen > .boot-title .boot-title-meta{
+  margin-left: auto;
+  font-size: 10px;
+  opacity: 0.7;
+}
+@media (prefers-reduced-motion: reduce){
+  .boot-screen.is-opening::before,
+  .boot-screen.is-opening::after,
+  .boot-screen.is-opening > .boot-corner-tl,
+  .boot-screen.is-opening > .boot-corner-br,
+  .boot-screen.is-opening > .boot-title{
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+.boot-log{
+  white-space: pre-wrap;
+  word-break: break-word;
+  text-shadow: 0 0 4px rgba(0,255,65,0.4);
+  max-width: 920px;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+}
+.boot-log .boot-ok{ color: var(--hacker-cyan); }
+.boot-log .boot-warn{ color: var(--hacker-accent); }
+.boot-log .boot-err{ color: var(--hacker-danger); }
+.boot-bar{
+  position: absolute;
+  left: 6vw; right: 6vw; bottom: 6vh;
+  height: 4px;
+  background: rgba(0,255,65,0.15);
+  border-radius: 999px;
+  overflow: hidden;
+  max-width: 920px;
+}
+.boot-bar-fill{
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--hacker-fg), var(--hacker-cyan));
+  border-radius: 999px;
+  box-shadow: 0 0 12px var(--hacker-shadow);
+  transition: width 0.15s linear;
+}
+.boot-cursor{
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  background: var(--hacker-fg);
+  margin-left: 2px;
+  vertical-align: -0.18em;
+  animation: boot-cursor-blink 1s steps(2) infinite;
+}
+@media (prefers-reduced-motion: reduce){
+  .boot-screen{ transition: none; }
+  .boot-cursor{ animation: none; opacity: 1; }
+}
+
+/* ============================================================
+   TERMINAL COMMAND WIDGET — bottom-left floating panel
+   ============================================================ */
+.terminal-toggle{
+  position: fixed;
+  bottom: 18px; left: 18px;
+  z-index: 8500;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--hacker-fg);
+  background: rgba(10,14,20,0.85);
+  border: 1px solid var(--hacker-fg);
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease), transform 0.2s var(--ease), box-shadow 0.4s var(--ease);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 0 0 1px rgba(0,255,65,0.15) inset, 0 4px 20px rgba(0,0,0,0.4);
+}
+.hacker-mode .terminal-toggle{
+  opacity: 1;
+  pointer-events: auto;
+}
+.terminal-toggle:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px var(--hacker-fg) inset, 0 6px 28px var(--hacker-shadow);
+}
+.terminal-toggle::before{
+  content:"▸ ";
+  color: var(--hacker-fg);
+  animation: boot-cursor-blink 1s steps(2) infinite;
+}
+
+.terminal-cmd{
+  position: fixed;
+  bottom: 64px; left: 18px;
+  z-index: 8501;
+  width: min(420px, calc(100vw - 36px));
+  max-height: 50vh;
+  background: rgba(10,14,20,0.95);
+  border: 1px solid var(--hacker-fg);
+  border-radius: 10px;
+  padding: 14px 14px 12px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--hacker-fg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 0 1px rgba(0,255,65,0.15) inset, 0 8px 40px rgba(0,0,0,0.6), 0 0 60px rgba(0,255,65,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.hacker-mode .terminal-cmd[data-open="true"]{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.terminal-cmd[hidden]{ display: none !important; }
+
+.term-head{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--hacker-rule);
+  padding-bottom: 6px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--hacker-fg-dim);
+}
+.term-head .term-close{
+  background: none; border: 0; color: var(--hacker-fg-dim);
+  cursor: pointer; font-family: inherit; font-size: 14px; padding: 0 4px;
+}
+.term-head .term-close:hover{ color: var(--hacker-danger); }
+
+.term-log{
+  flex: 1;
+  overflow-y: auto;
+  min-height: 80px;
+  max-height: 240px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--hacker-fg-dim) transparent;
+}
+.term-log::-webkit-scrollbar{ width: 6px; }
+.term-log::-webkit-scrollbar-thumb{ background: var(--hacker-fg-dim); border-radius: 3px; }
+
+.term-line{
+  display: block;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-bottom: 2px;
+}
+.term-line.term-out{ color: var(--hacker-fg-dim); }
+.term-line.term-err{ color: var(--hacker-accent); }
+.term-line.term-info{ color: var(--hacker-cyan); }
+.term-line.term-ok{ color: var(--hacker-fg); }
+
+.term-input-row{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-top: 1px solid var(--hacker-rule);
+  padding-top: 8px;
+}
+.term-input-row .prompt{
+  color: var(--hacker-fg);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.term-input{
+  flex: 1;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: var(--hacker-fg);
+  font-family: inherit;
+  font-size: inherit;
+  caret-color: var(--hacker-fg);
+  padding: 0;
+}
+.term-input::placeholder{ color: var(--hacker-fg-dim); opacity: 0.6; }
+
+/* Hide terminal on small viewports — touch typing a CLI is awkward */
+@media (max-width: 600px){
+  .terminal-toggle,
+  .terminal-cmd{ display: none !important; }
+}
+
+/* ============================================================
+   AI LEARNING SECTION — resume content addition
+   ============================================================ */
+.ai-learning-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 24px;
+}
+.ai-card{
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 18px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+.hacker-mode .ai-card{
+  background: var(--hacker-bg-2);
+  border-color: var(--hacker-rule);
+}
+.ai-card::before{
+  content: attr(data-id);
+  position: absolute;
+  top: 12px; right: 14px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+}
+.hacker-mode .ai-card::before{ color: var(--hacker-accent); }
+.ai-card h3{
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.hacker-mode .ai-card h3{
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 0;
+  color: var(--hacker-fg);
+  text-transform: uppercase;
+}
+.ai-card p{
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+.hacker-mode .ai-card p{ color: #6FBE80; }
+.ai-card .ai-status{
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.ai-card .ai-status::before{
+  content:"";
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 6px rgba(26,143,76,0.6);
+}
+.hacker-mode .ai-card .ai-status{ color: var(--hacker-fg); }
+.hacker-mode .ai-card .ai-status::before{ background: var(--hacker-fg); box-shadow: 0 0 8px var(--hacker-fg); }
+
+@media (max-width: 920px){
+  .ai-learning-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px){
+  .ai-learning-grid{ grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   ASCII RULE — decorative box-drawing divider (HACKER mode only)
+   ============================================================ */
+.ascii-rule{
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--hacker-fg-dim);
+  text-align: center;
+  margin: 28px 0;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+.hacker-mode .ascii-rule{ opacity: 0.7; }
+
+/* ============================================================
+   STATUS PILL — enhanced glow in HACKER mode
+   ============================================================ */
+.hacker-mode .status-pill{
+  color: var(--hacker-fg);
+  border-color: var(--hacker-fg);
+  background: rgba(0,255,65,0.08);
+  box-shadow: 0 0 12px var(--hacker-shadow);
+}
+.hacker-mode .status-pill .dot{ background: var(--hacker-fg); box-shadow: 0 0 8px var(--hacker-fg); }
+
+/* ============================================================
+   KEYFRAMES — all gated by prefers-reduced-motion
+   ============================================================ */
+@keyframes hacker-flicker{
+  0%, 100%{ opacity: 1; }
+  3%{ opacity: 0.96; }
+  6%{ opacity: 1; }
+  47%{ opacity: 0.98; }
+  50%{ opacity: 1; }
+  53%{ opacity: 0.95; }
+  56%{ opacity: 1; }
+}
+@keyframes boot-cursor-blink{
+  0%, 49%{ opacity: 1; }
+  50%, 100%{ opacity: 0; }
+}
+@keyframes scanline-drift{
+  0%{ background-position: 0 0; }
+  100%{ background-position: 0 60px; }
+}
+@keyframes glitch-1{
+  0%, 90%, 100%{ clip-path: inset(100% 0 0 0); transform: translate(0,0); }
+  92%{ clip-path: inset(20% 0 60% 0); transform: translate(-2px, 0); }
+  94%{ clip-path: inset(60% 0 10% 0); transform: translate(2px, 0); }
+  96%{ clip-path: inset(40% 0 35% 0); transform: translate(-1px, 0); }
+}
+@keyframes glitch-2{
+  0%, 88%, 100%{ clip-path: inset(100% 0 0 0); transform: translate(0,0); }
+  90%{ clip-path: inset(50% 0 25% 0); transform: translate(2px, 0); }
+  93%{ clip-path: inset(10% 0 70% 0); transform: translate(-2px, 0); }
+  97%{ clip-path: inset(70% 0 5% 0); transform: translate(1px, 0); }
+}
+@keyframes meter-fill-in{
+  from{ width: 0; }
+  to{ width: var(--level, 0%); }
+}
+@keyframes corner-snap{
+  0%   { opacity: 0; }
+  30%  { opacity: 1; }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+@keyframes title-drop{
+  0%   { opacity: 0; transform: translateY(-100%); }
+  60%  { opacity: 1; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .hacker-mode::before{ animation: none; }
+  .scanlines{ animation: none; }
+  .hacker-mode .glitch::before,
+  .hacker-mode .glitch::after{ animation: none; clip-path: inset(100% 0 0 0); }
+  .hacker-mode .sg-list li::before,
+  .hacker-mode .sg-list li .meter-fill{ transition: none; }
+  .hacker-mode .sg-list li.is-animated .meter-fill{ width: var(--level, 0%); }
+  .hacker-mode .sg-list li.is-animated::before{ width: var(--level, 0%); }
+}

@@ -23,9 +23,16 @@ JavaScript** — no framework, no build step, no dependencies.
 - **Six standalone case-study pages** for selected projects (AI, POS, e-commerce, scroll
   animation, automation, and private business tools), all sharing the light theme and a
   unified top bar.
+- **HACKER mode** — a one-click toggle (`[HACKER.exe]` in the topbar) flips the entire site
+  into a CRT/terminal aesthetic: terminal-green palette, scanlines, glitch text, a typewriter
+  boot sequence on first activation, animated skill XP meters, and a working in-page CLI
+  (`help`, `skills`, `cv`, `theme`, `whoami`, `matrix`…). Choice persists in `localStorage`.
 - **Live competitive-programming stats** — LeetCode and Codeforces solved counts are fetched
   live in the browser; HackerRank is fetched through a CORS proxy with a hardcoded fallback
   (see [JavaScript](#-javascript-jsscriptjs)).
+- **AI engineering learning path** — a dedicated section on the hub (`#ai-learning`) plus
+  a "Currently Learning" subsection on the AI case-study page covering LLM fundamentals,
+  RAG, agents, prompt engineering, vector databases, and evaluation & safety.
 - **Mobile-first & accessible** — responsive layout with a hamburger menu, WCAG-AA contrast,
   a skip-to-content link, visible `:focus-visible` outlines, and `prefers-reduced-motion`
   support.
@@ -203,6 +210,10 @@ No configuration required.
 - [ ] *(Optional)* Replace the `Animation/` frame sequence on `wpdev.html` with your own work.
 - [ ] *(Optional)* Fill the "next automation" placeholder card in `automation.html` when the
       next project is ready (look for the `<!-- ▼ NEXT AUTOMATION PROJECT -->` comment).
+- [ ] **Regenerate `Siam-Hossain-CV.pdf`** to mirror the new "AI Engineering" learning
+      section on the site — add a new "Currently Learning" subsection listing the six
+      topics (LLM fundamentals, RAG, AI agents, prompt engineering, vector databases,
+      evaluation & safety) and update the top summary line to mention AI engineering.
 
 **Housekeeping notes:**
 

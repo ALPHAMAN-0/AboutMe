@@ -158,6 +158,13 @@
   .ai-foot a{transition:color .25s var(--ease)}
   .ai-foot a:hover{color:var(--accent)}
 
+  /* ── currently learning section ── */
+  .ai-learning-now{margin-top:96px;padding-top:48px;border-top:1px solid var(--rule)}
+  .ai-learning-now .num{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px}
+  .ai-learning-now .num b{color:var(--accent);font-weight:600;margin-right:8px}
+  .ai-learning-now h2{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(32px,5vw,52px);line-height:1.05;letter-spacing:-.01em;color:var(--ink);margin-bottom:14px}
+  .ai-learning-now .sub{color:var(--ink-2);font-size:15px;max-width:64ch;line-height:1.7;margin-bottom:32px}
+
   /* ── responsive ── */
   @media(max-width:1100px){
     .ai-proj{grid-template-columns:64px 1fr;gap:24px}
@@ -199,6 +206,7 @@
     <a href="index.html#contact">Contact</a>
   </nav>
   <span class="page-tag">AI Integration &amp; Dev</span>
+  <button class="mode-toggle" type="button" aria-pressed="false" data-mode-toggle aria-label="Toggle hacker mode">[HACKER.exe]</button>
 </header>
 
 <main class="ai-wrap">
@@ -351,6 +359,58 @@
 
   </div><!-- /ai-proj-list -->
 
+  <!-- ============================================================
+       CURRENTLY LEARNING — AI engineering learning path
+       ============================================================ -->
+  <section class="ai-learning-now">
+    <div class="num"><b>04</b> / currently learning</div>
+    <h2>The AI engineering stack I'm deepening.</h2>
+    <p class="sub">
+      Beyond shipping the projects above, I'm actively working through the AI engineering
+      stack — the layer that turns a model into a product. These are the topics I'm
+      learning and applying right now.
+    </p>
+
+    <div class="ai-learning-grid">
+      <div class="ai-card" data-id="01">
+        <h3>LLM fundamentals</h3>
+        <p>Tokenisation, context windows, temperature &amp; sampling, system vs user
+          prompts, structured outputs, JSON mode, function calling.</p>
+        <span class="ai-status">in progress · building</span>
+      </div>
+      <div class="ai-card" data-id="02">
+        <h3>Retrieval-Augmented Generation</h3>
+        <p>Embeddings, vector stores (FAISS, Chroma, pgvector), chunking strategies,
+          re-ranking, retrieval evaluation, hybrid search.</p>
+        <span class="ai-status">building · rag-assistant</span>
+      </div>
+      <div class="ai-card" data-id="03">
+        <h3>AI agents</h3>
+        <p>Tool use, function-calling loops, ReAct pattern, multi-agent orchestration,
+          planning, memory, the agent–environment loop.</p>
+        <span class="ai-status">studying · next</span>
+      </div>
+      <div class="ai-card" data-id="04">
+        <h3>Prompt engineering</h3>
+        <p>Chain-of-thought, few-shot, role prompting, output schemas, evaluation
+          harnesses, prompt versioning and regression testing.</p>
+        <span class="ai-status">applied · daily</span>
+      </div>
+      <div class="ai-card" data-id="05">
+        <h3>Vector databases &amp; embeddings</h3>
+        <p>Cosine similarity, semantic search, ANN indexes, hybrid lexical + vector
+          retrieval, metadata filtering, embedding-model selection.</p>
+        <span class="ai-status">exploring</span>
+      </div>
+      <div class="ai-card" data-id="06">
+        <h3>Evaluation &amp; safety</h3>
+        <p>Hallucination detection, guardrails, observability, LangSmith-style tracing,
+          evals, red-teaming, prompt-injection mitigation.</p>
+        <span class="ai-status">queued</span>
+      </div>
+    </div>
+  </section>
+
   <div class="ai-foot">
     <div>© 2026 siam hossain · ai integration &amp; development</div>
     <a href="index.html#work" data-hover>← back to work</a>
@@ -359,5 +419,36 @@
 </main>
 
 <script src="js/script.js"></script>
+
+<!-- ============================================================
+     HACKER MODE — boot screen, scanlines, terminal widget
+     (visible / functional only when <html class="hacker-mode">)
+     ============================================================ -->
+<div class="scanlines" aria-hidden="true"></div>
+
+<div class="boot-screen" aria-hidden="true" hidden>
+  <div class="boot-title">
+    <span>~/siam/aboutme · portfolio.exe</span>
+    <span class="boot-title-meta">PID 4721 · session 0xA1</span>
+  </div>
+  <div class="boot-corner-tl"></div>
+  <div class="boot-corner-br"></div>
+  <pre class="boot-log"></pre>
+  <div class="boot-bar"><div class="boot-bar-fill"></div></div>
+</div>
+
+<button class="terminal-toggle" type="button" aria-label="Open terminal" aria-expanded="false" aria-controls="terminal-panel">[ &gt;_ ]</button>
+
+<aside class="terminal-cmd" id="terminal-panel" hidden inert aria-label="Terminal command input">
+  <div class="term-head">
+    <span>~/siam/aboutme · terminal</span>
+    <button class="term-close" type="button" aria-label="Close terminal">×</button>
+  </div>
+  <div class="term-log" aria-live="polite"></div>
+  <div class="term-input-row">
+    <span class="prompt">visitor@aboutme:~$</span>
+    <input class="term-input" type="text" autocomplete="off" spellcheck="false" aria-label="Command" placeholder="type 'help'">
+  </div>
+</aside>
 </body>
 </html>
