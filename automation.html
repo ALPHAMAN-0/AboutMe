@@ -14,9 +14,7 @@
 <script>
   (function(){
     try {
-      localStorage.removeItem('hackerMode');
-      localStorage.removeItem('booted');
-      var t = localStorage.getItem('theme');
+var t = localStorage.getItem('theme');
       if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
     } catch (e) {}
   })();

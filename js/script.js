@@ -614,55 +614,9 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 })();
 
 /* ============================================================
-   Intro video block — unchanged from before, kept for compat
+   Intro video block — REMOVED.
+   The legacy #intro / #intro-player / .iv-overlay elements no
+   longer exist in any page; the IIFE was dead code that
+   unconditionally probed videos/intro.mp4 (which is also absent
+   from the repo) on every page load. Removed 2026-09-25.
    ============================================================ */
-(function introVideo(){
-  const block   = $('#intro');
-  const video   = $('#intro-player');
-  const overlay = $('.iv-overlay');
-  if (!block || !video || !overlay) return;
-
-  const SRC    = 'videos/intro.mp4';
-  const POSTER = 'images/intro-poster.jpg';
-
-  fetch(SRC, { headers: { Range: 'bytes=0-0' } })
-    .then(r => { if (r.ok) enable(); })
-    .catch(() => {});
-
-  function enable(){
-    block.hidden = false;
-    $('#about')?.classList.add('video-on');
-    const cta = $('.sc-video-cta');
-    if (cta) cta.hidden = false;
-    const img = new Image();
-    img.onload = () => { video.poster = POSTER; };
-    img.src = POSTER;
-    video.preload = 'metadata';
-    video.load();
-    video.addEventListener('loadedmetadata', () => {
-      const t = $('.iv-time');
-      if (t && isFinite(video.duration) && video.duration > 0){
-        const total = Math.round(video.duration);
-        const m = Math.floor(total / 60);
-        const s = total % 60;
-        t.textContent = ` · ${m}:${String(s).padStart(2, '0')}`;
-      }
-    }, { once: true });
-  }
-
-  const restoreOverlay = () => { video.controls = false; overlay.hidden = false; };
-  overlay.addEventListener('click', () => {
-    overlay.hidden = true;
-    video.controls = true;
-    video.focus();
-    const p = video.play();
-    if (p) p.catch(restoreOverlay);
-  });
-  const source = video.querySelector('source');
-  (source || video).addEventListener('error', restoreOverlay);
-  video.addEventListener('ended', () => {
-    const hadFocus = document.activeElement === video || video.contains(document.activeElement);
-    video.controls = false; video.currentTime = 0; overlay.hidden = false;
-    if (hadFocus) overlay.focus();
-  });
-})();

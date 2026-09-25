@@ -1,5 +1,12 @@
 .DS_Store
 
+# local AI tool configs (machine-specific, never deploy)
+.claude/
+.puku-cli/
+
+# design-canvas drafts (not production content)
+scratchpad/
+
 # never commit raw recordings — GitHub rejects files over 100 MB
 videos/*
 !videos/intro.mp4

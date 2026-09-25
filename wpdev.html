@@ -17,8 +17,6 @@
   <script>
     (function(){
       try {
-        localStorage.removeItem('hackerMode');
-        localStorage.removeItem('booted');
         var t = localStorage.getItem('theme');
         if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
       } catch (e) {}
@@ -281,13 +279,16 @@
       }
 
       const images = new Array(TOTAL_FRAMES);
+      const loadedSet = new Set();
       let loaded = 0;
 
       function loadFrame(i) {
         return new Promise((resolve) => {
+          if (loadedSet.has(i)) { resolve(); return; }
           const img = new Image();
           const done = () => {
             images[i] = img;
+            loadedSet.add(i);
             loaded++;
             const pct = Math.round((loaded / TOTAL_FRAMES) * 100);
             loaderTxt.textContent = 'Loading Scroll Animation… ' + pct + '%';
@@ -298,6 +299,26 @@
           img.decoding = 'async';
           img.src = framePath(i);
         });
+      }
+
+      // Prefetch frames around an index during idle time. No-op
+      // while frames are already loaded or the document is hidden.
+      function prefetchAround(idx) {
+        const range = 6; // ±6 frames around the current view
+        const order = [];
+        for (let d = 0; d <= range; d++) {
+          if (idx - d >= 0) order.push(idx - d);
+          if (d !== 0 && idx + d < TOTAL_FRAMES) order.push(idx + d);
+        }
+        const run = (deadline) => {
+          if (document.hidden) return;
+          while (order.length && deadline.timeRemaining() > 4) {
+            const next = order.shift();
+            if (!loadedSet.has(next)) loadFrame(next);
+          }
+          if (order.length) requestIdleCallback(run, { timeout: 1500 });
+        };
+        if ('requestIdleCallback' in window) requestIdleCallback(run, { timeout: 1500 });
       }
 
       function draw(idx) {
@@ -385,10 +406,13 @@
         if (hint) hint.style.opacity = (p < 0.05 ? 1 - p / 0.05 : 0).toFixed(3);
       }
 
+      let running = true;
       function tick() {
+        if (!running) return;
         if (dirty) { renderFrame(); dirty = false; }
         requestAnimationFrame(tick);
       }
+      function setRunning(v){ running = v; if (v) requestAnimationFrame(tick); }
 
       function markDirty() { dirty = true; }
 
@@ -399,21 +423,43 @@
 
         if (prefersReduced) { staticStart(); return; }
 
-        const tasks = [];
-        for (let i = 0; i < TOTAL_FRAMES; i++) tasks.push(loadFrame(i));
-        await Promise.all(tasks);
-
+        // Progressive load — start with frame 0 so the loader
+        // can clear fast, then prefetch the rest during idle time.
+        // The full 15 MB of frames is no longer requested on first
+        // paint; the browser cache holds what's been fetched and
+        // misses stay local to the user's scroll path.
+        await loadFrame(0);
         resize();
-        lastIdx = -1;
+        lastIdx = 0;
         renderFrame();
 
         loader.style.opacity = '0';
         loader.style.pointerEvents = 'none';
-        setTimeout(() => { if (loader && loader.parentNode) loader.parentNode.removeChild(loader); }, 350);
+        setTimeout(() => { if (loader && loader.parentNode) loader.parentNode.removeChild(loader); }, 250);
+
+        // Warm the rest in the background. Done after the loader
+        // clears so we don't block the perceived load.
+        requestIdleCallback(() => prefetchAround(0), { timeout: 800 });
 
         if (!started) {
           started = true;
-          window.addEventListener('scroll', () => { dirty = true; renderFrame(); }, { passive: true });
+          const stage = document.querySelector('.stage');
+          if (stage && 'IntersectionObserver' in window) {
+            const stageIO = new IntersectionObserver(entries => {
+              for (const e of entries) setRunning(e.isIntersecting);
+            }, { threshold: 0 });
+            stageIO.observe(stage);
+          }
+          window.addEventListener('scroll', () => {
+            dirty = true;
+            const idx = Math.min(TOTAL_FRAMES - 1, Math.round(progress() * (TOTAL_FRAMES - 1)));
+            if (idx !== lastIdx && !loadedSet.has(idx)) {
+              // user jumped ahead — load on demand + warm neighbours
+              loadFrame(idx).then(() => { renderFrame(); prefetchAround(idx); });
+            } else {
+              renderFrame();
+            }
+          }, { passive: true });
           window.addEventListener('resize', () => {
             dpr = Math.min(window.devicePixelRatio || 1, 2);
             resize();
