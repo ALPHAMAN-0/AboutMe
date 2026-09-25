@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>P4 — Phone states</title>
+<link rel="stylesheet" href="_tokens.css">
+<style>
+  body { padding: 32px; background: #DCD8CE; }
+  h1 { font-family: var(--serif); font-size: 28px; font-weight: 420; margin: 0 0 8px; text-align: center; color: var(--ink-3); }
+  h1 em { font-style: italic; font-weight: 400; }
+  .row { display: flex; gap: 24px; justify-content: center; margin-top: 24px; flex-wrap: wrap; }
+  .stage { width: 390px; height: 844px; background: var(--ground); border-radius: 36px; overflow: hidden; position: relative; box-shadow: 0 30px 60px -30px rgba(0,0,0,0.25); }
+  .stage .canvas-lbl { position: absolute; left: 0; right: 0; top: -28px; text-align: center; font: 600 11px var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); }
+
+  /* shared */
+  .notch { width: 110px; height: 28px; background: var(--ink); margin: 0 auto; border-radius: 0 0 18px 18px; }
+  .topbar { display: flex; justify-content: space-between; padding: 14px 18px; align-items: center; }
+  .topbar .menu, .topbar .theme { width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--rule); background: var(--tile); display: grid; place-items: center; }
+
+  /* menu sheet */
+  .scrim { position: absolute; inset: 0; background: rgba(19,19,17,0.4); }
+  .sheet { position: absolute; left: 12px; right: 12px; bottom: 12px; background: var(--tile); border-radius: 22px; padding: 18px; border: 1px solid var(--rule); }
+  .sheet .grabber { width: 40px; height: 4px; border-radius: 2px; background: var(--rule); margin: 0 auto 12px; }
+  .sheet a { display: block; padding: 14px 12px; border-radius: 10px; font: 500 18px var(--serif); color: var(--ink); text-decoration: none; }
+  .sheet a:hover, .sheet a.is-active { background: var(--tile-2); }
+  .sheet .small { padding: 10px 12px; font: 500 13px var(--sans); color: var(--ink-2); border-top: 1px solid var(--rule); margin-top: 6px; }
+  .sheet .small a { display: inline-block; padding: 8px 10px; font: 500 13px var(--sans); color: var(--ink-2); }
+
+  /* action bar at hero-exit */
+  body { padding-bottom: 80px; }
+  .ab { position: sticky; bottom: 14px; padding: 10px 14px; background: var(--tile); border: 1px solid var(--rule); border-radius: 18px; margin: 16px 14px 0; display: flex; gap: 8px; align-items: center; justify-content: space-between; }
+  .ab .ttl { font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); padding-right: 8px; border-right: 1px solid var(--rule); }
+  .ab .pill { height: 36px; padding: 0 10px; border-radius: 999px; border: 1px solid var(--rule); background: var(--tile); font: 600 11px var(--sans); color: var(--ink); display: inline-flex; align-items: center; }
+  .ab .pill--a { background: var(--accent); color: #fff; border-color: transparent; }
+
+  /* sheet popover (skill evidence) */
+  .popsheet { position: absolute; left: 12px; right: 12px; bottom: 12px; background: var(--tile); border-radius: 22px; padding: 18px; border: 1px solid var(--rule); }
+  .popsheet .grabber { width: 40px; height: 4px; border-radius: 2px; background: var(--rule); margin: 0 auto 14px; }
+  .popsheet h3 { font-family: var(--serif); font-size: 26px; font-weight: 420; margin: 0 0 4px; }
+  .popsheet .lbl { font: 600 10px var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); }
+  .popsheet ul { list-style: none; padding: 0; margin: 8px 0 14px; }
+  .popsheet ul li { padding: 12px 0; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-size: 14px; }
+  .popsheet ul li:first-child { border-top: 0; }
+  .btn { height: 44px; padding: 0 16px; border-radius: 999px; font: 600 13px var(--sans); background: var(--accent); color: #fff; border: 0; display: inline-flex; align-items: center; }
+
+  /* dim page content under sheets */
+  .stage.dim .content { filter: blur(2px); opacity: 0.4; }
+  .stage .content { padding: 8px 18px; }
+  .stage .content h1 { font-family: var(--serif); font-size: 36px; font-weight: 420; margin: 0; text-align: left; line-height: 0.95; }
+  .stage .content h1 em { font-style: italic; font-weight: 400; }
+  .stage .content .role { font: 500 12px var(--sans); color: var(--ink-2); margin: 8px 0 14px; }
+</style>
+</head>
+<body>
+
+<h1>P4 &middot; Phone <em>states</em></h1>
+
+<div class="row">
+
+  <!-- 1: Menu sheet -->
+  <div>
+    <div class="stage dim">
+      <div class="notch"></div>
+      <div class="topbar"><button class="menu">&#9776;</button><div></div><button class="theme">&#9728;</button></div>
+      <div class="content"><h1>Siam<br><em>Hossain</em></h1><p class="role">Software Engineer</p></div>
+      <div class="scrim"></div>
+      <div class="sheet">
+        <div class="grabber"></div>
+        <a class="is-active" href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#practice">Practice</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <div class="small">
+          <a href="Siam-Hossain-CV.pdf" download>Download CV</a>
+          <a>Toggle theme</a>
+          <a>Open &crarr;K</a>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;color:var(--ink-3);font:600 11px var(--mono);text-transform:uppercase;letter-spacing:0.08em;margin-top:8px">1 &middot; Menu sheet</div>
+  </div>
+
+  <!-- 2: Action bar visible after scrolling past hero -->
+  <div>
+    <div class="stage">
+      <div class="notch"></div>
+      <div class="topbar"><button class="menu">&#9776;</button><div></div><button class="theme">&#9728;</button></div>
+      <div style="padding: 16px 18px">
+        <div style="height:120px;border:1px dashed var(--rule);border-radius:12px;display:grid;place-items:center;color:var(--ink-3);font:12px var(--mono);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px">Work</div>
+        <div style="height:120px;border:1px dashed var(--rule);border-radius:12px;display:grid;place-items:center;color:var(--ink-3);font:12px var(--mono);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px">Skills</div>
+        <div style="height:120px;border:1px dashed var(--rule);border-radius:12px;display:grid;place-items:center;color:var(--ink-3);font:12px var(--mono);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px">Practice</div>
+      </div>
+      <div class="ab"><div class="ttl">Contact</div><a class="pill pill--a" href="mailto:siam.cse.aiub@gmail.com">Email</a><button class="pill">Copy</button><a class="pill" href="Siam-Hossain-CV.pdf" download>CV</a></div>
+    </div>
+    <div style="text-align:center;color:var(--ink-3);font:600 11px var(--mono);text-transform:uppercase;letter-spacing:0.08em;margin-top:8px">2 &middot; Sticky action bar</div>
+  </div>
+
+  <!-- 3: Bottom-sheet evidence popover -->
+  <div>
+    <div class="stage dim">
+      <div class="notch"></div>
+      <div class="topbar"><button class="menu">&#9776;</button><div></div><button class="theme">&#9728;</button></div>
+      <div class="content">
+        <p class="lbl">Frontend</p>
+        <h1>Stack, by <em>evidence</em>.</h1>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:14px"><span class="chip" style="height:28px;padding:0 10px;border:1px solid var(--rule);border-radius:999px;background:var(--accent-wash);color:var(--accent);font:500 12px var(--sans);display:inline-flex;align-items:center">React &middot; 4 projects</span></div>
+      </div>
+      <div class="scrim"></div>
+      <div class="popsheet">
+        <div class="grabber"></div>
+        <p class="lbl">Used in</p>
+        <h3>React</h3>
+        <ul>
+          <li><span>POS &middot; cashier / admin</span><span style="color:var(--ink-3);font:12px var(--mono);text-transform:uppercase;letter-spacing:0.06em">2024</span></li>
+          <li><span>AI resume builder &middot; UI shell</span><span style="color:var(--ink-3);font:12px var(--mono);text-transform:uppercase;letter-spacing:0.06em">2025</span></li>
+          <li><span>MegaBazar &middot; storefront</span><span style="color:var(--ink-3);font:12px var(--mono);text-transform:uppercase;letter-spacing:0.06em">2024</span></li>
+          <li><span>Email Trucker &middot; console</span><span style="color:var(--ink-3);font:12px var(--mono);text-transform:uppercase;letter-spacing:0.06em">2024</span></li>
+        </ul>
+        <button class="btn">Show these in Work</button>
+      </div>
+    </div>
+    <div style="text-align:center;color:var(--ink-3);font:600 11px var(--mono);text-transform:uppercase;letter-spacing:0.08em;margin-top:8px">3 &middot; Bottom-sheet popover</div>
+  </div>
+
+</div>
+</body>
+</html>

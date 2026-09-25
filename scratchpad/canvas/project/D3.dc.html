@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>D3 — Work states</title>
+<link rel="stylesheet" href="_tokens.css">
+<style>
+  body { padding: 64px 64px 96px; }
+  h1 { font-family: var(--serif); font-size: 40px; font-weight: 420; letter-spacing: -0.01em; margin: 0 0 8px; }
+  h1 em { font-style: italic; font-weight: 400; }
+  p.lead { color: var(--ink-2); margin: 0 0 48px; max-width: 70ch; }
+  .board { max-width: 1440px; margin: 0 auto; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .frame { background: var(--tile); border: 1px solid var(--rule); border-radius: 14px; padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+  .frame-head { padding: 14px 18px; border-bottom: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; }
+  .frame-head h3 { font: 600 13px var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink); margin: 0; }
+  .frame-head .note { color: var(--ink-3); font-size: 12px; }
+  .frame-body { padding: 28px; flex: 1; }
+
+  .anno { color: var(--ink-3); font: 600 11px var(--mono); text-transform: uppercase; letter-spacing: 0.08em; padding-bottom: 8px; display: block; }
+
+  /* Card */
+  .card { display: block; text-decoration: none; color: inherit; padding: 18px; background: var(--tile); border: 1px solid var(--rule); border-radius: 12px; transition: box-shadow .2s; }
+  .card:hover { background: var(--tile-2); border-color: var(--ink-3); }
+  .card .thumb { aspect-ratio: 16/10; background: var(--tile-2); border-radius: 8px; margin-bottom: 14px; display:grid; place-items:center; color:var(--ink-3); font:12px var(--mono); }
+  .card .thumb.accent { background: var(--accent-wash); color: var(--accent); }
+  .card h4 { font-family: var(--serif); font-size: 22px; font-weight: 420; margin: 0 0 4px; }
+  .card .meta { color: var(--ink-3); font-size: 12px; }
+  .card .chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border: 1px solid var(--rule); border-radius: 999px; background: var(--tile); font: 500 11px var(--sans); color: var(--ink); }
+
+  /* Filter UI */
+  .filters { display: inline-flex; padding: 4px; border: 1px solid var(--rule); border-radius: 999px; background: var(--tile); }
+  .filters button { padding: 8px 14px; border-radius: 999px; border: 0; background: transparent; color: var(--ink-2); cursor: pointer; font: 500 13px var(--sans); }
+  .filters button.is-active { background: var(--ink); color: var(--tile); }
+
+  /* Index view */
+  table.idx { width: 100%; border-collapse: collapse; }
+  table.idx td, table.idx th { padding: 14px 12px; text-align: left; border-top: 1px solid var(--rule); font: 500 13px var(--sans); }
+  table.idx th { font: 600 11px var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); border-top: 0; }
+  table.idx tr td:first-child { font-family: var(--serif); font-size: 20px; font-weight: 420; color: var(--ink); }
+  table.idx a { color: inherit; text-decoration: none; }
+
+  /* Skill trace */
+  .trace-area { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .trace-area .left h4 { font-family: var(--serif); font-size: 22px; margin: 0 0 8px; }
+  .trace-area .left .pop { background: var(--tile); border: 1px solid var(--rule); border-radius: 12px; padding: 16px; margin-top: 16px; }
+  .trace-area .left .pop h5 { font: 600 11px var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 0 0 10px; }
+  .trace-area .right { background: var(--tile-2); border-radius: 12px; padding: 16px; }
+  .trace-area .right h5 { font: 600 11px var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin: 0 0 12px; }
+  .trace-area .right .item { background: var(--tile); border-radius: 8px; padding: 12px; margin-bottom: 8px; }
+  .trace-area .right .item b { display: block; }
+  .trace-area .right .item .meta { font-size: 12px; color: var(--ink-3); }
+  .matched { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+</style>
+</head>
+<body>
+<div class="board">
+
+  <h1>D3 &middot; Work <em>states</em></h1>
+  <p class="lead">Four interactive states of the Work section: card hover, filtered grid, Index view, and the skill→project trace from an evidence popover.</p>
+
+  <div class="grid">
+
+    <!-- 1: hover -->
+    <div class="frame">
+      <div class="frame-head"><h3>1 &middot; Card hover</h3><span class="note">tile-2 fills, border darkens</span></div>
+      <div class="frame-body">
+        <a class="card" href="pos.html" style="background:var(--tile-2);border-color:var(--ink-3)">
+          <div class="thumb">dashboard</div>
+          <h4>Pharmacy POS &amp; inventory</h4>
+          <div class="meta">Full-stack &middot; 2024 &middot; live</div>
+          <div class="chips"><span class="chip">Next.js</span><span class="chip">Postgres</span><span class="chip">JWT</span></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 2: filtered -->
+    <div class="frame">
+      <div class="frame-head"><h3>2 &middot; Filtered &middot; AI &amp; automation</h3><span class="note">non-matching cards fall away with view transition</span></div>
+      <div class="frame-body">
+        <div class="filters" style="margin-bottom:16px">
+          <button>All</button><button>Live</button><button>Full-stack</button><button class="is-active">AI &amp; automation</button><button>Front-end &amp; tools</button>
+        </div>
+        <a class="card" href="ai-dev.html" style="margin-bottom:12px">
+          <div class="thumb accent">AI</div>
+          <h4>AI resume builder</h4>
+          <div class="meta">AI &amp; automation &middot; 2025</div>
+          <div class="chips"><span class="chip">Next.js</span><span class="chip">Claude API</span></div>
+        </a>
+        <a class="card" href="automation.html">
+          <div class="thumb accent">Telegram</div>
+          <h4>AIUB Notice Bot</h4>
+          <div class="meta">AI &amp; automation &middot; 2024</div>
+          <div class="chips"><span class="chip">Telegram</span><span class="chip">Scraping</span></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 3: index view -->
+    <div class="frame">
+      <div class="frame-head"><h3>3 &middot; Index view</h3><span class="note">denser list, same data</span></div>
+      <div class="frame-body">
+        <table class="idx">
+          <tr><th>Project</th><th>Year</th><th>Stack</th><th></th></tr>
+          <tr><td><a href="pos.html">Pharmacy POS</a></td><td>2024</td><td>Next.js &middot; Postgres</td><td>&rarr;</td></tr>
+          <tr><td><a href="ai-dev.html">AI resume builder</a></td><td>2025</td><td>Next.js &middot; Claude</td><td>&rarr;</td></tr>
+          <tr><td><a href="automation.html">AIUB Notice Bot</a></td><td>2024</td><td>Telegram &middot; Node</td><td>&rarr;</td></tr>
+          <tr><td><a href="automation.html">Email Trucker</a></td><td>2024</td><td>Node &middot; cron</td><td>&rarr;</td></tr>
+          <tr><td><a href="ecommerce.html">MegaBazar</a></td><td>2024</td><td>Next.js &middot; MySQL</td><td>&rarr;</td></tr>
+          <tr><td><a href="ecommerce.html">ShoeVista</a></td><td>2023</td><td>Next.js &middot; PHP</td><td>&rarr;</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- 4: skill trace -->
+    <div class="frame">
+      <div class="frame-head"><h3>4 &middot; Skill &rarr; project trace</h3><span class="note">clicking &ldquo;React &middot; 4 projects&rdquo; highlights them</span></div>
+      <div class="frame-body">
+        <div class="trace-area">
+          <div class="left">
+            <span class="anno">Skills</span>
+            <h4>Frontend</h4>
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <span class="chip" style="background:var(--accent-wash);border-color:transparent;color:var(--accent)">React &middot; 4 projects</span>
+              <span class="chip">Next.js</span>
+              <span class="chip">HTML &middot; CSS</span>
+              <span class="chip">Tailwind</span>
+            </div>
+            <div class="pop">
+              <h5>React &middot; used in</h5>
+              <ul style="margin:0;padding-left:18px;font-size:13px;color:var(--ink-2);line-height:1.8">
+                <li>POS &middot; cashier / admin</li>
+                <li>AI resume builder &middot; UI shell</li>
+                <li>MegaBazar &middot; storefront</li>
+                <li>Email Trucker &middot; console</li>
+              </ul>
+              <button class="btn btn--sm" style="margin-top:12px;background:var(--accent);color:#fff">Show these in Work &darr;</button>
+            </div>
+          </div>
+          <div class="right">
+            <h5>Work &middot; 4 highlighted</h5>
+            <div class="item matched"><b>Pharmacy POS</b><div class="meta">Full-stack &middot; 2024</div></div>
+            <div class="item matched"><b>AI resume builder</b><div class="meta">AI &amp; automation &middot; 2025</div></div>
+            <div class="item matched"><b>MegaBazar</b><div class="meta">E-commerce &middot; 2024</div></div>
+            <div class="item matched"><b>Email Trucker</b><div class="meta">Automation &middot; 2024</div></div>
+            <div class="item"><b>ShoeVista</b><div class="meta">E-commerce &middot; 2023</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

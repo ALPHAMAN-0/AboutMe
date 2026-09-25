@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>S4 — Filter reflow</title>
+<link rel="stylesheet" href="_tokens.css">
+<style>
+  body { padding: 48px; }
+  h1 { font-family: var(--serif); font-size: 32px; font-weight: 420; margin: 0 0 12px; }
+  h1 em { font-style: italic; font-weight: 400; }
+  p { color: var(--ink-2); max-width: 70ch; margin: 0 0 32px; }
+  .row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; max-width: 1440px; margin: 0 auto; }
+  .frame { aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; border: 1px solid var(--rule); position: relative; }
+  .lbl { position: absolute; bottom: 8px; left: 8px; padding: 4px 8px; background: var(--ink); color: var(--tile); border-radius: 6px; font: 600 10px var(--mono); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .s4 { background: var(--ground); padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+  .s4 .fil { display: flex; gap: 4px; padding: 3px; border: 1px solid var(--rule); border-radius: 999px; background: var(--tile); }
+  .s4 .fil button { padding: 4px 8px; border: 0; background: transparent; border-radius: 999px; font: 600 8px var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); cursor: pointer; }
+  .s4 .fil button.is-active { background: var(--ink); color: var(--tile); }
+  .s4 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; flex: 1; }
+  .s4 .card { background: var(--tile); border: 1px solid var(--rule); border-radius: 6px; padding: 8px; display: flex; flex-direction: column; gap: 4px; transition: opacity .3s, transform .3s; }
+  .s4 .card .thumb { aspect-ratio: 16/9; background: var(--tile-2); border-radius: 4px; }
+  .s4 .card h4 { font: 500 11px var(--sans); margin: 0; }
+  .s4 .card .meta { font: 500 8px var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); }
+  .s4.f1 .grid { grid-template-columns: 1fr 1fr; }
+  .s4.f1 .card { opacity: 1; }
+  .s4.f2 .fil button:nth-child(4) { background: var(--ink); color: var(--tile); }
+  .s4.f2 .card:not(.match) { opacity: 0.15; transform: scale(0.94); }
+  .s4.f2 .card { opacity: 1; }
+  .s4.f3 .card:not(.match) { display: none; }
+  .s4.f3 .grid { grid-template-columns: 1fr; }
+  .s4.f3 .card.match { padding: 10px; }
+  .s4.f3 .card.match h4 { font-size: 14px; }
+  .s4.f4 .grid { grid-template-columns: 1fr; }
+  .s4.f4 .card.match { padding: 12px; }
+  .s4.f4 .card.match .thumb { aspect-ratio: 16/8; }
+  .s4.f5 .card.match h4 { font-family: var(--serif); font-size: 18px; font-weight: 420; }
+</style>
+</head>
+<body>
+
+<h1>S4 &middot; Filter <em>reflow</em></h1>
+<p>Switch to <em>AI &amp; automation</em>. Non-matching cards run a fade + scale via View Transitions. Names only set during the transition. URL becomes <code>?filter=ai</code>.</p>
+
+<div class="row">
+  <div class="frame s4 f1">
+    <div class="fil"><button>All</button><button>Live</button><button>Full-stack</button><button>AI</button><button>Front-end</button></div>
+    <div class="grid">
+      <div class="card"><div class="thumb"></div><h4>Pharmacy POS</h4><div class="meta">FULL-STACK</div></div>
+      <div class="card match"><div class="thumb"></div><h4>AI resume builder</h4><div class="meta">AI</div></div>
+      <div class="card match"><div class="thumb"></div><h4>AIUB Notice Bot</h4><div class="meta">AI</div></div>
+      <div class="card match"><div class="thumb"></div><h4>Email Trucker</h4><div class="meta">AI</div></div>
+    </div>
+    <div class="lbl">All &middot; 4 cards</div>
+  </div>
+
+  <div class="frame s4 f2">
+    <div class="fil"><button>All</button><button>Live</button><button>Full-stack</button><button class="is-active">AI</button><button>Front-end</button></div>
+    <div class="grid">
+      <div class="card"><div class="thumb"></div><h4>Pharmacy POS</h4><div class="meta">FULL-STACK</div></div>
+      <div class="card match"><div class="thumb"></div><h4>AI resume builder</h4><div class="meta">AI</div></div>
+      <div class="card match"><div class="thumb"></div><h4>AIUB Notice Bot</h4><div class="meta">AI</div></div>
+      <div class="card match"><div class="thumb"></div><h4>Email Trucker</h4><div class="meta">AI</div></div>
+    </div>
+    <div class="lbl">non-match fades</div>
+  </div>
+
+  <div class="frame s4 f3">
+    <div class="fil"><button>All</button><button>Live</button><button>Full-stack</button><button class="is-active">AI</button><button>Front-end</button></div>
+    <div class="grid">
+      <div class="card match"><div class="thumb"></div><h4>AI resume builder</h4><div class="meta">AI</div></div>
+      <div class="card match"><div class="thumb"></div><h4>AIUB Notice Bot</h4><div class="meta">AI</div></div>
+      <div class="card match"><div class="thumb"></div><h4>Email Trucker</h4><div class="meta">AI</div></div>
+    </div>
+    <div class="lbl">Index reflow</div>
+  </div>
+
+  <div class="frame s4 f4">
+    <div class="fil"><button>All</button><button>Live</button><button>Full-stack</button><button class="is-active">AI</button><button>Front-end</button></div>
+    <div class="grid">
+      <div class="card match"><div class="thumb"></div><h4>AI resume builder</h4><div class="meta">AI</div></div>
+      <div class="card match"><div class="thumb"></div><h4>AIUB Notice Bot</h4><div class="meta">AI</div></div>
+      <div class="card match"><div class="thumb"></div><h4>Email Trucker</h4><div class="meta">AI</div></div>
+    </div>
+    <div class="lbl">URL &rarr; ?filter=ai</div>
+  </div>
+
+  <div class="frame s4 f5">
+    <div class="fil"><button>All</button><button>Live</button><button>Full-stack</button><button class="is-active">AI</button><button>Front-end</button></div>
+    <div class="grid" style="grid-template-columns: 1fr">
+      <div class="card match"><div class="thumb"></div><h4>AI resume builder</h4><div class="meta">AI</div></div>
+      <div class="card match"><div class="thumb"></div><h4>AIUB Notice Bot</h4><div class="meta">AI</div></div>
+    </div>
+    <div class="lbl">Toggle &rarr; Index</div>
+  </div>
+</div>
+
+</body>
+</html>

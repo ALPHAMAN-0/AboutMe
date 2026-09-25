@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//private/tmp/claude-502/**)",
+      "Read(//private/tmp/**)"
+    ]
+  }
+}

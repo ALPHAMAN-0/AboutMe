@@ -1,0 +1,139 @@
+{
+  "title": "Siam Hossain Portfolio Redesign — Spec Sheet",
+  "version": "v1 · Stage A · canvas review",
+  "main": "Main.dc.html",
+  "open_url": "scratchpad/canvas/project/Main.dc.html",
+  "open_notes": "Open Main.dc.html first — it's the canonical hub. Then walk the list below.",
+  "rows": [
+    {
+      "file": "Main.dc.html",
+      "kind": "primary",
+      "title": "D1 · Hub desktop — LIGHT, full length",
+      "notes": "The canonical board. Walks the new section order at desktop width: top bar → hero (5-cell spec) → #work (with pipeline tile) → #experience (year ruler, CV-aligned rows, certs) → #skills (3×3 with evidence chips) → #practice (Codolio 2000+ + ledger + AI topics) → #about → #contact (inverse) → footer."
+    },
+    {
+      "file": "A0.dc.html",
+      "kind": "spec",
+      "title": "A0 · Tokens & components",
+      "notes": "Tokens tables (light + dark), type ramp (display, h2, body, label, big numbers), buttons, chips, tiles, inverse tile, popover shape."
+    },
+    {
+      "file": "D2.dc.html",
+      "kind": "spec",
+      "title": "D2 · Hub hero — DARK",
+      "notes": "Same hero, dark theme. Same data, just inverted. Used in code as the second `[data-theme]` state."
+    },
+    {
+      "file": "D3.dc.html",
+      "kind": "states",
+      "title": "D3 · Work states",
+      "notes": "Four panels: (1) card hover fill, (2) filtered grid, (3) Index view, (4) skill→project trace from the evidence popover (clicking 'React · 4 projects' highlights matching projects in Work)."
+    },
+    {
+      "file": "D4.dc.html",
+      "kind": "states",
+      "title": "D4 · Overlays",
+      "notes": "Three overlays: evidence popover anchored to a chip; AIUB Notice Bot pipeline with a step focused + a row inspector; ⌘K command menu."
+    },
+    {
+      "file": "D5.dc.html",
+      "kind": "template",
+      "title": "D5 · POS case study — desktop",
+      "notes": "Full case-study template. Header bento (chip/year · H1 · sub · links · ROLE/STACK/SCOPE/STATUS dl) · hero media · label|content chapter rows · gallery engine (filmstrip + prev/next) · Next case study pager · reading-progress bar."
+    },
+    {
+      "file": "D6.dc.html",
+      "kind": "template",
+      "title": "D6 · Case-study headers (5 pages)",
+      "notes": "automation.html header rendered in dark. ai-dev, ecommerce, wpdev, websites all in light, stacked for comparison."
+    },
+    {
+      "file": "P1.dc.html",
+      "kind": "phone",
+      "title": "P1 · Phone hero — 390×844 — LIGHT",
+      "notes": "Hero in light theme with the menu button, theme button, and a sticky bottom action bar (Email · Copy · CV)."
+    },
+    {
+      "file": "P2.dc.html",
+      "kind": "phone",
+      "title": "P2 · Phone hero — 390×844 — DARK",
+      "notes": "Same hero, dark."
+    },
+    {
+      "file": "P3.dc.html",
+      "kind": "phone",
+      "title": "P3 · Phone hub — full length",
+      "notes": "Phone scroll: hero, work filter chips + work cards collapsed to 3, skills 2×2, practice ledger table, contact, sticky action bar."
+    },
+    {
+      "file": "P4.dc.html",
+      "kind": "phone",
+      "title": "P4 · Phone states",
+      "notes": "Three phone states: menu sheet (rises from bottom), sticky action bar visible once hero is past, bottom-sheet evidence popover for skill chips."
+    },
+    {
+      "file": "P5.dc.html",
+      "kind": "phone",
+      "title": "P5 · POS case study — phone",
+      "notes": "Case-study template on phone. Same header bento shape, simpler gallery with horizontal swipe, sticky action bar."
+    },
+    {
+      "file": "S1.dc.html",
+      "kind": "story",
+      "title": "S1 · Theme reveal (5-frame strip)",
+      "notes": "Click toggle → View Transition circle expands from toggle rect over ~520ms; new theme paints under the circle on unmount. FF fallback: instant."
+    },
+    {
+      "file": "S2.dc.html",
+      "kind": "story",
+      "title": "S2 · Card → case morph",
+      "notes": "Shared view-transition-name on hub card and case H1 (Chrome/Safari). Firefox falls back to plain navigation."
+    },
+    {
+      "file": "S3.dc.html",
+      "kind": "story",
+      "title": "S3 · Pipeline packet",
+      "notes": "5-stage WAAPI packet. 2 cycles per render. Pause/Replay. Reduced-motion: instant end-to-end, no movement."
+    },
+    {
+      "file": "S4.dc.html",
+      "kind": "story",
+      "title": "S4 · Filter reflow",
+      "notes": "Filter change fades non-matching cards, expands matched cards, rewrites URL to ?filter=ai. Names only set during the transition to avoid duplicate-name warnings."
+    }
+  ],
+  "design_tokens": {
+    "look": "warm stone 'datasheet', 1px hairlines, no shadows, no gradients",
+    "accent": "single cobalt (#1F44E0 light / #8EA2FF dark)",
+    "fonts": ["Fraunces", "Hanken Grotesk", "IBM Plex Mono"],
+    "grid": "12 cols · 1240 max",
+    "breakpoints": { "desktop": "≥1100px", "tablet": "≥600px", "phone": "<600px" },
+    "targets": "≥44px touch targets",
+    "motion": "View Transitions · Popover API · no WebGL · no preloader · no cursor/magnetic/tilt effects"
+  },
+  "stage_b_hand_off": {
+    "files_to_remove": [
+      "HACKER blocks in css/style.css (≈ lines 429–1139)",
+      "mode toggle, boot, glitch, terminal, SKILL_LEVELS / animateSkillMeters in js/script.js (≈ lines 208–597)",
+      "[HACKER.exe] buttons, scanline/boot/terminal trailing blocks in every HTML page",
+      ".glitch wrappers, dead .grid-bg/.grain/.cursor markup"
+    ],
+    "files_to_add_or_rewrite": [
+      "shared css/style.css with two themes + legacy aliases",
+      "shared js/script.js with guarded modules (theme, copy, clock, filter, evidence/trace, pipeline, ledger, gallery, view transitions, ⌘K)",
+      "one shared case-study template applied to all 6 case pages",
+      "new index.html in the new section order with the Spec Sheet hub layout"
+    ],
+    "verification": {
+      "grep_zero_hit": "grep -rniE 'hacker-mode|mode-toggle|scanline|boot-|glitch|terminal-|term-|SKILL_LEVELS|hackerMode|__toggleHackerMode|HACKER\\.exe|ascii-rule' --include='*.html' --include='*.css' --include='*.js' --include='*.md' .",
+      "kept_words": "HackerRank (the certification platform) is not removed."
+    }
+  },
+  "notes_for_reviewer": [
+    "No emoji anywhere except as plain Unicode glyphs (e.g. ⌘ / ☀) used for iconography, not decoration.",
+    "No gradients, no left-border cards, no shadows — only 1px hairlines.",
+    "All buttons are real <button> elements; all CTAs that look like buttons are real <a>.",
+    "Dark mode is shown by a [data-theme='dark'] attr on the root; pages flip via JS and persist via localStorage.",
+    "Storyboards are 5-frame strips to illustrate motion; the actual runtime is one continuous tween."
+  ]
+}

@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>P3 — Phone hub full</title>
+<link rel="stylesheet" href="_tokens.css">
+<style>
+  body { padding: 32px; background: #DCD8CE; }
+  .scroll { width: 390px; margin: 0 auto; background: var(--ground); border-radius: 36px; overflow: hidden; box-shadow: 0 30px 60px -30px rgba(0,0,0,0.25); }
+  .pad { padding: 0 18px; }
+  .topbar { display: flex; justify-content: space-between; padding: 14px 18px; align-items: center; }
+  .topbar .menu, .topbar .theme { width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--rule); background: var(--tile); display: grid; place-items: center; }
+  .brand { font-weight: 600; font-family: var(--serif); }
+  section { padding: 24px 18px; border-top: 1px solid var(--rule); }
+  section h2 { font-family: var(--serif); font-variation-settings: "opsz" 48; font-size: 26px; font-weight: 420; margin: 0 0 4px; letter-spacing: -0.01em; }
+  section h2 em { font-style: italic; font-weight: 400; }
+  .lead { color: var(--ink-2); font-size: 14px; line-height: 1.5; margin: 0 0 14px; }
+  .lbl { font: 600 10px var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); display: block; margin-bottom: 6px; }
+
+  /* hero phone compact */
+  .ph { padding: 8px 18px 20px; }
+  .statusline { display: flex; align-items: center; gap: 8px; font: 500 12px var(--sans); color: var(--ink-2); margin-top: 6px; }
+  .statusline .dot { width: 8px; height: 8px; border-radius: 999px; background: #2DA66A; }
+  h1.h { font-family: var(--serif); font-variation-settings: "opsz" 144; font-size: 48px; line-height: 0.96; letter-spacing: -0.02em; margin: 16px 0 6px; font-weight: 380; }
+  h1.h em { font-style: italic; font-weight: 400; }
+  .photo { width: 64px; height: 64px; border-radius: 999px; background: linear-gradient(180deg, #c2c0bb, #807c75); border: 1px solid #bcbab4; float: right; margin: 12px 0 0 12px; }
+  .role { font: 500 13px var(--sans); color: var(--ink-2); margin: 0 0 12px; }
+  .btns { display: flex; gap: 8px; }
+  .btn { height: 44px; padding: 0 14px; border-radius: 999px; font: 600 13px var(--sans); background: var(--ink); color: var(--tile); border: 0; display: inline-flex; align-items: center; text-decoration: none; }
+  .btn--g { background: var(--tile); color: var(--ink); border: 1px solid var(--rule); }
+  .spec4 { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border-radius: 12px; overflow: hidden; border: 1px solid var(--rule); margin-top: 18px; }
+  .spec4 > div { background: var(--tile); padding: 12px; }
+  .spec4 .k { font: 600 9px var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); }
+  .spec4 .v { font: 500 12px var(--sans); margin-top: 4px; color: var(--ink); }
+
+  /* work */
+  .chip { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border: 1px solid var(--rule); border-radius: 999px; background: var(--tile); font: 500 11px var(--sans); color: var(--ink); }
+  .filters { display: flex; gap: 6px; overflow-x: auto; margin: 0 -18px 14px; padding: 0 18px 8px; }
+  .filters button { padding: 8px 12px; border-radius: 999px; border: 1px solid var(--rule); background: var(--tile); color: var(--ink-2); cursor: pointer; font: 500 12px var(--sans); flex: 0 0 auto; }
+  .filters button.is-active { background: var(--ink); color: var(--tile); border-color: var(--ink); }
+  .wc { display: grid; gap: 12px; }
+  .wc a { display: block; text-decoration: none; color: inherit; background: var(--tile); border: 1px solid var(--rule); border-radius: 12px; padding: 14px; }
+  .wc .thumb { aspect-ratio: 16/10; background: var(--tile-2); border-radius: 8px; display: grid; place-items: center; color: var(--ink-3); font: 11px var(--mono); margin-bottom: 10px; }
+  .wc h3 { font-family: var(--serif); font-size: 18px; font-weight: 420; margin: 0 0 4px; }
+  .wc .meta { font-size: 11px; color: var(--ink-3); }
+  .wc .tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 8px; }
+
+  /* practice ledger */
+  table.ldg { width: 100%; border-collapse: collapse; }
+  table.ldg td, table.ldg th { text-align: left; padding: 10px 0; font-size: 13px; border-top: 1px solid var(--rule); }
+  table.ldg th { font: 600 10px var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); border-top: 0; }
+  table.ldg td.num { font-family: var(--serif); font-size: 22px; font-weight: 420; }
+  .src { font: 500 10px var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); }
+
+  /* contact */
+  .ct { background: var(--ink); color: var(--tile); border-radius: 14px; padding: 24px; margin: 24px 18px; }
+  .ct h2 { font-family: var(--serif); font-size: 36px; font-weight: 380; margin: 0; line-height: 1; }
+  .ct h2 em { font-style: italic; font-weight: 400; }
+  .ct .em { font: 500 14px var(--sans); margin-top: 14px; }
+  .ct .pills { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  .ct .pill { height: 40px; padding: 0 14px; border-radius: 999px; background: #EDEAE3; color: #131311; border: 0; font: 600 12px var(--sans); display: inline-flex; align-items: center; }
+
+  .ab { position: sticky; bottom: 12px; padding: 10px 14px; background: var(--tile); border: 1px solid var(--rule); border-radius: 18px; margin: 0 14px 16px; display: flex; gap: 8px; align-items: center; justify-content: space-between; }
+  .ab .ttl { font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); padding-right: 8px; border-right: 1px solid var(--rule); }
+  .ab .pill { height: 36px; padding: 0 10px; border-radius: 999px; border: 1px solid var(--rule); background: var(--tile); font: 600 11px var(--sans); color: var(--ink); display: inline-flex; align-items: center; }
+  .ab .pill--a { background: var(--accent); color: #fff; border-color: transparent; }
+
+  .anno { color: var(--ink-3); font: 600 11px var(--mono); text-transform: uppercase; letter-spacing: 0.08em; text-align: center; margin-bottom: 8px; display: block; }
+</style>
+</head>
+<body>
+<div class="anno">P3 &middot; Phone hub &middot; full scroll</div>
+<div class="scroll">
+
+  <div class="topbar">
+    <button class="menu">&#9776;</button>
+    <div class="brand">Siam Hossain</div>
+    <button class="theme">&#9728;</button>
+  </div>
+
+  <div class="ph">
+    <div class="statusline"><span class="dot"></span> Available &middot; Dhaka</div>
+    <a href="#" class="photo" aria-label="headshot"></a>
+    <h1 class="h">Siam <em>Hossain</em></h1>
+    <p class="role">Software Engineer &middot; Full-Stack &middot; AI</p>
+    <div class="btns"><a class="btn" href="Siam-Hossain-CV.pdf" download>Download CV</a><a class="btn btn--g" href="mailto:siam.cse.aiub@gmail.com">Email</a></div>
+    <div class="spec4">
+      <div><div class="k">Now</div><div class="v">Graduate (AIUB, 2026)</div></div>
+      <div><div class="k">Flagship</div><div class="v"><a href="pos.html" style="color:var(--accent);text-decoration:none">POS &rarr;</a></div></div>
+      <div><div class="k">Stack</div><div class="v">TS &middot; Node &middot; PG</div></div>
+      <div><div class="k">Practice</div><div class="v"><a href="#practice" style="color:var(--accent);text-decoration:none">2000+ &darr;</a></div></div>
+    </div>
+  </div>
+
+  <section id="work">
+    <span class="lbl">02 &middot; Work</span>
+    <h2>Things I&rsquo;ve <em>built</em>.</h2>
+    <div class="filters">
+      <button class="is-active">All</button>
+      <button>Live</button>
+      <button>Full-stack</button>
+      <button>AI</button>
+      <button>Front-end</button>
+    </div>
+    <div class="wc">
+      <a href="pos.html"><div class="thumb">dashboard</div><h3>Pharmacy POS</h3><div class="meta">Full-stack &middot; 2024 &middot; live</div><div class="tags"><span class="chip">Next.js</span><span class="chip">PG</span></div></a>
+      <a href="ai-dev.html"><div class="thumb">AI</div><h3>AI resume builder</h3><div class="meta">AI &middot; 2025</div><div class="tags"><span class="chip">Claude</span></div></a>
+      <a href="automation.html"><div class="thumb">TG</div><h3>AIUB Notice Bot</h3><div class="meta">Automation &middot; 2024</div><div class="tags"><span class="chip">Telegram</span></div></a>
+    </div>
+  </section>
+
+  <section id="skills">
+    <span class="lbl">03 &middot; Skills</span>
+    <h2>Stack, by <em>evidence</em>.</h2>
+    <div class="wc" style="grid-template-columns: 1fr 1fr; gap: 8px">
+      <a style="padding:12px"><h3 style="font-size:14px">Languages</h3><div class="meta" style="font-size:11px">TS &middot; JS &middot; Python</div></a>
+      <a style="padding:12px"><h3 style="font-size:14px">Frontend</h3><div class="meta" style="font-size:11px">React &middot; Next</div></a>
+      <a style="padding:12px"><h3 style="font-size:14px">Backend</h3><div class="meta" style="font-size:11px">Node &middot; Express</div></a>
+      <a style="padding:12px"><h3 style="font-size:14px">Database</h3><div class="meta" style="font-size:11px">Postgres &middot; Mongo</div></a>
+    </div>
+  </section>
+
+  <section id="practice">
+    <span class="lbl">04 &middot; Practice</span>
+    <h2>Where the <em>edges</em> get blunt.</h2>
+    <p class="lead">Codolio total &mdash; 2000+ across platforms.</p>
+    <table class="ldg">
+      <tr><th>Platform</th><th>Solved</th><th>Source</th></tr>
+      <tr><td>LeetCode</td><td class="num">303</td><td><span class="src">live</span></td></tr>
+      <tr><td>Codeforces</td><td class="num">318</td><td><span class="src">live</span></td></tr>
+      <tr><td>HackerRank</td><td class="num">63</td><td><span class="src">cached</span></td></tr>
+    </table>
+  </section>
+
+  <div class="ct">
+    <h2>Let&rsquo;s <em>talk</em>.</h2>
+    <div class="em">siam.cse.aiub@gmail.com</div>
+    <div class="pills"><button class="pill">Copy</button><a class="pill" href="Siam-Hossain-CV.pdf" download>Download CV</a></div>
+  </div>
+
+  <div class="ab">
+    <div class="ttl">Contact</div>
+    <a class="pill pill--a" href="mailto:siam.cse.aiub@gmail.com">Email</a>
+    <button class="pill">Copy</button>
+    <a class="pill" href="Siam-Hossain-CV.pdf" download>CV</a>
+  </div>
+
+</div>
+</body>
+</html>

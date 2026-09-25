@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>A0 — Tokens &amp; components</title>
+<link rel="stylesheet" href="_tokens.css">
+<style>
+  body { padding: 80px 64px; }
+  h1.serif { font-size: 56px; line-height: 1.05; margin: 0 0 8px; font-weight: 380; font-variation-settings: "opsz" 96; letter-spacing: -0.01em; }
+  h1 .i { font-style: italic; font-weight: 400; }
+  .subtitle { color: var(--ink-2); font-size: 16px; margin: 0 0 56px; max-width: 720px; }
+  .board { max-width: 1440px; margin: 0 auto; }
+  section { margin-bottom: 56px; }
+  .row { display: grid; grid-template-columns: 280px 1fr; gap: 32px; align-items: start; }
+  .row h2 { font-family: var(--sans); font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-3); margin: 0; padding-top: 4px; font-weight: 600; }
+  .panel { background: var(--tile); border: 1px solid var(--rule); border-radius: var(--r-tile); padding: 28px; }
+  .swatch-grid { display: grid; grid-template-columns: repeat(9, 1fr); gap: 1px; background: var(--rule); border-radius: 10px; overflow: hidden; }
+  .swatch-grid > div { background: var(--tile); padding: 14px; }
+  .sw { height: 80px; border-radius: 8px; border: 1px solid var(--rule); margin-bottom: 10px; }
+  .sw-label { font: 600 11px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-2); margin-bottom: 4px; }
+  .sw-name { font: 500 12px/1 var(--mono); color: var(--ink); }
+  .type-card { background: var(--tile); border: 1px solid var(--rule); border-radius: 10px; padding: 20px; }
+  .type-row { display: grid; grid-template-columns: 120px 1fr; gap: 16px; align-items: baseline; padding: 14px 0; border-top: 1px solid var(--rule); }
+  .type-row:first-of-type { border-top: 0; }
+  .type-row .meta { font: 11px var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); padding-top: 6px; }
+  .h-display { font-family: var(--serif); font-variation-settings: "opsz" 144, "wght" 380; font-size: 84px; line-height: 0.95; letter-spacing: -0.02em; }
+  .h-display em { font-style: italic; font-weight: 400; }
+  .h-h2 { font-family: var(--serif); font-variation-settings: "opsz" 48; font-size: 36px; font-weight: 420; letter-spacing: -0.01em; line-height: 1.1; }
+  .h-h2 em { font-style: italic; font-weight: 400; }
+  .body-lg { font: 400 18px/1.5 var(--sans); max-width: 60ch; color: var(--ink-2); }
+  .mono-up { font: 500 12px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+  .num-big { font-family: var(--serif); font-variation-settings: "opsz" 144; font-weight: 380; font-size: 72px; line-height: 1; }
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border-radius: 10px; overflow: hidden; }
+  .comp-grid > div { background: var(--tile); padding: 20px; min-height: 160px; display: flex; flex-direction: column; gap: 12px; }
+  .dark-block { background: #131311; color: #EDEAE3; border-radius: 10px; padding: 20px; }
+  .contrast { display: flex; align-items: baseline; gap: 8px; }
+  .contrast b { font: 700 13px/1 var(--mono); }
+  footer { color: var(--ink-3); font-size: 12px; padding-top: 32px; border-top: 1px solid var(--rule); margin-top: 64px; display: flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+<div class="board">
+
+  <h1 class="serif">A0 · <span class="i">Tokens</span> &amp; components</h1>
+  <p class="subtitle">Spec Sheet design language. Tiles separated by 1px hairlines on the rule, one cobalt accent, two themes. Everything below is built from these primitives.</p>
+
+  <section>
+    <div class="row">
+      <h2>Colour · light</h2>
+      <div class="panel">
+        <div class="swatch-grid">
+          <div><div class="sw" style="background:#F2F0EA"></div><div class="sw-label">ground</div><div class="sw-name">#F2F0EA</div></div>
+          <div><div class="sw" style="background:#FBFAF7;border-color:#FBFAF7"></div><div class="sw-label">tile</div><div class="sw-name">#FBFAF7</div></div>
+          <div><div class="sw" style="background:#E9E6DE;border-color:#E9E6DE"></div><div class="sw-label">tile-2</div><div class="sw-name">#E9E6DE</div></div>
+          <div><div class="sw" style="background:#DCD8CE"></div><div class="sw-label">rule</div><div class="sw-name">#DCD8CE</div></div>
+          <div><div class="sw" style="background:#17181B;border-color:#17181B"></div><div class="sw-label">ink</div><div class="sw-name">#17181B</div></div>
+          <div><div class="sw" style="background:#45474D;border-color:#45474D"></div><div class="sw-label">ink-2</div><div class="sw-name">#45474D</div></div>
+          <div><div class="sw" style="background:#5F626A;border-color:#5F626A"></div><div class="sw-label">ink-3</div><div class="sw-name">#5F626A</div></div>
+          <div><div class="sw" style="background:#1F44E0;border-color:#1F44E0"></div><div class="sw-label">accent</div><div class="sw-name">#1F44E0</div></div>
+          <div><div class="sw" style="background:#E6EBFF;border-color:#E6EBFF"></div><div class="sw-label">accent-wash</div><div class="sw-name">#E6EBFF</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="row">
+      <h2>Colour · dark</h2>
+      <div class="panel" data-theme="dark" style="background:#131311;color:#EDEAE3;border-color:#34322D">
+        <div class="swatch-grid" style="background:#34322D">
+          <div style="background:#131311"><div class="sw" style="background:#131311;border-color:#34322D"></div><div class="sw-label" style="color:#9A968D">ground</div><div class="sw-name" style="color:#EDEAE3">#131311</div></div>
+          <div style="background:#1C1B18"><div class="sw" style="background:#1C1B18;border-color:#34322D"></div><div class="sw-label" style="color:#9A968D">tile</div><div class="sw-name" style="color:#EDEAE3">#1C1B18</div></div>
+          <div style="background:#262521"><div class="sw" style="background:#262521;border-color:#34322D"></div><div class="sw-label" style="color:#9A968D">tile-2</div><div class="sw-name" style="color:#EDEAE3">#262521</div></div>
+          <div style="background:#34322D"><div class="sw" style="background:#34322D;border-color:#34322D"></div><div class="sw-label" style="color:#9A968D">rule</div><div class="sw-name" style="color:#EDEAE3">#34322D</div></div>
+          <div style="background:#1C1B18"><div class="sw" style="background:#EDEAE3;border-color:#EDEAE3"></div><div class="sw-label" style="color:#9A968D">ink</div><div class="sw-name" style="color:#EDEAE3">#EDEAE3</div></div>
+          <div style="background:#1C1B18"><div class="sw" style="background:#BDB9B0;border-color:#BDB9B0"></div><div class="sw-label" style="color:#9A968D">ink-2</div><div class="sw-name" style="color:#EDEAE3">#BDB9B0</div></div>
+          <div style="background:#1C1B18"><div class="sw" style="background:#9A968D;border-color:#9A968D"></div><div class="sw-label" style="color:#9A968D">ink-3</div><div class="sw-name" style="color:#EDEAE3">#9A968D</div></div>
+          <div style="background:#1C1B18"><div class="sw" style="background:#8EA2FF;border-color:#8EA2FF"></div><div class="sw-label" style="color:#9A968D">accent</div><div class="sw-name" style="color:#EDEAE3">#8EA2FF</div></div>
+          <div style="background:#1C1B18"><div class="sw" style="background:#22294A;border-color:#22294A"></div><div class="sw-label" style="color:#9A968D">accent-wash</div><div class="sw-name" style="color:#EDEAE3">#22294A</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="row">
+      <h2>Type</h2>
+      <div>
+        <div class="type-card">
+          <div class="type-row"><span class="meta">display 84/96 · Fraunces</span><div class="h-display">Siam <em>Hossain</em></div></div>
+          <div class="type-row"><span class="meta">h2 36/48 · Fraunces</span><div class="h-h2">Practice that <em>compounds</em>.</div></div>
+          <div class="type-row"><span class="meta">body-lg · Hanken Grotesk</span><div class="body-lg">Body and UI live in Hanken Grotesk. Tight color-coded voice. Max measure ~60ch.</div></div>
+          <div class="type-row"><span class="meta">label · IBM Plex Mono</span><div class="mono-up">EDUCATION · STACK · STATUS</div></div>
+          <div class="type-row"><span class="meta">number 72 · Fraunces</span><div class="num-big">2000+</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="row">
+      <h2>Components</h2>
+      <div class="comp-grid">
+        <div>
+          <div class="mono-up">Buttons · 44px</div>
+          <div class="btn-row"><button class="btn">Primary</button><button class="btn btn--ghost">Ghost</button><button class="btn btn--accent">Accent</button><button class="btn btn--sm">Small</button></div>
+          <div class="mono-up" style="margin-top:8px">Chips</div>
+          <div class="btn-row"><span class="chip">TypeScript</span><span class="chip chip--accent">AI · automation</span><span class="chip">Live</span></div>
+        </div>
+        <div>
+          <div class="mono-up">Tiles · separated by 1px hairline</div>
+          <div class="bento" style="grid-template-columns: 1fr 1fr; max-width: 320px;">
+            <div><b>Identity</b><div class="ink-3" style="font-size:13px;margin-top:4px">Hero tile (tile)</div></div>
+            <div class="tile-2"><b>Photo</b><div class="ink-3" style="font-size:13px;margin-top:4px">Headshot (tile-2)</div></div>
+            <div><b>Now</b><div class="ink-3" style="font-size:13px;margin-top:4px">Spec cell</div></div>
+            <div class="tile-2"><b>Stack</b><div class="ink-3" style="font-size:13px;margin-top:4px">Spec cell</div></div>
+          </div>
+        </div>
+        <div data-theme="dark" style="background:#131311;color:#EDEAE3;padding:20px">
+          <div class="mono-up" style="color:#9A968D">Inverse tile (contact)</div>
+          <h3 class="serif" style="font-size:28px;line-height:1.1;font-weight:400;margin:8px 0">Let&rsquo;s <em style="font-style:italic">talk</em>.</h3>
+          <div class="mono-up" style="color:#9A968D">siam.cse.aiub@gmail.com</div>
+          <button class="btn" style="margin-top:14px;background:#EDEAE3;color:#131311">Copy email</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="row">
+      <h2>Popover</h2>
+      <div style="position:relative;padding-top:48px;">
+        <span class="chip chip--accent" style="position:relative">React · 4 projects</span>
+        <div style="position:absolute;left:0;top:0;background:var(--tile);border:1px solid var(--rule);border-radius:12px;padding:14px;width:280px;box-shadow:0 6px 0 -4px var(--rule);margin-top:40px">
+          <div class="mono-up">Used in</div>
+          <ul style="list-style:none;padding:8px 0;margin:0;font-size:14px">
+            <li style="padding:6px 0;border-top:1px solid var(--rule)">POS · cashier / admin</li>
+            <li style="padding:6px 0;border-top:1px solid var(--rule)">AI resume builder · UI shell</li>
+            <li style="padding:6px 0;border-top:1px solid var(--rule)">MegaBazar · storefront</li>
+            <li style="padding:6px 0;border-top:1px solid var(--rule)">Email Trucker · console</li>
+          </ul>
+          <button class="btn btn--ghost btn--sm">Show these in Work</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>A0 · Spec Sheet</span>
+    <span>Page 1 of 11</span>
+  </footer>
+</div>
+</body>
+</html>
