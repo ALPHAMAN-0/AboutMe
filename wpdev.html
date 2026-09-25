@@ -1,63 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
   <title>Scroll Animation — Siam Hossain</title>
   <link rel="icon" type="image/svg+xml" href="images/logo.svg" />
+  <meta name="theme-color" content="#F2F0EA" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#131311" media="(prefers-color-scheme: dark)">
   <link rel="canonical" href="https://alphaman-0.github.io/AboutMe/wpdev.html" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://alphaman-0.github.io/AboutMe/wpdev.html" />
   <meta property="og:title" content="Scroll Animation — Siam Hossain" />
   <meta property="og:description" content="A scroll-linked HTML5 canvas frame sequence — 52 stills painted to canvas, driven by scroll position, pure front-end with no libraries." />
   <meta property="og:image" content="https://alphaman-0.github.io/AboutMe/Animation/222_026.png" />
-  <meta property="og:image:alt" content="Frame from the scroll-linked canvas animation" />
-  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Scroll Animation — Siam Hossain" />
-  <meta name="twitter:description" content="A scroll-linked HTML5 canvas frame sequence — 52 stills painted to canvas, driven by scroll position, pure front-end with no libraries." />
-  <meta name="twitter:image" content="https://alphaman-0.github.io/AboutMe/Animation/222_026.png" />
-  <meta name="theme-color" content="#fbfaf7">
+
+  <script>
+    (function(){
+      try {
+        localStorage.removeItem('hackerMode');
+        localStorage.removeItem('booted');
+        var t = localStorage.getItem('theme');
+        if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="Animation/222_000.png">
-  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- legacy HACKER-mode classes that the old CSS still emits — never visible. -->
   <style>
-    :root{
-      --paper:      #FBFAF7;
-      --surface:    #FFFFFF;
-      --surface-2:  #F4F2EC;
-      --ink:        #18191C;
-      --ink-2:      #45474D;
-      --ink-3:      #6B6E76;
-      --rule:       #E7E4DD;
-      --rule-2:     #D9D6CD;
-      --accent:     #1F44E0;
-      --accent-deep:#13245C;
-      --accent-soft:#ECF0FF;
-      --serif: "Fraunces", "Times New Roman", serif;
-      --sans:  "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --mono:  "JetBrains Mono", ui-monospace, Menlo, monospace;
-      --ease:  cubic-bezier(.2,.7,.1,1);
+    .grid-bg, .grain, .cursor, .cursor-dot,
+    .scanlines, .boot-screen, .boot-title, .boot-corner-tl, .boot-corner-br,
+    .boot-log, .boot-bar, .boot-bar-fill, .terminal-toggle, .terminal-cmd,
+    .term-head, .term-close, .term-log, .term-input-row, .term-input, .prompt,
+    .hacker-mode { display: none !important; }
+
+    /* page-specific tokens (now also in :root via style.css; redeclared so this page
+       stands alone if anything strips the shared CSS later) */
+    :root {
+      --paper: #F2F0EA;
+      --surface: #FBFAF7;
+      --surface-2: #E9E6DE;
+      --ink: #17181B;
+      --ink-2: #45474D;
+      --ink-3: #5F626A;
+      --rule: #DCD8CE;
+      --rule-2: var(--rule);
+      --accent: #1F44E0;
+      --accent-deep: #13245C;
+      --accent-soft: #E6EBFF;
+      --serif: "Fraunces", Georgia, serif;
+      --sans: "Hanken Grotesk", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --ease: cubic-bezier(.2,.8,.2,1);
+      --FOG: var(--ground);
     }
-    html, body { background-color: var(--paper); }
+    [data-theme="dark"] {
+      --paper: #131311;
+      --surface: #1C1B18;
+      --surface-2: #262521;
+      --ink: #EDEAE3;
+      --ink-2: #BDB9B0;
+      --ink-3: #9A968D;
+      --rule: #34322D;
+      --accent: #8EA2FF;
+      --accent-soft: #22294A;
+      --FOG: var(--ground);
+    }
+
+    html, body { background-color: var(--paper); margin: 0; padding: 0; }
     body {
       font-family: var(--sans);
       color: var(--ink);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      transition: background-color .25s ease, color .25s ease;
     }
-    ::selection{ background: var(--accent); color:#fff; }
-    a:focus-visible,
-    button:focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }
-
+    ::selection { background: var(--accent); color: #fff; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
     canvas { display: block; }
 
-    /* subtle light container so the keyboard frames keep contrast on a light bg */
+    /* cover for the keyboard frames on light bg */
     .stage {
-      background:
-        radial-gradient(120% 90% at 50% 30%, var(--surface) 0%, var(--surface-2) 70%, var(--surface-2) 100%);
+      background: radial-gradient(120% 90% at 50% 30%, var(--surface) 0%, var(--surface-2) 70%, var(--surface-2) 100%);
+      transition: background .25s ease;
     }
 
     .spinner {
@@ -68,31 +99,98 @@
       animation: spin 0.9s linear infinite;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .overlay { will-change: opacity, transform; opacity: 0; }
-    /* overlay copy + scroll hint sit OVER the dark cinematic frames — keep them light & legible */
-    .overlay h1, .overlay h2 { color:#fff !important; text-shadow:0 2px 20px rgba(0,0,0,.6); }
-    .overlay p { color:rgba(255,255,255,.9) !important; text-shadow:0 1px 12px rgba(0,0,0,.55); }
-    #scroll-hint span { color:rgba(255,255,255,.85) !important; }
-    #scroll-hint div[style*="background"] { background:rgba(255,255,255,.5) !important; }
-    #loader { transition: opacity 300ms ease; }
 
-    /* shared light top bar — matches index.html (fixed, over the full-screen stage) */
-    .topbar{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;gap:24px;padding:14px clamp(20px,5vw,64px);background:rgba(251,250,247,.82);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
-    .topbar .brand{display:inline-flex;align-items:center;gap:8px;font-family:var(--serif);font-style:italic;font-size:20px;font-weight:500;color:var(--ink);letter-spacing:-.01em;flex-shrink:0;transition:color .2s var(--ease)}
-    .topbar .brand:hover{color:var(--accent)}
-    .topbar .brand .arr{font-style:normal;font-size:15px;color:var(--ink-3)}
-    .topbar nav{display:flex;gap:24px;margin-left:8px}
-    .topbar nav a{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--ink-2);position:relative;padding:2px 0;transition:color .2s var(--ease)}
-    .topbar nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:2px;background:var(--accent);transition:right .3s var(--ease)}
-    .topbar nav a:hover{color:var(--ink)}
-    .topbar nav a:hover::after{right:0}
-    .topbar .page-tag{margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-2);padding:6px 12px;border:1px solid var(--rule-2);border-radius:999px;background:var(--surface)}
-    @media (max-width:640px){.topbar nav{display:none}}
+    /* -------- utility classes (replacement for Tailwind utilities used on this page) -------- */
+    .fixed { position: fixed; }
+    .inset-0 { inset: 0; }
+    .z-50 { z-index: 50; }
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-center { justify-content: center; }
+    .justify-content-center { justify-content: center; }
+    .mt-3 { margin-top: .75rem; } .mt-6 { margin-top: 1.5rem; } .mt-2 { margin-top: .5rem; }
+    .text-sm { font-size: .875rem; }
+    .text-base { font-size: 1rem; }
+    .text-lg { font-size: 1.125rem; }
+    .text-4xl { font-size: 2.25rem; }
+    .text-5xl { font-size: 3rem; }
+    .text-6xl { font-size: 3.75rem; }
+    .text-7xl { font-size: 4.5rem; }
+    .text-\[10px\] { font-size: 10px; }
+    .tracking-tight { letter-spacing: -.025em; }
+    .tracking-\[0\.3em\] { letter-spacing: .3em; }
+    .leading-\[1\.05\] { line-height: 1.05; }
+    .font-medium { font-weight: 500; }
+    .uppercase { text-transform: uppercase; }
+    .text-left { text-align: left; } .text-right { text-align: right; } .text-center { text-align: center; }
+    .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .pointer-events-none { pointer-events: none; }
+    .relative { position: relative; }
+    .absolute { position: absolute; }
+    .inset-x-0 { left: 0; right: 0; }
+    .top-1\/2 { top: 50%; } .top-20 { top: 5rem; } .top-28 { top: 7rem; }
+    .bottom-6 { bottom: 1.5rem; } .bottom-12 { bottom: 3rem; } .bottom-20 { bottom: 5rem; }
+    .left-6 { left: 1.5rem; } .left-16 { left: 4rem; }
+    .right-6 { right: 1.5rem; } .right-16 { right: 4rem; }
+    .h-\[400vh\] { height: 400vh; }
+    .h-screen { height: 100vh; }
+    .h-8 { height: 2rem; } .w-px { width: 1px; }
+    .w-full { width: 100%; }
+    .sticky { position: sticky; }
+    .top-0 { top: 0; }
+    .overflow-hidden { overflow: hidden; }
+    .max-w-xs { max-width: 20rem; } .max-w-md { max-width: 28rem; }
+    .transition-opacity { transition: opacity; }
+    .duration-500 { transition-duration: 500ms; }
+    @media (min-width: 768px){
+      .md\:top-28 { top: 7rem; }
+      .md\:bottom-20 { bottom: 5rem; }
+      .md\:left-16 { left: 4rem; } .md\:right-16 { right: 4rem; }
+      .md\:max-w-md { max-width: 28rem; }
+      .md\:text-6xl { font-size: 3.75rem; } .md\:text-7xl { font-size: 4.5rem; }
+      .md\:text-lg { font-size: 1.125rem; }
+    }
+
+    /* overlay copy sits over the dark cinematic frames; keep light & legible */
+    .overlay h1, .overlay h2 { color: #fff !important; text-shadow: 0 2px 20px rgba(0,0,0,.6); }
+    .overlay p { color: rgba(255,255,255,.9) !important; text-shadow: 0 1px 12px rgba(0,0,0,.55); }
+    #scroll-hint span { color: rgba(255,255,255,.85) !important; }
+    .overlay { will-change: opacity, transform; opacity: 0; }
+
+    /* shared top bar matches index/case pages */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+      display: flex; align-items: center; gap: 24px;
+      padding: 14px clamp(20px, 5vw, 64px);
+      background: var(--paper);
+      border-bottom: 1px solid transparent;
+      transition: border-color .2s ease, background-color .25s ease;
+    }
+    .topbar.is-scrolled { border-bottom-color: var(--rule); }
+    @supports (backdrop-filter: blur(8px)) {
+      .topbar.is-scrolled { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: color-mix(in srgb, var(--paper) 78%, transparent); }
+    }
+    .topbar .brand { display: inline-flex; align-items: center; gap: 8px; font-family: var(--serif); font-style: italic; font-size: 20px; font-weight: 500; color: var(--ink); letter-spacing: -.01em; flex-shrink: 0; transition: color .2s var(--ease); text-decoration: none; }
+    .topbar .brand:hover { color: var(--accent); }
+    .topbar .brand .arr { font-style: normal; font-size: 15px; color: var(--ink-3); }
+    .topbar nav { display: flex; gap: 24px; margin-left: 8px; }
+    .topbar nav a { font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--ink-2); position: relative; padding: 2px 0; transition: color .2s var(--ease); text-decoration: none; }
+    .topbar nav a:hover { color: var(--ink); }
+    .topbar .page-tag { margin-left: auto; font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: var(--ink-2); padding: 6px 12px; border: 1px solid var(--rule); border-radius: 999px; background: var(--surface); }
+    @media (max-width: 640px){ .topbar nav { display: none; } }
+
+    /* icon button used by the new theme toggle */
+    .icon-btn { width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--rule); background: var(--surface); display: grid; place-items: center; cursor: pointer; color: var(--ink); }
+
+    /* reduced motion: show static frame instead of canvas animation */
+    @media (prefers-reduced-motion: reduce) {
+      .stage { background: var(--surface-2); }
+    }
   </style>
 </head>
 <body>
 
-  <!-- light top bar -->
   <header class="topbar">
     <a class="brand" href="index.html#work"><span class="arr" aria-hidden="true">←</span> Siam&nbsp;Hossain</a>
     <nav aria-label="primary">
@@ -101,12 +199,14 @@
       <a href="index.html#contact">Contact</a>
     </nav>
     <span class="page-tag">Scroll · Canvas</span>
-    <button class="mode-toggle" type="button" aria-pressed="false" data-mode-toggle aria-label="Toggle hacker mode">[HACKER.exe]</button>
+    <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme" style="margin-left:8px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
   </header>
 
-  <div id="loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center" style="background-color:var(--paper);">
+  <div id="loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center" style="background-color: var(--paper);">
     <div class="spinner" aria-hidden="true"></div>
-    <p id="loader-text" class="mt-6 text-sm tracking-tight" style="color:var(--ink-3);">Loading Scroll Animation&hellip; 0%</p>
+    <p id="loader-text" class="mt-6 text-sm tracking-tight" style="color: var(--ink-3);">Loading Scroll Animation&hellip; 0%</p>
   </div>
 
   <div id="runway" class="relative h-[400vh]">
@@ -120,13 +220,13 @@
       </div>
 
       <div id="overlay-1" class="overlay absolute left-6 md:left-16 top-1/2 max-w-xs md:max-w-md text-left pointer-events-none">
-        <h2 class="text-4xl md:text-6xl font-medium tracking-tight leading-[1.05]" style="font-family:var(--serif);color:var(--ink);">Frame<br>by frame.</h2>
-        <p class="mt-3 text-base md:text-lg tracking-tight" style="color:var(--ink-2);">52 stills, painted to canvas.</p>
+        <h2 class="text-4xl md:text-6xl font-medium tracking-tight leading-[1.05]" style="font-family:var(--serif);color:var(--ink);">52 stills.</h2>
+        <p class="mt-3 text-base md:text-lg tracking-tight" style="color:var(--ink-2);">Painted to canvas as you scroll.</p>
       </div>
 
       <div id="overlay-2" class="overlay absolute right-6 md:right-16 top-1/2 max-w-xs md:max-w-md text-right pointer-events-none">
-        <h2 class="text-4xl md:text-6xl font-medium tracking-tight leading-[1.05]" style="font-family:var(--serif);color:var(--ink);">Driven<br>by scroll.</h2>
-        <p class="mt-3 text-base md:text-lg tracking-tight" style="color:var(--ink-2);">Scroll position is the timeline.</p>
+        <h2 class="text-4xl md:text-6xl font-medium tracking-tight leading-[1.05]" style="font-family:var(--serif);color:var(--ink);">Zero deps.</h2>
+        <p class="mt-3 text-base md:text-lg tracking-tight" style="color:var(--ink-2);">No canvas framework, no scroll lib.</p>
       </div>
 
       <div id="overlay-3" class="overlay absolute inset-x-0 bottom-12 md:bottom-20 flex flex-col items-center text-center px-6 pointer-events-none">
@@ -149,7 +249,9 @@
       'use strict';
 
       const TOTAL_FRAMES = 52;
-      const FOG = '#F4F2EC';
+      const FOG = '#F2F0EA';
+      const DARK_FOG = '#131311';
+      const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
       const framePath = (i) => 'Animation/222_' + String(i).padStart(3, '0') + '.png';
 
       const canvas    = document.getElementById('kb-canvas');
@@ -163,6 +265,10 @@
 
       let dpr  = Math.min(window.devicePixelRatio || 1, 2);
       let cssW = 0, cssH = 0;
+
+      function fogColor(){
+        return document.documentElement.getAttribute('data-theme') === 'dark' ? DARK_FOG : FOG;
+      }
 
       function resize() {
         const r = canvas.getBoundingClientRect();
@@ -195,12 +301,11 @@
       }
 
       function draw(idx) {
-        ctx.fillStyle = FOG;
+        ctx.fillStyle = fogColor();
         ctx.fillRect(0, 0, cssW, cssH);
         const img = images[idx];
         if (!img || !img.naturalWidth) return;
         const iw = img.naturalWidth, ih = img.naturalHeight;
-        // crop the source's bottom strip so the generator's bottom-right watermark isn't shown
         const cropB = Math.round(ih * 0.11);
         const sw = iw, sh = ih - cropB;
         const s  = Math.min(cssW / sw, cssH / sh);
@@ -229,8 +334,37 @@
       let dirty = true;
       let started = false;
 
-      // Draw the frame + overlays for the current scroll position. Synchronous, so it
-      // works even where requestAnimationFrame is throttled (background tabs, some webviews).
+      // Static 4-frame strip under reduced motion — replaces the canvas engine with a
+      // simple img gallery that swaps on scroll.
+      function staticStart(){
+        // build 4 representative frames
+        const repFrames = [0, 17, 35, 51];
+        const container = document.getElementById('runway').querySelector('.stage');
+        const layers = repFrames.map((i, idx) => {
+          const img = new Image();
+          img.src = framePath(i);
+          img.alt = 'Frame ' + i;
+          img.loading = 'eager';
+          img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:' + (idx === 0 ? 1 : 0) + ';transition:opacity .35s ease;background:var(--paper);';
+          container.appendChild(img);
+          return img;
+        });
+        // hide the canvas + overlays
+        canvas.style.display = 'none';
+        overlays.forEach(o => { if (o) o.style.display = 'none'; });
+        loader.style.opacity = '0';
+        setTimeout(() => { if (loader && loader.parentNode) loader.parentNode.removeChild(loader); }, 200);
+
+        const frames = TOTAL_FRAMES - 1;
+        const onScroll = () => {
+          const p = progress();
+          const i = Math.min(repFrames.length - 1, Math.round(p * (repFrames.length - 1)));
+          layers.forEach((el, idx) => { el.style.opacity = idx === i ? 1 : 0; });
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      }
+
       function renderFrame() {
         const p = progress();
         const idx = Math.min(TOTAL_FRAMES - 1, Math.round(p * (TOTAL_FRAMES - 1)));
@@ -260,15 +394,15 @@
 
       async function bootstrap() {
         resize();
-        ctx.fillStyle = FOG;
+        ctx.fillStyle = fogColor();
         ctx.fillRect(0, 0, cssW, cssH);
+
+        if (prefersReduced) { staticStart(); return; }
 
         const tasks = [];
         for (let i = 0; i < TOTAL_FRAMES; i++) tasks.push(loadFrame(i));
         await Promise.all(tasks);
 
-        // Re-measure now that layout (incl. async Tailwind CDN) has applied — the
-        // first resize() can run before the canvas has real dimensions (→ 1×1).
         resize();
         lastIdx = -1;
         renderFrame();
@@ -286,7 +420,9 @@
             lastIdx = -1;
             renderFrame();
           });
-          // Tailwind CDN may finish applying sizes after bootstrap — re-measure on load.
+          // theme flips should repaint the canvas with the new fog color
+          new MutationObserver(() => { lastIdx = -1; renderFrame(); })
+            .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
           window.addEventListener('load', () => { resize(); lastIdx = -1; renderFrame(); });
           requestAnimationFrame(tick);
         }
@@ -298,37 +434,33 @@
         bootstrap();
       }
     })();
+
+    // top bar scrolled-state observer for this page (sticky bar uses .is-scrolled too)
+    (function(){
+      const bar = document.querySelector('.topbar');
+      if (!bar) return;
+      const onScroll = () => bar.classList.toggle('is-scrolled', window.scrollY > 8);
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
   </script>
 
-<!-- ============================================================
-     HACKER MODE — boot screen, scanlines, terminal widget
-     (visible / functional only when <html class="hacker-mode">)
-     ============================================================ -->
-<div class="scanlines" aria-hidden="true"></div>
-
-<div class="boot-screen" aria-hidden="true" hidden>
-  <div class="boot-title">
-    <span>~/siam/aboutme · portfolio.exe</span>
-    <span class="boot-title-meta">PID 4721 · session 0xA1</span>
+  <div class="actionbar" data-actionbar aria-label="Quick contact">
+    <span class="ttl">Contact</span>
+    <a class="pill pill--accent" href="mailto:siam.cse.aiub@gmail.com">Email</a>
+    <button class="pill" type="button" data-copy="siam.cse.aiub@gmail.com">Copy</button>
+    <a class="pill" href="Siam-Hossain-CV.pdf" download>CV</a>
   </div>
-  <div class="boot-corner-tl"></div>
-  <div class="boot-corner-br"></div>
-  <pre class="boot-log"></pre>
-  <div class="boot-bar"><div class="boot-bar-fill"></div></div>
-</div>
 
-<button class="terminal-toggle" type="button" aria-label="Open terminal" aria-expanded="false" aria-controls="terminal-panel">[ &gt;_ ]</button>
+  <dialog class="cmdk" aria-label="Command menu">
+    <input type="text" placeholder="Type a command…" aria-label="Command" />
+    <div data-results></div>
+    <div class="foot">
+      <span><kbd>↑</kbd><kbd>↓</kbd> Navigate · <kbd>↵</kbd> Open</span>
+      <span><kbd>Esc</kbd> Close</span>
+    </div>
+  </dialog>
 
-<aside class="terminal-cmd" id="terminal-panel" hidden inert aria-label="Terminal command input">
-  <div class="term-head">
-    <span>~/siam/aboutme · terminal</span>
-    <button class="term-close" type="button" aria-label="Close terminal">×</button>
-  </div>
-  <div class="term-log" aria-live="polite"></div>
-  <div class="term-input-row">
-    <span class="prompt">visitor@aboutme:~$</span>
-    <input class="term-input" type="text" autocomplete="off" spellcheck="false" aria-label="Command" placeholder="type 'help'">
-  </div>
-</aside>
+  <script src="js/script.js" defer></script>
 </body>
 </html>
