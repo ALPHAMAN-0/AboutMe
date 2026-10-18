@@ -7,12 +7,18 @@ JavaScript** — no framework, no build step, no dependencies.
 ## Architecture / How it Works
 
 ```mermaid
-flowchart LR
-    A[User] --> B[Aboutme]
-    B --> C{Logic}
-    C --> D[(Data)]
-    C --> E[Output]
-    D --> C
+flowchart TD
+  DevServer --> IndexPage
+  DevServer --> CaseStudyPages
+  IndexPage --> Stylesheet
+  IndexPage --> Script
+  IndexPage --> ImageAssets
+  IndexPage --> CV
+  IndexPage --> CaseStudyPages
+  CaseStudyPages --> Stylesheet
+  CaseStudyPages --> Script
+  CaseStudyPages --> ScreenshotGalleries
+  CaseStudyPages --> AnimationFrames
 ```
 
 
