@@ -4,6 +4,18 @@ A fast, recruiter-friendly personal portfolio for **Siam Hossain** — a Compute
 student and full-stack / AI developer. It's a **static site built with plain HTML, CSS, and
 JavaScript** — no framework, no build step, no dependencies.
 
+## Architecture / How it Works
+
+```mermaid
+flowchart LR
+    A[User] --> B[Aboutme]
+    B --> C{Logic}
+    C --> D[(Data)]
+    C --> E[Output]
+    D --> C
+```
+
+
 > **Design goal:** a recruiter or hiring manager should grasp *who I am, what I do, and my
 > level* within ~5 seconds, and the site should be comfortable to read on any device.
 
