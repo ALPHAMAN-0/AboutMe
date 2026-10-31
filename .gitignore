@@ -12,5 +12,4 @@ videos/*
 !videos/intro.mp4
 !videos/README.md
 !videos/*.vtt
-config.bat
 node_modules
