@@ -12,3 +12,4 @@ videos/*
 !videos/intro.mp4
 !videos/README.md
 !videos/*.vtt
+node_modules
