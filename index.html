@@ -120,6 +120,8 @@
     .rows--repos > li:hover .link { background-size: calc(100% - 1em - var(--s-2)) 1px, calc(100% - 1em - var(--s-2)) 1px; background-position: 0 100%, 0 100%; }
     .rows--repos > li:hover .link::after { transform: translateX(3px); }
   }
+  /* footer name on one line: its 4-column cell is narrowest at 1024-1048 and the name wrapped there */
+  @media (min-width: 1024px) { .footer__mark { white-space: nowrap; font-size: min(var(--t-h2), 3.85vw); } }
 </style>
 <script type="application/ld+json">
 {

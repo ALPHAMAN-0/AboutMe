@@ -149,6 +149,9 @@
     @media (prefers-reduced-motion: reduce) {
       .sa-stage { background: var(--surface-2); }
     }
+
+    /* footer name on one line: its 4-column cell is narrowest at 1024-1048 and the name wrapped there */
+    @media (min-width: 1024px) { .footer__mark { white-space: nowrap; font-size: min(var(--t-h2), 3.85vw); } }
   </style>
 </head>
 <body>

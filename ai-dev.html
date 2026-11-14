@@ -57,6 +57,8 @@
   .develop > img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 0 0; }
   @media (max-width: 1023px) { .develop { height: auto; aspect-ratio: 4 / 3; margin-top: var(--s-7); } }
   @media (max-width: 639px) { .shot { width: 620px; } .develop { aspect-ratio: 4 / 5; } }
+  /* footer name on one line: its 4-column cell is narrowest at 1024-1048 and the name wrapped there */
+  @media (min-width: 1024px) { .footer__mark { white-space: nowrap; font-size: min(var(--t-h2), 3.85vw); } }
 
 </style>
 </head>

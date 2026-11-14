@@ -35,7 +35,9 @@ SHARED_CSS = """  .shot { display: block; max-width: none; width: 880px; height:
   .develop { margin: 0; border-radius: var(--r-lg); overflow: hidden; height: min(620px, var(--ly-fit, 620px)); }
   .develop > img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 0 0; }
   @media (max-width: 1023px) { .develop { height: auto; aspect-ratio: 4 / 3; margin-top: var(--s-7); } }
-  @media (max-width: 639px) { .shot { width: 620px; } .develop { aspect-ratio: 4 / 5; } }"""
+  @media (max-width: 639px) { .shot { width: 620px; } .develop { aspect-ratio: 4 / 5; } }
+  /* footer name on one line: its 4-column cell is narrowest at 1024-1048 and the name wrapped there */
+  @media (min-width: 1024px) { .footer__mark { white-space: nowrap; font-size: min(var(--t-h2), 3.85vw); } }"""
 
 
 def head(page, title, desc, moments, css, ui=False):
