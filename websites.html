@@ -1,228 +1,199 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-type="service" data-radius="soft" data-buttons="block" data-motion data-page-mode="short">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>Websites — Siam Hossain</title>
-<meta name="description" content="Case study: free web tools Siam Hossain built for friends' businesses — a stock-audit tool that syncs to Google Sheets, and a multi-business invoice generator with a dashboard." />
-
-<link rel="icon" type="image/svg+xml" href="images/logo.svg" />
-<meta name="color-scheme" content="light dark" />
-<meta name="theme-color" content="#F2F0EA" media="(prefers-color-scheme: light)" />
-<meta name="theme-color" content="#131311" media="(prefers-color-scheme: dark)" />
-
-<script>
-  (function(){
-    try {
-var t = localStorage.getItem('theme');
-      if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
-    } catch (e) {}
-  })();
-</script>
-
-<link rel="canonical" href="https://alphaman-0.github.io/AboutMe/websites.html" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://alphaman-0.github.io/AboutMe/websites.html" />
-<meta property="og:title" content="Websites — Siam Hossain" />
-<meta property="og:description" content="Free web tools built for friends' businesses — a Google-Sheets-backed stock-audit tool and a multi-business invoice generator." />
-<meta property="og:image" content="https://alphaman-0.github.io/AboutMe/images/siam-headshot.jpg" />
-<meta property="og:image:alt" content="Siam Hossain — Software Engineer" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Websites — Siam Hossain" />
-<meta name="twitter:description" content="Free web tools built for friends' businesses — a stock-audit tool and a multi-business invoice generator." />
-<meta name="twitter:image" content="https://alphaman-0.github.io/AboutMe/images/siam-headshot.jpg" />
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stock audit app and invoice generator: private tools by Siam Hossain</title>
+<meta name="description" content="Two free web tools Siam Hossain built for local business owners: a stock audit app that writes to Google Sheets, and an invoice generator for several businesses.">
+<meta name="author" content="Siam Hossain">
+<link rel="canonical" href="https://alphaman-0.github.io/AboutMe/websites.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://alphaman-0.github.io/AboutMe/websites.html">
+<meta property="og:title" content="Stock audit app and invoice generator: private tools by Siam Hossain">
+<meta property="og:description" content="Two free web tools Siam Hossain built for local business owners: a stock audit app that writes to Google Sheets, and an invoice generator for several businesses.">
+<meta property="og:image" content="https://alphaman-0.github.io/AboutMe/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#eef0f3">
+<meta name="site-kind" content="other">
+<meta name="page-type" content="service">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="css/style.css">
-
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..700&family=Hanken+Grotesk:wght@400..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<link rel="stylesheet" href="assets/ui/cards.css">
+<link rel="stylesheet" href="assets/motion/motion.css">
+<link rel="stylesheet" href="assets/backgrounds/backgrounds.css">
+<link rel="stylesheet" href="assets/layout/layout.css">
+<link rel="stylesheet" href="assets/icons/icon.css">
 <style>
-  .wb-wrap{padding:64px clamp(20px,4vw,56px) 80px;max-width:1080px;margin:0 auto}
-  .wb-head{display:grid;grid-template-columns:200px 1fr;gap:48px;margin-bottom:24px;align-items:baseline}
-  .wb-head .num{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
-  .wb-head .num b{color:var(--accent);font-weight:600;margin-right:8px}
-  .wb-head h1{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(48px,7vw,88px);line-height:1.02;letter-spacing:-.015em;color:var(--ink)}
-  .wb-head p.sub{color:var(--ink-2);margin-top:20px;font-size:16px;max-width:64ch;line-height:1.65}
-  .wb-head p.sub b{color:var(--ink);font-weight:600}
+:root {
+  --p-bg: #eef0f3; --p-surface: #e2e5ea; --p-ink: #0b0c0e; --p-muted: #5d6470;
+  --p-accent: #1f2de6; --p-accent-ink: #ffffff; --p-action: #1f2de6; --p-action-ink: #ffffff;
+  --p-inv-bg: #0b0c0e; --p-inv-surface: #17181a; --p-inv-ink: #eef0f3; --p-inv-muted: #8e8f92;
+  --p-inv-accent: #eef0f3; --p-inv-accent-ink: #0b0c0e; --p-inv-action: #eef0f3; --p-inv-action-ink: #0b0c0e;
+  --font-display: "Newsreader", Georgia, serif;
+  --font-text: "Hanken Grotesk", system-ui, sans-serif;
+  --display-weight: 400;
+  --display-tracking: -0.018em;
+  --display-tracking-xl: -0.025em;
+  --ly-scale: 1.06;
+}
+</style>
+<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+<script src="assets/backgrounds/backgrounds.js"></script>
+<script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
+<link rel="modulepreload" href="assets/moments/moments.js">
+<link rel="modulepreload" href="assets/moments/lib.js">
+<link rel="modulepreload" href="assets/moments/word-highlight/moment.js">
+<!-- page CSS: only inside the visuals -->
+<style>
+  .shot { display: block; max-width: none; width: 880px; height: auto; border-radius: 12px; border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent); background: #fff; box-shadow: 0 1px 2px rgb(11 12 14 / .06), 0 18px 40px -24px rgb(11 12 14 / .35); }
+  .shot--dark { border-color: rgb(255 255 255 / .12); background: #0d1117; }
+  .frame--shots, .hero__media.frame--shots { background: var(--p-surface); border: 0; }
+  .frame--dark, .hero__media.frame--dark { background: #0d1117; }
+  .panel { --ground-bg: var(--p-surface); }
+  .develop { margin: 0; border-radius: var(--r-lg); overflow: hidden; height: min(620px, var(--ly-fit, 620px)); }
+  .develop > img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 0 0; }
+  @media (max-width: 1023px) { .develop { height: auto; aspect-ratio: 4 / 3; margin-top: var(--s-7); } }
+  @media (max-width: 639px) { .shot { width: 620px; } .develop { aspect-ratio: 4 / 5; } }
 
-  .wb-project{border-top:1px solid var(--rule);padding-top:44px;margin-top:56px}
-  .wb-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,56px);align-items:start}
-  .wb-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
-  .wb-project h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.6vw,40px);letter-spacing:-.01em;color:var(--ink);margin:10px 0 4px}
-  .wb-tagline{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ink-2);margin-bottom:22px}
-  .wb-story .k{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin:18px 0 6px}
-  .wb-story p{color:var(--ink-2);font-size:15px;line-height:1.7}
-  .wb-story p b{color:var(--ink);font-weight:600}
-
-  .wb-meta{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;font-family:var(--mono);font-size:11px}
-  .wb-meta .k{color:var(--ink-3);text-transform:uppercase;font-size:10px;letter-spacing:.14em;margin-bottom:6px}
-  .wb-meta .v{color:var(--ink);line-height:1.55}
-  .wb-meta .v .live{color:var(--ok)}
-
-  .wb-shots{display:flex;flex-direction:column;gap:16px;position:sticky;top:96px}
-  .shot{position:relative;border:1px solid var(--rule);border-radius:14px;overflow:hidden;background:var(--surface-2);aspect-ratio:16/10;box-shadow:0 1px 2px rgba(24,25,28,.04),0 14px 34px -20px rgba(24,25,28,.32)}
-  .shot img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;background:var(--surface)}
-  .shot-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:20px;color:var(--ink-3)}
-  .shot-ph svg{width:30px;height:30px;opacity:.55}
-  .shot-ph span{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
-  .shot.has-img .shot-ph{display:none}
-  .shot:not(.has-img) img{display:none}
-  .privacy-note{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--ink-3);line-height:1.6;border:1px dashed var(--rule-2);border-radius:10px;padding:12px 14px}
-
-  .wb-foot{margin-top:72px;padding-top:32px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);gap:24px;flex-wrap:wrap}
-  .wb-foot a{transition:color .25s var(--ease)}
-  .wb-foot a:hover{color:var(--accent)}
-
-  /* shared light case-study top bar — matches index.html */
-  .topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:24px;padding:14px clamp(20px,4vw,56px);background:rgba(251,250,247,.82);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
-  .topbar .brand{display:inline-flex;align-items:center;gap:8px;font-family:var(--serif);font-style:italic;font-size:20px;font-weight:500;color:var(--ink);letter-spacing:-.01em;flex-shrink:0;transition:color .2s var(--ease)}
-  .topbar .brand:hover{color:var(--accent)}
-  .topbar .brand .arr{font-style:normal;font-size:15px;color:var(--ink-3)}
-  .topbar nav{display:flex;gap:24px;margin-left:8px}
-  .topbar nav a{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--ink-2);position:relative;padding:2px 0;transition:color .2s var(--ease)}
-  .topbar nav a:hover{color:var(--ink)}
-  .topbar .page-tag{margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-2);padding:6px 12px;border:1px solid var(--rule-2);border-radius:999px;background:var(--surface)}
-
-  @media (max-width:860px){
-    .topbar nav{display:none}
-    .wb-wrap{padding-top:96px}
-    .wb-head{grid-template-columns:1fr;gap:12px;margin-bottom:8px}
-    .wb-grid{grid-template-columns:1fr;gap:28px}
-    .wb-shots{position:static}
-  }
-  @media (max-width:600px){
-    .wb-wrap{padding:88px 16px 56px}
-    .wb-head h1{font-size:42px}
-    .wb-meta{grid-template-columns:1fr}
-    .wb-foot{flex-direction:column;align-items:flex-start;gap:12px}
-  }
 </style>
 </head>
 <body>
-
-<header class="topbar">
-  <a class="brand" href="index.html#work"><span class="arr" aria-hidden="true">←</span> Siam&nbsp;Hossain</a>
-  <nav aria-label="primary">
-    <a href="index.html#work">Work</a>
-    <a href="index.html#about">About</a>
-    <a href="index.html#contact">Contact</a>
-  </nav>
-  <span class="page-tag">Websites · Private</span>
-  <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme" style="margin-left:8px">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-  </button>
+<!-- type: service (case study). hero split (statement on the short page), palette cool-grey-cobalt, type newsreader, nav nav-mega, close close-type, footer footer-dark, buttons block, mark ring; moments: word-highlight -->
+<header class="nav">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">Skip to content</a>
+    <a class="nav__logo" href="index.html"><span class="mark" data-mark="ring" aria-hidden="true"></span>Siam Hossain</a>
+    <nav class="nav__links" aria-label="Main">
+      <div class="nav__item">
+        <a class="nav__link" href="index.html#clients" aria-current="page">Work <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav__menu">
+          <div class="wrap grid">
+            <div class="menu-col span-3">
+              <p class="t-label">On the home page</p>
+              <a href="index.html#clients">Client work<span>A POS and two business tools</span></a>
+              <a href="index.html#projects">Personal products<span>Résumé builder and a storefront</span></a>
+              <a href="index.html#repos">Repositories<span>Eight of 100 on GitHub</span></a>
+            </div>
+            <div class="menu-col span-3">
+              <p class="t-label">Case studies</p>
+              <a href="pos.html">Pharmacy POS<span>Billing, stock and staff logins</span></a>
+              <a href="automation.html">Notice and mail bots<span>Python, cron and Telegram</span></a>
+              <a href="ai-dev.html">AI tools<span>Résumé scoring and agents</span></a>
+            </div>
+            <div class="menu-col span-3">
+              <p class="t-label">More</p>
+              <a href="ecommerce.html">Storefronts<span>MegaBazar and ShoeVista</span></a>
+              <a href="websites.html">Business tools<span>Stock audit and invoices</span></a>
+              <a href="wpdev.html">Scroll animation<span>52 frames on a canvas</span></a>
+            </div>
+            <a class="menu-card span-3" href="pos.html">
+              <div class="panel"><img class="frame__img" src="images/pos-dashboard-640.png" alt="The Nasema Pharmacy POS dashboard with sales and stock figures" width="640" height="404" loading="lazy"></div>
+              <span class="t-card">Pharmacy POS case study</span>
+              <span class="t-small muted">How the counter software works</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav__item"><a class="nav__link" href="index.html#automation">Automation</a></div>
+      <div class="nav__item"><a class="nav__link" href="index.html#stack">Stack</a></div>
+      <div class="nav__item"><a class="nav__link" href="index.html#about">About</a></div>
+    </nav>
+    <div class="nav__actions">
+      <a class="nav__link" href="Siam-Hossain-CV.pdf" download>Download CV</a>
+      <a class="btn btn--primary" href="mailto:siam.cse.aiub@gmail.com">Email Siam</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
 </header>
 
-<main class="wb-wrap">
-
-  <div class="wb-head">
-    <div class="num"><b>07</b> / case study</div>
-    <div>
-      <h1>Websites.</h1>
-      <p class="sub">Free web tools I built for <b>friends running real businesses</b>. Both are live and password-protected because they hold actual business data — so these are screen previews and the story behind each build, not public links.</p>
-    </div>
-  </div>
-
-  <!-- ===================== PROJECT 1 — STOCK AUDIT TOOL ===================== -->
-  <section class="wb-project">
-    <div class="wb-grid">
+<main id="top">
+  <section class="hero hero--statement ground-brand" data-enter aria-labelledby="hero-h">
+    <div class="wrap"><div class="hero-text hero__in">
       <div>
-        <div class="wb-eyebrow">— Project 01 · internal tool</div>
-        <h2>Stock Audit Tool</h2>
-        <p class="wb-tagline">Search a product, set price &amp; quantity — it writes straight to Google Sheets.</p>
-
-        <div class="wb-story">
-          <div class="k">The problem</div>
-          <p>A friend needed to run quick <b>stock audits</b> in his shop — pull up a product, set its price and quantity — without paying for inventory software or maintaining a database. He already lived in a Google Sheet.</p>
-
-          <div class="k">What I built</div>
-          <p>A fast <b>search-as-you-type</b> product finder. For each item you set a <b>price and quantity</b>, and every change is pushed straight into the <b>Google Sheet</b> he already uses — the spreadsheet IS the backend. No database to run, nothing new to learn.</p>
-
-          <div class="k">Why it matters</div>
-          <p><b>Zero cost, zero maintenance.</b> He keeps working in a tool he trusts; the app just makes data entry fast and error-free. It's behind a password gate because it edits live business data.</p>
-        </div>
-
-        <div class="wb-meta">
-          <div><div class="k">Role</div><div class="v">Solo build<br>design → ship</div></div>
-          <div><div class="k">Storage</div><div class="v">Google&nbsp;Sheets API<br>no separate DB</div></div>
-          <div><div class="k">Stack</div><div class="v">Web app (React)<br>Vercel</div></div>
-          <div><div class="k">Status</div><div class="v"><span class="live">● live</span><br>password-gated</div></div>
-        </div>
+        <h1 id="hero-h">Stock audit and invoice tools for local businesses</h1>
+        <p class="hero__lead">Two free web tools for friends who run shops. Both are live and hold real prices, stock and invoices, so they sit behind a login.</p>
+        <div class="btn-row"><a class="btn btn--primary" href="mailto:siam.cse.aiub@gmail.com">Email Siam<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a><a class="btn btn--secondary" href="#tools">See how they work</a></div>
       </div>
+      <dl class="hero__facts">
+        <div><dt>Tools</dt><dd>2, both live</dd></div>
+        <div><dt>Cost to the owners</dt><dd>Free</dd></div>
+        <div><dt>Hosting</dt><dd>Vercel</dd></div>
+        <div><dt>Access</dt><dd>Behind a login</dd></div>
+      </dl>
+    </div></div>
+  </section>
 
-      <div class="wb-shots">
-        <div class="shot">
-          <img src="images/audit/01.png" alt="Stock Audit Tool — product search and entry" onload="this.closest('.shot').classList.add('has-img')">
-          <div class="shot-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m21 17-5-4-7 6"/></svg><span>Screenshot coming soon</span></div>
-        </div>
-        <div class="shot">
-          <img src="images/audit/02.png" alt="Stock Audit Tool — Google Sheets sync" onload="this.closest('.shot').classList.add('has-img')">
-          <div class="shot-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m21 17-5-4-7 6"/></svg><span>Screenshot coming soon</span></div>
-        </div>
-        <p class="privacy-note">Live tool is password-protected — previews shown instead of a public link to protect the owner's business data.</p>
-      </div>
+  <section class="section statement" id="statement" data-moment="word-highlight" aria-label="Why there is no public link">
+    <div class="wrap">
+      <p class="t-label">Why there is no public link</p>
+      <p class="mo-wh__text">These tools edit a shop’s <strong>real prices and stock</strong>, so this page explains how they work instead of linking to them. Each owner keeps the only login.</p>
     </div>
   </section>
 
-  <!-- ===================== PROJECT 2 — INVOICE GENERATOR ===================== -->
-  <section class="wb-project">
-    <div class="wb-grid">
-      <div>
-        <div class="wb-eyebrow">— Project 02 · saas-style tool</div>
-        <h2>Invoice Generator + Dashboard</h2>
-        <p class="wb-tagline">Professional invoices for many businesses — with a dashboard, completely free.</p>
-
-        <div class="wb-story">
-          <div class="k">The problem</div>
-          <p>A friend runs <b>several businesses</b> and was paying for fragmented invoicing tools — one per business, each with a subscription. He wanted one place to issue invoices and see them at a glance.</p>
-
-          <div class="k">What I built</div>
-          <p>A <b>free invoice generator</b> that produces clean, professional invoices, plus a <b>dashboard</b> to create, view and track them <b>across all of his businesses</b> in one account — no subscription, no per-business lock-in.</p>
-
-          <div class="k">Why it matters</div>
-          <p>One <b>free</b> home for multi-business invoicing. Deployed privately because it holds real client and financial data — access is protected rather than public.</p>
-        </div>
-
-        <div class="wb-meta">
-          <div><div class="k">Role</div><div class="v">Solo build<br>design → ship</div></div>
-          <div><div class="k">Built for</div><div class="v">Multi-business<br>owner</div></div>
-          <div><div class="k">Stack</div><div class="v">Web app<br>Vercel</div></div>
-          <div><div class="k">Status</div><div class="v"><span class="live">● live</span><br>access-protected</div></div>
-        </div>
+  <section class="section" id="tools" aria-labelledby="tools-h" style="--h: 1; --hm: 2">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="tools-h">How the 2 tools work</h2>
+        <p>Each one fits a habit the owner already had, so there was nothing new to learn.</p>
       </div>
-
-      <div class="wb-shots">
-        <div class="shot">
-          <img src="images/invoice/01.png" alt="Invoice Generator — invoice builder" onload="this.closest('.shot').classList.add('has-img')">
-          <div class="shot-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m21 17-5-4-7 6"/></svg><span>Screenshot coming soon</span></div>
+      <div class="grid grid--top">
+        <div class="span-6 stack-4">
+          <h3 class="t-card">Stock audit app</h3>
+          <p>A friend needed fast stock counts in his shop without paying for inventory software. He already kept everything in a Google Sheet.</p>
+          <ul class="rows">
+          <li><span class="rows__name">Search</span><p>Find a product as you type</p></li>
+          <li><span class="rows__name">Price and count</span><p>Set both for each item on the shelf</p></li>
+          <li><span class="rows__name">Google Sheets</span><p>Every change writes straight to the owner’s sheet</p><span class="rows__value">Storage</span></li>
+          </ul>
         </div>
-        <div class="shot">
-          <img src="images/invoice/02.png" alt="Invoice Generator — multi-business dashboard" onload="this.closest('.shot').classList.add('has-img')">
-          <div class="shot-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m21 17-5-4-7 6"/></svg><span>Screenshot coming soon</span></div>
+        <div class="span-6 start-7 stack-4">
+          <h3 class="t-card">Invoice generator</h3>
+          <p>Another friend runs several businesses and paid for a separate invoicing tool for each one.</p>
+          <ul class="rows">
+          <li><span class="rows__name">One account</span><p>Invoices for all of his businesses in one place</p></li>
+          <li><span class="rows__name">Dashboard</span><p>Create, view and track each invoice</p></li>
+          <li><span class="rows__name">No subscription</span><p>Free, with no limit per business</p><span class="rows__value">Free</span></li>
+          </ul>
         </div>
-        <p class="privacy-note">Live tool is access-protected — previews shown instead of a public link to protect client and financial data.</p>
       </div>
     </div>
   </section>
-
-  <div class="wb-foot">
-    <div>© 2026 siam hossain · websites / private builds</div>
-    <a href="index.html#work" data-hover>← back to work</a>
-  </div>
 </main>
 
-<!-- ⌘K command menu -->
-<dialog class="cmdk" aria-label="Command menu">
-  <input type="text" placeholder="Type a command…" aria-label="Command" />
-  <div data-results></div>
-  <div class="foot">
-    <span><kbd>↑</kbd><kbd>↓</kbd> Navigate · <kbd>↵</kbd> Open</span>
-    <span><kbd>Esc</kbd> Close</span>
+<footer class="footer closing footer--dark ground-inverse g2m" id="contact" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closing__cta close--type">
+      <div class="section-head">
+        <h2 id="close-h">Email me about a tool for your shop</h2>
+        <p>Small web tools that fit how a business already works.</p>
+      </div>
+      <a class="btn btn--primary btn--xl btn--wide" href="mailto:siam.cse.aiub@gmail.com">Email Siam<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+    </div>
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-4 stack-4">
+          <a class="nav__logo footer__mark" href="index.html"><span class="mark" data-mark="ring" aria-hidden="true"></span>Siam Hossain</a>
+          <p class="footer__lede">Full-stack and AI engineer in Dhaka.</p>
+        </div>
+        <div class="span-2 footer__col"><h3>Work</h3><ul><li><a href="index.html#clients">Client work</a></li><li><a href="index.html#projects">Products</a></li><li><a href="index.html#automation">Automation</a></li><li><a href="index.html#repos">Repositories</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Case studies</h3><ul><li><a href="pos.html">Pharmacy POS</a></li><li><a href="automation.html">Bots</a></li><li><a href="ai-dev.html">AI tools</a></li><li><a href="ecommerce.html">Storefronts</a></li><li><a href="websites.html">Business tools</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Profiles</h3><ul><li><a href="https://github.com/ALPHAMAN-0" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://www.linkedin.com/in/siamhossain4/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://leetcode.com/u/RedApple47/" target="_blank" rel="noopener">LeetCode</a></li><li><a href="https://codeforces.com/profile/SIAM001" target="_blank" rel="noopener">Codeforces</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Contact</h3><ul><li><a href="Siam-Hossain-CV.pdf" download>Download CV</a></li><li><a href="index.html#about">About</a></li><li><a href="https://codolio.com/profile/babaYagaa" target="_blank" rel="noopener">Codolio</a></li></ul></div>
+      </div>
+      <div class="footer__legal">
+        <span>&copy; 2026 Siam Hossain. Product names and logos are trademarks of their owners.</span>
+      </div>
+    </div>
   </div>
-</dialog>
+</footer>
 
-<script src="js/script.js" defer></script>
+<script type="module" src="assets/system.js"></script>
+<script type="module" src="assets/motion/motion.js"></script>
+<script type="module" src="assets/layout/layout.js"></script>
 </body>
 </html>

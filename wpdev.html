@@ -1,34 +1,43 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-type="service" data-radius="soft" data-buttons="block" data-motion>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="color-scheme" content="light dark">
-  <title>Scroll Animation — Siam Hossain</title>
-  <link rel="icon" type="image/svg+xml" href="images/logo.svg" />
-  <meta name="theme-color" content="#F2F0EA" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#131311" media="(prefers-color-scheme: dark)">
+  <title>Scroll animation on a canvas: an experiment by Siam Hossain</title>
+  <meta name="description" content="A scroll-linked canvas experiment: 52 frames painted to an HTML5 canvas as you scroll, with no libraries.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="site-kind" content="other">
+  <meta name="page-type" content="service">
+  <meta name="theme-color" content="#eef0f3">
   <link rel="canonical" href="https://alphaman-0.github.io/AboutMe/wpdev.html" />
-  <meta property="og:title" content="Scroll Animation — Siam Hossain" />
+  <meta property="og:title" content="Scroll animation on a canvas: an experiment by Siam Hossain" />
   <meta property="og:description" content="A scroll-linked HTML5 canvas frame sequence — 52 stills painted to canvas, driven by scroll position, pure front-end with no libraries." />
   <meta property="og:image" content="https://alphaman-0.github.io/AboutMe/Animation/222_026.png" />
-  <meta name="twitter:title" content="Scroll Animation — Siam Hossain" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-  <script>
-    (function(){
-      try {
-        var t = localStorage.getItem('theme');
-        if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
-      } catch (e) {}
-    })();
-  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..700&family=Hanken+Grotesk:wght@400..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/system.css">
+  <link rel="stylesheet" href="assets/motion/motion.css">
+  <link rel="stylesheet" href="assets/layout/layout.css">
+  <style>
+:root {
+  --p-bg: #eef0f3; --p-surface: #e2e5ea; --p-ink: #0b0c0e; --p-muted: #5d6470;
+  --p-accent: #1f2de6; --p-accent-ink: #ffffff; --p-action: #1f2de6; --p-action-ink: #ffffff;
+  --p-inv-bg: #0b0c0e; --p-inv-surface: #17181a; --p-inv-ink: #eef0f3; --p-inv-muted: #8e8f92;
+  --p-inv-accent: #eef0f3; --p-inv-accent-ink: #0b0c0e; --p-inv-action: #eef0f3; --p-inv-action-ink: #0b0c0e;
+  --font-display: "Newsreader", Georgia, serif;
+  --font-text: "Hanken Grotesk", system-ui, sans-serif;
+  --display-weight: 400;
+  --display-tracking: -0.018em;
+  --display-tracking-xl: -0.025em;
+  --ly-scale: 1.06;
+}
+  </style>
   <link rel="preload" as="image" href="Animation/222_000.png">
 
-  <link rel="stylesheet" href="css/style.css">
 
   <!-- legacy HACKER-mode classes that the old CSS still emits — never visible. -->
   <style>
@@ -41,34 +50,14 @@
     /* page-specific tokens (now also in :root via style.css; redeclared so this page
        stands alone if anything strips the shared CSS later) */
     :root {
-      --paper: #F2F0EA;
-      --surface: #FBFAF7;
-      --surface-2: #E9E6DE;
-      --ink: #17181B;
-      --ink-2: #45474D;
-      --ink-3: #5F626A;
-      --rule: #DCD8CE;
-      --rule-2: var(--rule);
-      --accent: #1F44E0;
-      --accent-deep: #13245C;
-      --accent-soft: #E6EBFF;
-      --serif: "Fraunces", Georgia, serif;
+      --paper: #eef0f3;
+      --surface-2: #e2e5ea;
+      --ink-2: #3a3f47;
+      --ink-3: #5d6470;
+      --rule-2: color-mix(in oklab, #0b0c0e 14%, transparent);
+      --serif: "Newsreader", Georgia, serif;
       --sans: "Hanken Grotesk", system-ui, sans-serif;
-      --mono: "IBM Plex Mono", ui-monospace, monospace;
-      --ease: cubic-bezier(.2,.8,.2,1);
-      --FOG: var(--ground);
-    }
-    [data-theme="dark"] {
-      --paper: #131311;
-      --surface: #1C1B18;
-      --surface-2: #262521;
-      --ink: #EDEAE3;
-      --ink-2: #BDB9B0;
-      --ink-3: #9A968D;
-      --rule: #34322D;
-      --accent: #8EA2FF;
-      --accent-soft: #22294A;
-      --FOG: var(--ground);
+      --mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
     }
 
     html, body { background-color: var(--paper); margin: 0; padding: 0; }
@@ -84,7 +73,7 @@
     canvas { display: block; }
 
     /* cover for the keyboard frames on light bg */
-    .stage {
+    .sa-stage {
       background: radial-gradient(120% 90% at 50% 30%, var(--surface) 0%, var(--surface-2) 70%, var(--surface-2) 100%);
       transition: background .25s ease;
     }
@@ -156,79 +145,91 @@
     #scroll-hint span { color: rgba(255,255,255,.85) !important; }
     .overlay { will-change: opacity, transform; opacity: 0; }
 
-    /* shared top bar matches index/case pages */
-    .topbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 60;
-      display: flex; align-items: center; gap: 24px;
-      padding: 14px clamp(20px, 5vw, 64px);
-      background: var(--paper);
-      border-bottom: 1px solid transparent;
-      transition: border-color .2s ease, background-color .25s ease;
-    }
-    .topbar.is-scrolled { border-bottom-color: var(--rule); }
-    @supports (backdrop-filter: blur(8px)) {
-      .topbar.is-scrolled { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: color-mix(in srgb, var(--paper) 78%, transparent); }
-    }
-    .topbar .brand { display: inline-flex; align-items: center; gap: 8px; font-family: var(--serif); font-style: italic; font-size: 20px; font-weight: 500; color: var(--ink); letter-spacing: -.01em; flex-shrink: 0; transition: color .2s var(--ease); text-decoration: none; }
-    .topbar .brand:hover { color: var(--accent); }
-    .topbar .brand .arr { font-style: normal; font-size: 15px; color: var(--ink-3); }
-    .topbar nav { display: flex; gap: 24px; margin-left: 8px; }
-    .topbar nav a { font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--ink-2); position: relative; padding: 2px 0; transition: color .2s var(--ease); text-decoration: none; }
-    .topbar nav a:hover { color: var(--ink); }
-    .topbar .page-tag { margin-left: auto; font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: var(--ink-2); padding: 6px 12px; border: 1px solid var(--rule); border-radius: 999px; background: var(--surface); }
-    @media (max-width: 640px){ .topbar nav { display: none; } }
-
-    /* icon button used by the new theme toggle */
-    .icon-btn { width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--rule); background: var(--surface); display: grid; place-items: center; cursor: pointer; color: var(--ink); }
-
     /* reduced motion: show static frame instead of canvas animation */
     @media (prefers-reduced-motion: reduce) {
-      .stage { background: var(--surface-2); }
+      .sa-stage { background: var(--surface-2); }
     }
   </style>
 </head>
 <body>
 
-  <header class="topbar">
-    <a class="brand" href="index.html#work"><span class="arr" aria-hidden="true">←</span> Siam&nbsp;Hossain</a>
-    <nav aria-label="primary">
-      <a href="index.html#work">Work</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#contact">Contact</a>
+<header class="nav">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">Skip to content</a>
+    <a class="nav__logo" href="index.html"><span class="mark" data-mark="ring" aria-hidden="true"></span>Siam Hossain</a>
+    <nav class="nav__links" aria-label="Main">
+      <div class="nav__item">
+        <a class="nav__link" href="index.html#clients" aria-current="page">Work <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav__menu">
+          <div class="wrap grid">
+            <div class="menu-col span-3">
+              <p class="t-label">On the home page</p>
+              <a href="index.html#clients">Client work<span>A POS and two business tools</span></a>
+              <a href="index.html#projects">Personal products<span>Résumé builder and a storefront</span></a>
+              <a href="index.html#repos">Repositories<span>Eight of 100 on GitHub</span></a>
+            </div>
+            <div class="menu-col span-3">
+              <p class="t-label">Case studies</p>
+              <a href="pos.html">Pharmacy POS<span>Billing, stock and staff logins</span></a>
+              <a href="automation.html">Notice and mail bots<span>Python, cron and Telegram</span></a>
+              <a href="ai-dev.html">AI tools<span>Résumé scoring and agents</span></a>
+            </div>
+            <div class="menu-col span-3">
+              <p class="t-label">More</p>
+              <a href="ecommerce.html">Storefronts<span>MegaBazar and ShoeVista</span></a>
+              <a href="websites.html">Business tools<span>Stock audit and invoices</span></a>
+              <a href="wpdev.html">Scroll animation<span>52 frames on a canvas</span></a>
+            </div>
+            <a class="menu-card span-3" href="pos.html">
+              <div class="panel"><img class="frame__img" src="images/pos-dashboard-640.png" alt="The Nasema Pharmacy POS dashboard with sales and stock figures" width="640" height="404" loading="lazy"></div>
+              <span class="t-card">Pharmacy POS case study</span>
+              <span class="t-small muted">How the counter software works</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav__item"><a class="nav__link" href="index.html#automation">Automation</a></div>
+      <div class="nav__item"><a class="nav__link" href="index.html#stack">Stack</a></div>
+      <div class="nav__item"><a class="nav__link" href="index.html#about">About</a></div>
     </nav>
-    <span class="page-tag">Scroll · Canvas</span>
-    <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme" style="margin-left:8px">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    <div class="nav__actions">
+      <a class="nav__link" href="Siam-Hossain-CV.pdf" download>Download CV</a>
+      <a class="btn btn--primary" href="mailto:siam.cse.aiub@gmail.com">Email Siam</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
     </button>
-  </header>
+  </div>
+</header>
 
   <div id="loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center" style="background-color: var(--paper);">
     <div class="spinner" aria-hidden="true"></div>
     <p id="loader-text" class="mt-6 text-sm tracking-tight" style="color: var(--ink-3);">Loading Scroll Animation&hellip; 0%</p>
   </div>
 
+  <main id="top">
   <div id="runway" class="relative h-[400vh]">
-    <div class="stage sticky top-0 h-screen w-full overflow-hidden">
+    <div class="sa-stage sticky top-0 h-screen w-full overflow-hidden">
 
       <canvas id="kb-canvas" class="absolute inset-0 w-full h-full"></canvas>
 
       <div id="overlay-0" class="overlay absolute inset-x-0 top-20 md:top-28 flex flex-col items-center text-center px-6 pointer-events-none">
-        <h1 class="text-5xl md:text-7xl font-medium tracking-tight" style="font-family:var(--serif);color:var(--ink);">Scroll Animation.</h1>
+        <h1 class="text-5xl md:text-7xl font-medium tracking-tight" style="font-family:var(--font-display);font-weight:400;color:var(--ink);">Scroll Animation.</h1>
         <p class="mt-3 text-base md:text-lg tracking-tight" style="color:var(--ink-2);">A scroll-linked canvas sequence.</p>
       </div>
 
       <div id="overlay-1" class="overlay absolute left-6 md:left-16 top-1/2 max-w-xs md:max-w-md text-left pointer-events-none">
-        <h2 class="text-4xl md:text-6xl font-medium tracking-tight leading-[1.05]" style="font-family:var(--serif);color:var(--ink);">52 stills.</h2>
+        <h2 class="text-4xl md:text-6xl font-medium tracking-tight leading-[1.05]" style="font-family:var(--font-display);font-weight:400;color:var(--ink);">52 stills.</h2>
         <p class="mt-3 text-base md:text-lg tracking-tight" style="color:var(--ink-2);">Painted to canvas as you scroll.</p>
       </div>
 
       <div id="overlay-2" class="overlay absolute right-6 md:right-16 top-1/2 max-w-xs md:max-w-md text-right pointer-events-none">
-        <h2 class="text-4xl md:text-6xl font-medium tracking-tight leading-[1.05]" style="font-family:var(--serif);color:var(--ink);">Zero deps.</h2>
+        <h2 class="text-4xl md:text-6xl font-medium tracking-tight leading-[1.05]" style="font-family:var(--font-display);font-weight:400;color:var(--ink);">Zero deps.</h2>
         <p class="mt-3 text-base md:text-lg tracking-tight" style="color:var(--ink-2);">No canvas framework, no scroll lib.</p>
       </div>
 
       <div id="overlay-3" class="overlay absolute inset-x-0 bottom-12 md:bottom-20 flex flex-col items-center text-center px-6 pointer-events-none">
-        <h2 class="text-5xl md:text-7xl font-medium tracking-tight" style="font-family:var(--serif);color:var(--ink);">Pure front-end.</h2>
+        <h2 class="text-5xl md:text-7xl font-medium tracking-tight" style="font-family:var(--font-display);font-weight:400;color:var(--ink);">Pure front-end.</h2>
         <p class="mt-3 text-base md:text-lg tracking-tight" style="color:var(--ink-2);">HTML5 canvas, no libraries. Scroll back to replay.</p>
       </div>
 
@@ -242,12 +243,14 @@
     </div>
   </div>
 
+  </main>
+
   <script>
     (function () {
       'use strict';
 
       const TOTAL_FRAMES = 52;
-      const FOG = '#F2F0EA';
+      const FOG = '#eef0f3';
       const DARK_FOG = '#131311';
       const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
       const framePath = (i) => 'Animation/222_' + String(i).padStart(3, '0') + '.png';
@@ -360,7 +363,7 @@
       function staticStart(){
         // build 4 representative frames
         const repFrames = [0, 17, 35, 51];
-        const container = document.getElementById('runway').querySelector('.stage');
+        const container = document.getElementById('runway').querySelector('.sa-stage');
         const layers = repFrames.map((i, idx) => {
           const img = new Image();
           img.src = framePath(i);
@@ -443,7 +446,7 @@
 
         if (!started) {
           started = true;
-          const stage = document.querySelector('.stage');
+          const stage = document.querySelector('.sa-stage');
           if (stage && 'IntersectionObserver' in window) {
             const stageIO = new IntersectionObserver(entries => {
               for (const e of entries) setRunning(e.isIntersecting);
@@ -491,22 +494,34 @@
     })();
   </script>
 
-  <div class="actionbar" data-actionbar aria-label="Quick contact">
-    <span class="ttl">Contact</span>
-    <a class="pill pill--accent" href="mailto:siam.cse.aiub@gmail.com">Email</a>
-    <button class="pill" type="button" data-copy="siam.cse.aiub@gmail.com">Copy</button>
-    <a class="pill" href="Siam-Hossain-CV.pdf" download>CV</a>
-  </div>
-
-  <dialog class="cmdk" aria-label="Command menu">
-    <input type="text" placeholder="Type a command…" aria-label="Command" />
-    <div data-results></div>
-    <div class="foot">
-      <span><kbd>↑</kbd><kbd>↓</kbd> Navigate · <kbd>↵</kbd> Open</span>
-      <span><kbd>Esc</kbd> Close</span>
+<footer class="footer closing footer--dark ground-inverse g2m" id="contact" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closing__cta close--type">
+      <div class="section-head">
+        <h2 id="close-h">Email me about a front-end build</h2>
+        <p>Canvas, scroll and motion work on plain HTML, CSS and JavaScript.</p>
+      </div>
+      <a class="btn btn--primary btn--xl btn--wide" href="mailto:siam.cse.aiub@gmail.com">Email Siam<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
     </div>
-  </dialog>
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-4 stack-4">
+          <a class="nav__logo footer__mark" href="index.html"><span class="mark" data-mark="ring" aria-hidden="true"></span>Siam Hossain</a>
+          <p class="footer__lede">Full-stack and AI engineer in Dhaka.</p>
+        </div>
+        <div class="span-2 footer__col"><h3>Work</h3><ul><li><a href="index.html#clients">Client work</a></li><li><a href="index.html#projects">Products</a></li><li><a href="index.html#automation">Automation</a></li><li><a href="index.html#repos">Repositories</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Case studies</h3><ul><li><a href="pos.html">Pharmacy POS</a></li><li><a href="automation.html">Bots</a></li><li><a href="ai-dev.html">AI tools</a></li><li><a href="ecommerce.html">Storefronts</a></li><li><a href="websites.html">Business tools</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Profiles</h3><ul><li><a href="https://github.com/ALPHAMAN-0" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://www.linkedin.com/in/siamhossain4/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://leetcode.com/u/RedApple47/" target="_blank" rel="noopener">LeetCode</a></li><li><a href="https://codeforces.com/profile/SIAM001" target="_blank" rel="noopener">Codeforces</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Contact</h3><ul><li><a href="Siam-Hossain-CV.pdf" download>Download CV</a></li><li><a href="index.html#about">About</a></li><li><a href="https://codolio.com/profile/babaYagaa" target="_blank" rel="noopener">Codolio</a></li></ul></div>
+      </div>
+      <div class="footer__legal">
+        <span>&copy; 2026 Siam Hossain. Product names and logos are trademarks of their owners.</span>
+      </div>
+    </div>
+  </div>
+</footer>
 
-  <script src="js/script.js" defer></script>
+<script type="module" src="assets/system.js"></script>
+<script type="module" src="assets/motion/motion.js"></script>
 </body>
 </html>

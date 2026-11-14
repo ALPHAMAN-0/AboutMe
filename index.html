@@ -1,772 +1,435 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-type="service" data-radius="soft" data-buttons="block" data-motion>
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="color-scheme" content="light dark" />
-<title>Siam Hossain — Software Engineer (Full-Stack &amp; AI)</title>
-<meta name="description" content="Siam Hossain — Software Engineer, Full-Stack & AI. 2+ years building software; client work since 2025. Projects, skills, practice and CV." />
-<meta name="author" content="Siam Hossain" />
-<link rel="canonical" href="https://alphaman-0.github.io/AboutMe/" />
-<link rel="icon" type="image/svg+xml" href="images/logo.svg" />
-
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://alphaman-0.github.io/AboutMe/" />
-<meta property="og:title" content="Siam Hossain — Software Engineer (Full-Stack &amp; AI)" />
-<meta property="og:description" content="2+ years building software; client work since 2025. Backend-leaning full-stack engineer building retail systems and AI integrations." />
-<meta property="og:image" content="https://alphaman-0.github.io/AboutMe/images/siam-headshot.jpg" />
-<meta property="og:image:alt" content="Siam Hossain — Software Engineer" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Siam Hossain — Software Engineer (Full-Stack &amp; AI)" />
-<meta name="twitter:description" content="2+ years building software; client work since 2025." />
-<meta name="twitter:image" content="https://alphaman-0.github.io/AboutMe/images/siam-headshot.jpg" />
-<meta name="theme-color" content="#F2F0EA" media="(prefers-color-scheme: light)" />
-<meta name="theme-color" content="#131311" media="(prefers-color-scheme: dark)" />
-
-<!-- theme bootstrap (must run before paint) -->
-<script>
-  (function(){
-    try {
-      var t = localStorage.getItem('theme');
-      if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
-    } catch (e) {}
-  })();
-</script>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Siam Hossain: full-stack and AI engineer in Dhaka</title>
+<meta name="description" content="Portfolio of Siam Hossain, a full-stack and AI engineer who builds harnesses for AI agents: a pharmacy POS in daily use, the AIUB Notice Bot and Email Trucker on GitHub Actions, and Sleep Loop. BSc CSE, AIUB 2026.">
+<meta name="author" content="Siam Hossain">
+<link rel="canonical" href="https://alphaman-0.github.io/AboutMe/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://alphaman-0.github.io/AboutMe/">
+<meta property="og:title" content="Siam Hossain: full-stack and AI engineer in Dhaka">
+<meta property="og:description" content="Full-stack apps, AI features and harnesses for AI agents. A pharmacy POS in daily use, bots on GitHub Actions, 2,000+ problems solved.">
+<meta property="og:image" content="https://alphaman-0.github.io/AboutMe/share.jpg">
+<meta property="og:image:alt" content="Siam Hossain, software engineer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://alphaman-0.github.io/AboutMe/share.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#eef0f3">
+<meta name="site-kind" content="other">
+<meta name="page-type" content="service">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="css/style.css">
-
-<!-- JSON-LD -->
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..700&family=Hanken+Grotesk:wght@400..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<link rel="stylesheet" href="assets/ui/cards.css">
+<link rel="stylesheet" href="assets/motion/motion.css">
+<link rel="stylesheet" href="assets/backgrounds/backgrounds.css">
+<link rel="stylesheet" href="assets/layout/layout.css">
+<link rel="stylesheet" href="assets/icons/icon.css">
+<style>
+:root {
+  --p-bg: #eef0f3; --p-surface: #e2e5ea; --p-ink: #0b0c0e; --p-muted: #5d6470;
+  --p-accent: #1f2de6; --p-accent-ink: #ffffff; --p-action: #1f2de6; --p-action-ink: #ffffff;
+  --p-inv-bg: #0b0c0e; --p-inv-surface: #17181a; --p-inv-ink: #eef0f3; --p-inv-muted: #8e8f92;
+  --p-inv-accent: #eef0f3; --p-inv-accent-ink: #0b0c0e; --p-inv-action: #eef0f3; --p-inv-action-ink: #0b0c0e;
+  --font-display: "Newsreader", Georgia, serif;
+  --font-text: "Hanken Grotesk", system-ui, sans-serif;
+  --display-weight: 400;
+  --display-tracking: -0.018em;
+  --display-tracking-xl: -0.025em;
+  --ly-scale: 1.06;
+}
+</style>
+<link rel="stylesheet" href="assets/ui/base.css">
+<link rel="stylesheet" href="assets/ui/code/fragment.css">
+<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+<script src="assets/backgrounds/backgrounds.js"></script>
+<script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
+<link rel="modulepreload" href="assets/moments/moments.js">
+<link rel="modulepreload" href="assets/moments/lib.js">
+<link rel="modulepreload" href="assets/moments/word-highlight/moment.js">
+<link rel="modulepreload" href="assets/moments/picture-develops/moment.js">
+<!-- page CSS: only inside the visuals (the screenshots on their panels, the developing portrait) -->
+<style>
+  .shot { display: block; max-width: none; width: 880px; height: auto; border-radius: 12px; border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent); background: #fff; box-shadow: 0 1px 2px rgb(11 12 14 / .06), 0 18px 40px -24px rgb(11 12 14 / .35); }
+  .frame--shots { background: var(--p-surface); border: 0; }
+  #clients .frame--split, #automation .frame--split { --ratio: 104%; }
+  #clients .shot { width: 1060px; }
+  #automation .shot--gh { width: 1080px; }
+  #projects .panel { --p-h: 340px; --ground-bg: var(--p-surface); }
+  #projects .shot { width: 760px; }
+  #repos .frame--band { --ratio: 17%; margin-top: var(--s-7); }
+  #repos .repo-cols { margin-top: var(--s-7); }
+  .shot--strip { width: 910px; max-width: 100%; border: 0; box-shadow: none; background: none; }
+  #repos .frame--band > picture { display: contents; }
+  .frame--dark { background: #0d1117; }
+  .shot--gh { width: 820px; border-color: rgb(255 255 255 / .12); background: #0d1117; }
+  #stack .panel { --p-h: 330px; --ground-bg: var(--p-surface); }
+  #stack .panel--dark { --ground-bg: #0d1117; display: block; }
+  #stack .ui-code__ln { white-space: pre-wrap; }
+  #stack .panel--plain { background: none; box-shadow: none; overflow: visible; }
+  #stack .panel--plain::before, #stack .panel--plain::after { display: none; }
+  #stack .tools { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; align-content: start; }
+  #stack .tools > .ic-chip { width: 100%; }
+  #stack .shot--harness { width: 700px; }
+  .develop { margin: 0; border-radius: var(--r-lg); overflow: hidden; height: min(620px, var(--ly-fit, 620px)); }
+  .develop > img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+  @media (max-width: 1023px) { .develop { height: auto; aspect-ratio: 4 / 3; margin-top: var(--s-7); } }
+  @media (max-width: 639px) { .develop { aspect-ratio: 4 / 5; } }
+  @media (max-width: 639px) { .hero .ly-float { display: none; } #projects .panel { --p-h: 300px; } .shot, #projects .shot, .shot--gh { width: 560px; } #stack .panel { --p-h: 360px; } #stack .ui-code__ln { padding-left: 40px; }
+    #repos .frame--band { padding: 0; } #repos .shot--strip { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 100% 50%; } }
+  /* tablet: each split fits its screen; about takes two */
+  @media (min-width: 640px) and (max-width: 1023px) {
+    #clients .frame--split, #automation .frame--split { --ratio: 50%; }
+    #about { --h: 2; }
+    #about > .wrap { grid-template-rows: auto minmax(0, 1fr); }
+    #about .develop { aspect-ratio: auto; height: auto; min-height: 480px; align-self: stretch; }
+    #stack { --h: 2; }
+    #stack .panel { --p-h: 360px; }
+    #stack .grid { flex: 1 1 auto; grid-template-rows: auto auto minmax(0, 1fr); }
+    #stack .card:last-child { display: flex; flex-direction: column; }
+    #stack .card:last-child > .panel { flex: 1 1 auto; height: auto; }
+    #stack .shot--harness { width: 900px; }
+    #stack .tools { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (min-width: 800px) and (max-width: 1023px) { #clients .frame--split, #automation .frame--split { --ratio: 66%; } }
+  /* phone: the two-screen sections fill both screens, the picture taking what the words leave */
+  @media (max-width: 639px) {
+    #clients .frame--split, #automation .frame--split { --ratio: 0px; align-self: stretch; height: auto; min-height: 420px; }
+    #about { --hm: 2; }
+    #about > .wrap { grid-template-rows: auto minmax(0, 1fr); }
+    #about .develop { aspect-ratio: auto; height: auto; min-height: 420px; align-self: stretch; }
+    #stack { --hm: 2; }
+    #stack .shot--harness { width: 620px; }
+    #stack .card:not(:last-child) > .panel { --p-h: 270px; }
+    #stack .grid { flex: 1 1 auto; grid-template-rows: auto auto minmax(0, 1fr); }
+    #stack .card:last-child { display: flex; flex-direction: column; }
+    #stack .card:last-child > .panel { flex: 1 1 auto; height: auto; min-height: 240px; }
+    #repos { --hm: 1; }
+    #repos .frame--band { --ratio: 44%; }
+    #repos .repo-cols > .rows:last-child { display: none; }
+  }
+  /* the repository list: each row's language mark beside its name */
+  .rows--repos .rows__name { display: flex; align-items: center; gap: var(--s-3); }
+  /* each repository row opens its repository: the name's link covers the row, and its line draws on hover */
+  .rows--repos > li { position: relative; }
+  .rows--repos .link::before { content: ""; position: absolute; inset: 0; }
+  @media (hover: hover) and (pointer: fine) {
+    .rows--repos > li:hover .link { background-size: calc(100% - 1em - var(--s-2)) 1px, calc(100% - 1em - var(--s-2)) 1px; background-position: 0 100%, 0 100%; }
+    .rows--repos > li:hover .link::after { transform: translateX(3px); }
+  }
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Siam Hossain",
-  "jobTitle": "Software Engineer — Full-Stack · AI / ML",
+  "jobTitle": "Full-stack and AI engineer",
   "url": "https://alphaman-0.github.io/AboutMe/",
   "email": "mailto:siam.cse.aiub@gmail.com",
+  "image": "https://alphaman-0.github.io/AboutMe/images/siam-headshot.jpg",
   "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" },
-  "alumniOf": { "@type": "CollegeOrUniversity", "name": "AIUB" }
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "American International University-Bangladesh" },
+  "sameAs": ["https://github.com/ALPHAMAN-0", "https://www.linkedin.com/in/siamhossain4/"]
 }
 </script>
-
-<!-- ============================================================
-     Hub-only layout polish — site-wide tokens live in style.css.
-     This block only adds Hub layout decisions that don't belong
-     site-wide.
-     ============================================================ -->
-<style>
-  /* hero spec sheet */
-  .hero { padding: 32px 0 0; }
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 7fr 5fr;
-    grid-template-rows: auto auto;
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    border-radius: var(--r-tile);
-    overflow: hidden;
-  }
-  .hero-grid > * { background: var(--tile); padding: 40px; }
-  .hero-id { display: flex; flex-direction: column; gap: 24px; }
-  .hero-photo { padding: 0; display: grid; place-items: center; min-height: 420px; background: var(--tile-2); }
-  .hero-photo img { width: 100%; height: 100%; max-width: 480px; aspect-ratio: 1; object-fit: cover; border-radius: 999px; }
-  .hero-meta { grid-column: 1 / -1; padding: 0; }
-  .hero-meta .spec5 { border-radius: 0; border: 0; }
-  @media (max-width: 1100px) { .hero-grid { grid-template-columns: 1fr; } }
-
-  /* status pill */
-  .status-pill { display: inline-flex; align-items: center; gap: 10px; font: 500 13px var(--sans); color: var(--ink-2); }
-  .status-pill .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--ok); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 22%, transparent); }
-  .status-pill .clock { font: 500 13px var(--mono); color: var(--ink-2); }
-
-  /* bento for sections */
-  .work-bento { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: var(--r-tile); overflow: hidden; grid-template-columns: repeat(12, 1fr); }
-  .work-bento > * { background: var(--tile); padding: 24px; }
-  .work-bento .span8 { grid-column: span 8; } .work-bento .span4 { grid-column: span 4; } .work-bento .span12 { grid-column: span 12; }
-  .work-bento .span6 { grid-column: span 6; }
-  @media (max-width: 1100px) { .work-bento > * { grid-column: span 12; } }
-
-  .work-card { text-decoration: none; color: inherit; display: block; background: var(--tile); border-radius: 12px; }
-  .work-card:hover { background: var(--tile-2); }
-  .work-card.is-traced { outline: 2px solid var(--accent); outline-offset: -2px; }
-  .work-card .thumb { aspect-ratio: 16/10; border-radius: 10px; background: var(--tile-2); margin-bottom: 14px; overflow: hidden; display: grid; place-items: center; color: var(--ink-3); font: 12px var(--mono); text-transform: uppercase; letter-spacing: .08em; }
-  .work-card .thumb img { width: 100%; height: 100%; object-fit: cover; }
-  .work-card h3 { font-family: var(--serif); font-variation-settings: "opsz" 48; font-size: clamp(20px, 2vw, 26px); font-weight: 420; margin: 0 0 4px; letter-spacing: -.01em; }
-  .work-card.is-index { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 12px; border-bottom: 1px solid var(--rule); border-radius: 0; background: var(--tile); }
-  .work-card.is-index:last-child { border-bottom: 0; }
-  .work-card.is-index .thumb { display: none; }
-  .work-card.is-index h3 { font-size: 18px; }
-
-  .work-card .meta { font-size: 12px; color: var(--ink-3); }
-  .work-card .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
-  .work-card .more { font: 12px var(--mono); color: var(--accent); text-transform: uppercase; letter-spacing: .06em; margin-top: 10px; }
-
-  .filterbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 12px; }
-  .filterbar .filters { display: flex; gap: 4px; padding: 4px; border: 1px solid var(--rule); border-radius: 999px; background: var(--tile); }
-  .filterbar .filters button { padding: 8px 14px; border-radius: 999px; border: 0; background: transparent; color: var(--ink-2); cursor: pointer; font: 500 13px var(--sans); min-height: 36px; }
-  .filterbar .filters button.is-active { background: var(--ink); color: var(--tile); }
-
-  /* compact list inside the .work-bento 4-col tile */
-  .more-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .more-list a { display: block; padding: 14px; border-radius: 10px; background: var(--tile); text-decoration: none; color: inherit; }
-  .more-list a:hover { background: var(--tile-2); }
-  .more-list h4 { font-family: var(--serif); font-size: 16px; font-weight: 420; margin: 0 0 4px; }
-  .more-list .meta { font-size: 11px; color: var(--ink-3); }
-  .more-list .tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 8px; }
-
-  /* pipeline */
-  .pipeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--rule); border-radius: 12px; overflow: hidden; border: 1px solid var(--rule); margin-top: 16px; position: relative; }
-  .pipeline .step { background: var(--tile); padding: 14px; min-height: 110px; position: relative; }
-  .pipeline .step .k { font: 600 10px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); }
-  .pipeline .step .n { font-family: var(--serif); font-variation-settings: "opsz" 96; font-size: 26px; line-height: 1; margin-top: 6px; font-weight: 380; }
-  .pipeline .step .v { font-size: 12px; color: var(--ink-2); margin-top: 8px; line-height: 1.4; }
-  .pipeline .step:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; background: var(--accent-wash); }
-  .pipeline .step.is-active { background: var(--accent-wash); }
-  .pipeline .packet { position: absolute; top: 0; left: 0; height: 4px; background: var(--accent); border-radius: 2px; width: 20%; transition: none; }
-  .pipeline .head-row { display: flex; justify-content: space-between; align-items: baseline; margin-top: 14px; gap: 16px; }
-  .pipeline .head-row h3 { font-family: var(--serif); font-size: 22px; font-weight: 420; margin: 0; }
-  .pipeline .head-row button { min-height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--rule); background: var(--tile); color: var(--ink); cursor: pointer; font: 600 12px var(--sans); }
-
-  /* practice ledger */
-  table.ledger { width: 100%; border-collapse: collapse; }
-  table.ledger th, table.ledger td { text-align: left; padding: 14px 12px; border-top: 1px solid var(--rule); font: 500 14px var(--sans); }
-  table.ledger th { font: 600 11px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); border-top: 0; }
-  table.ledger td.num { font-family: var(--serif); font-variation-settings: "opsz" 96; font-size: 28px; font-weight: 380; }
-
-  /* ps-card compatibility for the script.js platformStats hook */
-  .ps-card { display: flex; align-items: center; gap: 12px; padding: 16px 18px; border: 1px solid var(--rule); border-radius: 12px; background: var(--tile); text-decoration: none; color: inherit; }
-  .ps-card .ps-logo { width: 36px; height: 36px; border-radius: 8px; background: var(--accent-wash); color: var(--accent); display: grid; place-items: center; flex-shrink: 0; }
-  .ps-card .ps-logo svg { width: 20px; height: 20px; fill: currentColor; }
-  .ps-card .ps-meta { display: flex; flex-direction: column; gap: 2px; flex: 1; }
-  .ps-card .ps-platform { font: 600 13px var(--sans); color: var(--ink); }
-  .ps-card .ps-handle { font: 500 12px var(--mono); color: var(--ink-3); text-transform: lowercase; }
-  .ps-card .ps-stat { display: flex; align-items: baseline; gap: 6px; }
-  .ps-card .ps-stat-num { font-family: var(--serif); font-size: 22px; font-weight: 420; }
-  .ps-card .ps-stat-label { font: 500 12px var(--mono); color: var(--ink-3); text-transform: uppercase; letter-spacing: .06em; }
-  .ps-card .ps-src { font: 500 10px var(--mono); color: var(--ink-3); text-transform: uppercase; letter-spacing: .06em; margin-left: 6px; }
-  .ps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  @media (max-width: 600px) { .ps-grid { grid-template-columns: 1fr; } }
-
-  /* contact */
-  .contact-tile { background: var(--ink); color: var(--tile); border-radius: var(--r-tile); padding: 56px 48px; display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: end; margin-top: 64px; }
-  .contact-tile h2 { color: var(--tile); font-size: clamp(48px, 6vw, 80px); margin: 0; line-height: 1; }
-  .contact-tile h2 em { color: var(--tile); }
-  .contact-tile .em { font: 500 22px var(--sans); margin-top: 16px; }
-  .contact-tile .socials { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 32px; padding-top: 24px; border-top: 1px solid color-mix(in srgb, var(--tile) 18%, transparent); }
-  .contact-tile .socials a { color: inherit; text-decoration: none; }
-  .contact-tile .socials .lbl { font: 600 11px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: color-mix(in srgb, var(--tile) 60%, transparent); display: block; margin-bottom: 6px; }
-  .contact-tile .socials .handle { font: 500 14px var(--sans); }
-  @media (max-width: 600px) { .contact-tile { padding: 32px 24px; } .contact-tile .socials { grid-template-columns: repeat(2, 1fr); } }
-
-  /* h2 weight "settle" via animation-timeline: view() — gated */
-  @supports (animation-timeline: view()) {
-    h2 {
-      animation: settle linear both;
-      animation-timeline: view();
-      animation-range: entry 0% cover 30%;
-    }
-    @keyframes settle {
-      from { font-variation-settings: "opsz" 14, "wght" 500; }
-      to   { font-variation-settings: "opsz" 48, "wght" 420; }
-    }
-  }
-
-  /* below-fold reveals */
-  .reveal { opacity: 0; transform: translateY(8px); transition: opacity .5s var(--ease), transform .5s var(--ease); }
-  .reveal.is-in { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
-
-  /* misc helpers */
-  .sec-eyebrow { display: block; font: 600 11px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); margin-bottom: 8px; }
-  .sec { padding: 96px 0 24px; }
-  .sec-head { margin-bottom: 32px; max-width: 60ch; }
-  .sec-lead { color: var(--ink-2); margin: 0; }
-
-  /* nav condense on scroll */
-  .topbar.is-scrolled .brand span:not(.m) { display: none; }
-  @media (max-width: 1100px) { .topbar.is-scrolled .brand span:not(.m) { display: inline; } }
-</style>
 </head>
 <body>
-
-<a class="skip-link" href="#work">Skip to content</a>
-
-<header class="topbar">
-  <a class="brand" href="#top" aria-label="Siam Hossain — home">
-    <span class="m">S</span>
-    <span>Siam Hossain</span>
-  </a>
-
-  <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open menu" aria-controls="site-nav">
-    <span></span><span></span><span></span>
-  </button>
-
-  <nav id="site-nav" aria-label="Primary">
-    <a href="#work"      data-anchor="work">Work</a>
-    <a href="#projects"  data-anchor="projects">Projects</a>
-    <a href="#experience" data-anchor="experience">Experience</a>
-    <a href="#skills"    data-anchor="skills">Skills</a>
-    <a href="#practice"  data-anchor="practice">Practice</a>
-    <a href="#about"     data-anchor="about">About</a>
-    <a href="#contact"   data-anchor="contact">Contact</a>
-    <span class="indicator" aria-hidden="true"></span>
-  </nav>
-
-  <div class="topbar-cta">
-    <button type="button" class="kbtn" data-cmdk-open aria-label="Open command menu">
-      <span class="kbtn-label">Search</span> <kbd>⌘</kbd><kbd>K</kbd>
+<!-- type: service (page type service, site-kind other): a software engineer people hire
+     deal: hero split, palette cool-grey-cobalt, type newsreader, nav nav-mega, close close-type,
+           footer footer-dark (re-dealt from footer-visit: he works remote, there is no door to visit),
+           rhythm surface-pairs (#stack and #repos), buttons block, mark ring, grounds none (kind other)
+     moments: word-highlight in #statement (the work in one sentence that lights up as it is read),
+              picture-develops on the portrait in #about (the person arrives last, like a print)
+     screens at 1440: hero 1, clients 1, projects 1, statement 1, automation 1, stack 1, repos 1, about 1, closing 1 -->
+<header class="nav">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">Skip to content</a>
+    <a class="nav__logo" href="#top"><span class="mark" data-mark="ring" aria-hidden="true"></span>Siam Hossain</a>
+    <nav class="nav__links" aria-label="Main">
+      <div class="nav__item">
+        <a class="nav__link" href="#clients">Work <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav__menu">
+          <div class="wrap grid">
+            <div class="menu-col span-3">
+              <p class="t-label">On this page</p>
+              <a href="#clients">Client work<span>A POS and two business tools</span></a>
+              <a href="#projects">Personal products<span>Résumé builder and a storefront</span></a>
+              <a href="#automation">Automation<span>Bots on GitHub Actions</span></a>
+            </div>
+            <div class="menu-col span-3">
+              <p class="t-label">Case studies</p>
+              <a href="pos.html">Pharmacy POS<span>Billing, stock and roles</span></a>
+              <a href="automation.html">Notice and mail bots<span>Python, cron and Telegram</span></a>
+              <a href="ai-dev.html">AI tools<span>Résumé scoring, agents, RAG</span></a>
+              <a href="ecommerce.html">Storefronts<span>MegaBazar and ShoeVista</span></a>
+            </div>
+            <div class="menu-col span-3">
+              <p class="t-label">More</p>
+              <a href="websites.html">Business tools<span>Stock audit and invoices</span></a>
+              <a href="wpdev.html">Scroll animation<span>52 frames on a canvas</span></a>
+              <a href="#repos">Repositories<span>Eight of 100 on GitHub</span></a>
+            </div>
+            <a class="menu-card span-3" href="pos.html">
+              <div class="panel"><img class="frame__img" src="images/pos-dashboard-640.png" alt="The Nasema Pharmacy POS dashboard with sales and stock figures" width="640" height="404" loading="lazy"></div>
+              <span class="t-card">Pharmacy POS case study</span>
+              <span class="t-small muted">How the counter software works</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav__item"><a class="nav__link" href="#automation">Automation</a></div>
+      <div class="nav__item"><a class="nav__link" href="#stack">Stack</a></div>
+      <div class="nav__item"><a class="nav__link" href="#about">About</a></div>
+    </nav>
+    <div class="nav__actions">
+      <a class="nav__link" href="Siam-Hossain-CV.pdf" download>Download CV</a>
+      <a class="btn btn--primary" href="mailto:siam.cse.aiub@gmail.com">Email Siam</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
     </button>
-    <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme" aria-pressed="false">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-    </button>
-    <a class="btn btn--sm" href="Siam-Hossain-CV.pdf" download>Download CV ↓</a>
   </div>
 </header>
 
 <main id="top">
-
-<!-- ===== HERO SPEC SHEET ===== -->
-<section class="hero">
-  <div class="hero-grid">
-    <div class="hero-id" data-reveal>
-      <span class="status-pill">
-        <span class="dot" aria-hidden="true"></span>
-        Available · Dhaka &mdash;
-        <span class="clock"><strong data-clock>00:00</strong> BST</span>
-      </span>
-      <h1 class="h-display">Siam <em>Hossain</em></h1>
-      <p class="role" style="font:500 18px var(--sans);color:var(--ink-2);margin:0">Software Engineer &mdash; Full-Stack · AI / ML</p>
-      <p style="color:var(--ink-2);font-size:17px;line-height:1.55;max-width:56ch;margin:0">Backend-leaning full-stack engineer. I design and ship retail systems &mdash; POS, inventory, payments &mdash; and integrate AI into real workflows. 2+ years building software; client work since 2025.</p>
-      <div class="hero-btns" style="display:flex;gap:10px;flex-wrap:wrap">
-        <a class="btn btn--primary" href="Siam-Hossain-CV.pdf" download>Download CV</a>
-        <a class="btn btn--ghost"   href="mailto:siam.cse.aiub@gmail.com">Email</a>
-        <button class="btn btn--ghost" type="button" data-copy="siam.cse.aiub@gmail.com">Copy email</button>
-      </div>
-    </div>
-
-    <div class="hero-photo">
-      <img src="images/siam-headshot.jpg" width="400" height="400" alt="Siam Hossain" />
-    </div>
-
-    <div class="hero-meta" data-actionbar-trigger>
-      <dl class="spec5">
-        <div><dt class="k">Now</dt><dd class="v">Graduate (AIUB, 2026) · open to full-time roles</dd></div>
-        <div><dt class="k">Education</dt><dd class="v">B.Sc. CSE · AIUB</dd></div>
-        <div><dt class="k">Flagship</dt><dd class="v"><a href="pos.html">Pharmacy POS ↗</a></dd></div>
-        <div><dt class="k">Core stack</dt><dd class="v">TypeScript · Node · React · Postgres</dd></div>
-        <div><dt class="k">Practice</dt><dd class="v"><a href="#practice">2000+ problems ↓</a></dd></div>
-      </dl>
-    </div>
-  </div>
-</section>
-
-<!-- ===== WORK ===== -->
-<section class="sec" id="work" data-work>
-  <span class="sec-eyebrow">02 · Work</span>
-  <div class="sec-head">
-    <h2>Things I&rsquo;ve <em>built</em>.</h2>
-    <p class="sec-lead">Real systems in production: a pharmacy POS, a Telegram-driven notice bot, an AI resume assistant. Plus learning projects and a few front-end experiments.</p>
-  </div>
-
-  <div class="filterbar">
-    <div class="filters" role="tablist" aria-label="Filter projects">
-      <button type="button" data-filter="all"   class="is-active">All</button>
-      <button type="button" data-filter="live">Live</button>
-      <button type="button" data-filter="fullstack">Full-stack</button>
-      <button type="button" data-filter="ai">AI &amp; automation</button>
-      <button type="button" data-filter="frontend">Front-end &amp; tools</button>
-    </div>
-    <div class="filters" role="tablist" aria-label="View mode">
-      <button type="button" data-view="grid"  class="is-active">Grid</button>
-      <button type="button" data-view="index">Index</button>
-    </div>
-  </div>
-
-  <div class="work-bento">
-
-    <a class="work-card span6" href="pos.html" data-card data-card-name="Pharmacy POS" data-vt-name="vt-pos" data-tags="fullstack,live" data-reveal>
-      <div class="thumb"><img src="parmacyShop/02-dashboard.png" width="640" height="400" alt="Pharmacy POS dashboard" /></div>
-      <h3>Pharmacy POS &amp; inventory</h3>
-      <div class="meta">Full-stack · 2024 · live for an AIUB pilot pharmacy</div>
-      <div class="tags">
-        <span class="chip">Next.js</span><span class="chip">Postgres</span><span class="chip">JWT</span><span class="chip chip--accent">Live</span>
-      </div>
-      <div class="more">Open case →</div>
-    </a>
-
-    <a class="work-card span6" href="ai-dev.html" data-card data-card-name="AI resume builder" data-vt-name="vt-airesume" data-tags="ai" data-reveal>
-      <div class="thumb"><img src="images/ai-resume-builder-preview.png" width="640" height="400" alt="AI resume builder preview" /></div>
-      <h3>AI resume builder</h3>
-      <div class="meta">AI &amp; automation · 2025 · personal build</div>
-      <div class="tags">
-        <span class="chip">Next.js</span><span class="chip">Claude API</span><span class="chip">TypeScript</span>
-      </div>
-      <div class="more">Open case →</div>
-    </a>
-
-    <section class="span12" style="padding: 28px;" data-reveal>
-      <span class="sec-eyebrow">Featured pipeline</span>
-      <div class="pipeline" data-pipeline role="list" aria-label="AIUB Notice Bot pipeline">
-        <div class="step" role="listitem"><div class="k">Scrape</div><div class="n">01</div><div class="v">AIUB CMS poll</div></div>
-        <div class="step" role="listitem"><div class="k">Parse</div><div class="n">02</div><div class="v">HTML → fields</div></div>
-        <div class="step" role="listitem"><div class="k">Classify</div><div class="n">03</div><div class="v">Rule + LLM fall-back</div></div>
-        <div class="step" role="listitem"><div class="k">Route</div><div class="n">04</div><div class="v">Programme bucket</div></div>
-        <div class="step" role="listitem"><div class="k">Notify</div><div class="n">05</div><div class="v">Telegram push</div></div>
-        <div class="packet" data-packet aria-hidden="true"></div>
-      </div>
-      <div class="head-row">
-        <div>
-          <h3>AIUB Notice Bot</h3>
-          <p style="color:var(--ink-2);margin:6px 0 0;font-size:13px">Telegram → scrape → classify → notify. 2 live cycles a minute.</p>
+  <section class="hero hero--split" data-enter aria-labelledby="hero-h">
+    <div class="wrap"><div class="hero-text grid hero__grid">
+      <div class="hero__text span-5">
+        <p class="hero__kicker"><span class="dot" aria-hidden="true"></span>BSc CSE, AIUB 2026 · open to full-time roles</p>
+        <h1 id="hero-h">Full-stack and AI engineer in Dhaka</h1>
+        <p class="hero__lead">Full-stack apps, AI features and the harness around AI agents: loops, tools, memory and approval gates. My point-of-sale system runs the counter at Nasema Pharmacy.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="mailto:siam.cse.aiub@gmail.com">Email Siam<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+          <a class="btn btn--secondary" href="Siam-Hossain-CV.pdf" download>Download CV</a>
         </div>
-        <a class="btn btn--ghost btn--sm" href="automation.html">Read case →</a>
-        <button type="button" class="btn btn--ghost btn--sm" data-pipeline-play aria-label="Pause or replay pipeline">Pause</button>
       </div>
-    </section>
-
-    <a class="work-card span4" href="automation.html" data-card data-card-name="Email Trucker" data-tags="ai" data-reveal>
-      <div class="thumb"><img src="images/email-trucker-logo.svg" width="400" height="250" alt="Email Trucker logo" /></div>
-      <h3>Email Trucker</h3>
-      <div class="meta">Automation · 2024</div>
-      <div class="tags"><span class="chip">Node</span><span class="chip">Cron</span></div>
-      <div class="more">Open case →</div>
-    </a>
-
-    <a class="work-card span4" href="ecommerce.html" data-card data-card-name="MegaBazar" data-tags="fullstack" data-reveal>
-      <div class="thumb"><img src="MegaBazar/01-homepage-top.png" width="640" height="400" alt="MegaBazar homepage" /></div>
-      <h3>MegaBazar</h3>
-      <div class="meta">Full-stack · 2024 · personal build</div>
-      <div class="tags"><span class="chip">Next.js</span></div>
-      <div class="more">Open case →</div>
-    </a>
-
-    <a class="work-card span4" href="ecommerce.html" data-card data-card-name="ShoeVista" data-tags="fullstack" data-reveal>
-      <div class="thumb">Screenshot coming soon</div>
-      <h3>ShoeVista</h3>
-      <div class="meta">Full-stack · 2023 · personal build</div>
-      <div class="tags"><span class="chip">Next.js</span><span class="chip">PHP</span></div>
-      <div class="more">Open case →</div>
-    </a>
-
-    <a class="work-card span4" href="wpdev.html" data-card data-card-name="WordPress sites" data-tags="frontend" data-reveal>
-      <div class="thumb">Screenshot coming soon</div>
-      <h3>WordPress sites</h3>
-      <div class="meta">Front-end · 2024</div>
-      <div class="tags"><span class="chip">WP</span></div>
-      <div class="more">Open case →</div>
-    </a>
-
-    <a class="work-card span4" href="websites.html" data-card data-card-name="Static sites" data-tags="frontend" data-reveal>
-      <div class="thumb">Screenshot coming soon</div>
-      <h3>Static sites</h3>
-      <div class="meta">Front-end · 2023</div>
-      <div class="tags"><span class="chip">HTML</span></div>
-      <div class="more">Open case →</div>
-    </a>
-
-    <a class="work-card span4" href="ai-dev.html" data-card data-card-name="Learning log" data-tags="ai" data-reveal>
-      <div class="thumb">Notes</div>
-      <h3>Learning log</h3>
-      <div class="meta">AI · 2025</div>
-      <div class="tags"><span class="chip">Notes</span></div>
-      <div class="more">Open case →</div>
-    </a>
-
-  </div>
-</section>
-
-<!-- ===== PROJECTS — open-source & public repos ===== -->
-<section class="sec" id="projects">
-  <span class="sec-eyebrow">03 · Projects</span>
-  <div class="sec-head">
-    <h2>Open-source &amp; <em>public repos</em>.</h2>
-    <p class="sec-lead">A grab-bag of the better public work on my GitHub — full-stack apps, AI experiments, DevOps tools and small utilities. Tap any card to open the repo.</p>
-  </div>
-
-  <div class="work-bento">
-
-    <a class="work-card span4" href="https://github.com/ALPHAMAN-0/CV_Management" target="_blank" rel="noopener" data-card data-card-name="CV_Management" data-reveal>
-      <div class="thumb">CV</div>
-      <h3>CV_Management</h3>
-      <div class="meta">Full-stack · 2026 · Blazor + .NET 10 + Postgres</div>
-      <div class="tags"><span class="chip">C#</span><span class="chip">Postgres</span><span class="chip">Docker</span></div>
-      <div class="more">Open repo ↗</div>
-    </a>
-
-    <a class="work-card span4" href="https://github.com/ALPHAMAN-0/MEAN" target="_blank" rel="noopener" data-card data-card-name="MEAN Stack Boilerplate" data-reveal>
-      <div class="thumb">MEAN</div>
-      <h3>MEAN Stack Boilerplate</h3>
-      <div class="meta">Full-stack · 2025 · JWT refresh tokens, monorepo, vitest</div>
-      <div class="tags"><span class="chip">Angular</span><span class="chip">Node</span><span class="chip">TypeScript</span></div>
-      <div class="more">Open repo ↗</div>
-    </a>
-
-    <a class="work-card span4" href="https://github.com/ALPHAMAN-0/Gridwise_LLM_Energy_Optimizer" target="_blank" rel="noopener" data-card data-card-name="Gridwise LLM Energy Optimizer" data-reveal>
-      <div class="thumb">LLM</div>
-      <h3>Gridwise LLM Energy Optimizer</h3>
-      <div class="meta">AI · 2025 · NL → guardrails → LP solver</div>
-      <div class="tags"><span class="chip">LLM</span><span class="chip">Optimization</span></div>
-      <div class="more">Open repo ↗</div>
-    </a>
-
-    <a class="work-card span4" href="https://github.com/ALPHAMAN-0/Sleep_Loop" target="_blank" rel="noopener" data-card data-card-name="Sleep Loop" data-reveal>
-      <div class="thumb">{ }</div>
-      <h3>Sleep Loop</h3>
-      <div class="meta">AI · 2025 · multi-agent safety gate</div>
-      <div class="tags"><span class="chip">AI Agents</span><span class="chip">Python</span></div>
-      <div class="more">Open repo ↗</div>
-    </a>
-
-    <a class="work-card span4" href="https://github.com/ALPHAMAN-0/site-sentinel" target="_blank" rel="noopener" data-card data-card-name="Site Sentinel" data-reveal>
-      <div class="thumb">S/S</div>
-      <h3>Site Sentinel</h3>
-      <div class="meta">DevOps · 2025 · uptime + SSL watchdog → Telegram</div>
-      <div class="tags"><span class="chip">DevOps</span><span class="chip">Telegram</span></div>
-      <div class="more">Open repo ↗</div>
-    </a>
-
-    <a class="work-card span4" href="https://github.com/ALPHAMAN-0/ParcelFlowApi" target="_blank" rel="noopener" data-card data-card-name="ParcelFlow API" data-reveal>
-      <div class="thumb">API</div>
-      <h3>ParcelFlow API</h3>
-      <div class="meta">Backend · 2025 · RBAC + audit trail + state machine</div>
-      <div class="tags"><span class="chip">REST</span><span class="chip">RBAC</span><span class="chip">Audit</span></div>
-      <div class="more">Open repo ↗</div>
-    </a>
-
-    <a class="work-card span4" href="https://github.com/ALPHAMAN-0/Amaze_PMS" target="_blank" rel="noopener" data-card data-card-name="Amaze PMS" data-reveal>
-      <div class="thumb">NXT</div>
-      <h3>Amaze PMS</h3>
-      <div class="meta">Front-end · 2025 · Next.js 15 + GSAP + Motion + Lenis</div>
-      <div class="tags"><span class="chip">Next.js</span><span class="chip">GSAP</span></div>
-      <div class="more">Open repo ↗</div>
-    </a>
-
-    <a class="work-card span4" href="https://github.com/ALPHAMAN-0/Unlimited_Storage" target="_blank" rel="noopener" data-card data-card-name="Unlimited Storage" data-reveal>
-      <div class="thumb">∞</div>
-      <h3>Unlimited Storage</h3>
-      <div class="meta">Utility · 2025 · privacy-first client-side storage</div>
-      <div class="tags"><span class="chip">JavaScript</span><span class="chip">Browser</span></div>
-      <div class="more">Open repo ↗</div>
-    </a>
-
-    <a class="work-card span4" href="https://github.com/ALPHAMAN-0/Online_Image_to_PDF_Convater" target="_blank" rel="noopener" data-card data-card-name="Image to PDF Converter" data-reveal>
-      <div class="thumb">PDF</div>
-      <h3>Image → PDF Converter</h3>
-      <div class="meta">Utility · 2025 · client-side, no upload</div>
-      <div class="tags"><span class="chip">JS</span><span class="chip">Browser</span></div>
-      <div class="more">Open repo ↗</div>
-    </a>
-
-    <a class="work-card span4" href="https://github.com/ALPHAMAN-0/ERP_Primary_School" target="_blank" rel="noopener" data-card data-card-name="ERP Primary School" data-reveal>
-      <div class="thumb">ERP</div>
-      <h3>ERP Primary School</h3>
-      <div class="meta">Full-stack · 2026 · students, fees, reporting</div>
-      <div class="tags"><span class="chip">Full-stack</span><span class="chip">Dashboard</span></div>
-      <div class="more">Open repo ↗</div>
-    </a>
-
-    <a class="work-card span4" href="https://github.com/ALPHAMAN-0/AIUB_NOTICE_BOARD" target="_blank" rel="noopener" data-card data-card-name="AIUB Notice Board" data-reveal>
-      <div class="thumb">BOT</div>
-      <h3>AIUB Notice Board</h3>
-      <div class="meta">AI · 2025 · serverless Telegram notice bot</div>
-      <div class="tags"><span class="chip">Python</span><span class="chip">GitHub Actions</span></div>
-      <div class="more">Open repo ↗</div>
-    </a>
-
-    <a class="work-card span4" href="https://github.com/ALPHAMAN-0/Data_Structure" target="_blank" rel="noopener" data-card data-card-name="Data Structure" data-reveal>
-      <div class="thumb">C++</div>
-      <h3>Data Structure</h3>
-      <div class="meta">DSA · 2024 · ~69 C++ solutions by topic</div>
-      <div class="tags"><span class="chip">C++</span><span class="chip">DSA</span><span class="chip">Algorithms</span></div>
-      <div class="more">Open repo ↗</div>
-    </a>
-
-  </div>
-</section>
-
-<!-- ===== EXPERIENCE ===== -->
-<section class="sec" id="experience" data-reveal>
-  <span class="sec-eyebrow">04 · Experience</span>
-  <div class="sec-head">
-    <h2>Two years, one <em>turning</em> point.</h2>
-  </div>
-
-  <div class="bento" style="grid-template-columns: repeat(7, 1fr);">
-    <div style="grid-column:span 1;padding:14px 18px" class="tile-2"><div class="k" style="font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3)">2020</div></div>
-    <div style="grid-column:span 1;padding:14px 18px"><div class="k" style="font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3)">2021</div></div>
-    <div style="grid-column:span 1;padding:14px 18px" class="tile-2"><div class="k" style="font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3)">2022</div></div>
-    <div style="grid-column:span 1;padding:14px 18px;background:var(--accent-wash);color:var(--accent)"><div class="k" style="font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.08em">First paid client · 2025</div></div>
-    <div style="grid-column:span 1;padding:14px 18px"><div class="k" style="font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3)">2024</div></div>
-    <div style="grid-column:span 1;padding:14px 18px" class="tile-2"><div class="k" style="font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3)">2025</div></div>
-    <div style="grid-column:span 1;padding:14px 18px"><div class="k" style="font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3)">2026</div></div>
-  </div>
-
-  <div class="bento" style="margin-top:24px;grid-template-columns:repeat(2,1fr)">
-    <div>
-      <span class="sec-eyebrow">2025 – Present · Remote</span>
-      <h3 style="font-family:var(--serif);font-size:24px;font-weight:420;margin:6px 0">Freelance Software Engineer — Backend &amp; Full-Stack</h3>
-      <p style="color:var(--ink-2);margin:0">Client work: integrations, dashboards, small e-commerce builds. I design, ship, and hand off.</p>
-    </div>
-    <div>
-      <span class="sec-eyebrow">2023 – 2025</span>
-      <h3 style="font-family:var(--serif);font-size:24px;font-weight:420;margin:6px 0">Independent &amp; Open-Source Projects</h3>
-      <p style="color:var(--ink-2);margin:0">Pharmacy POS, Telegram notice pipelines, learning projects, public repos. Self-directed sprint cadence.</p>
-    </div>
-    <div>
-      <span class="sec-eyebrow">Education</span>
-      <h3 style="font-family:var(--serif);font-size:22px;font-weight:420;margin:6px 0">B.Sc. CSE · AIUB · 2026</h3>
-      <p style="color:var(--ink-2);margin:0;font-size:14px">Coursework in distributed systems, ML, and software engineering. Capstone on retail system design.</p>
-    </div>
-    <div>
-      <span class="sec-eyebrow">Certifications</span>
-      <ul style="margin:0;padding-left:18px;color:var(--ink-2);font-size:14px;line-height:1.7">
-        <li>Meta Front-End Developer</li>
-        <li>Google Generative AI Fundamentals</li>
-        <li>HackerRank Problem Solving &amp; SQL</li>
-      </ul>
-      <a href="Siam-Hossain-CV.pdf" download class="btn btn--ghost btn--sm" style="margin-top:12px">Full résumé ↓</a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== SKILLS ===== -->
-<section class="sec" id="skills" data-reveal>
-  <span class="sec-eyebrow">05 · Skills</span>
-  <div class="sec-head">
-    <h2>Stack, by <em>evidence</em>.</h2>
-    <p class="sec-lead">Chips with a count open an anchored popover listing the projects that use them.</p>
-  </div>
-
-  <div class="bento" style="grid-template-columns:repeat(3,1fr)">
-    <div>
-      <h3 style="font-family:var(--serif);font-size:22px;font-weight:420;margin:0 0 12px">Languages</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:6px">
-        <span class="chip" data-evidence="TypeScript:Pharmacy POS:2024|MegaBazar:2024|AI resume builder:2025|ShoeVista:2023">TypeScript · 4 projects</span>
-        <span class="chip" data-evidence="JavaScript:Pharmacy POS:2024|MegaBazar:2024|ShoeVista:2023">JavaScript · 3 projects</span>
-        <span class="chip">Python</span>
-        <span class="chip">SQL</span>
-        <span class="chip">C++</span>
+      <div class="hero__media span-6 start-7">
+        <img src="images/siam-portrait.jpg" srcset="images/siam-portrait-800.jpg 820w, images/siam-portrait.jpg 1370w" sizes="(max-width: 639px) 342px, (max-width: 1023px) 90vw, 628px" alt="Siam Hossain, arms crossed, in a patterned kurta in front of plants and a stone wall" style="--ly-pos: 50% 30%" width="1370" height="1400" fetchpriority="high" data-source="client" data-subject="portrait of Siam Hossain">
+        <div class="ly-float">
+          <div class="ly-float__row"><span>In production</span><span>Node.js, MongoDB</span></div>
+          <div class="ly-float__title">Pharmacy POS at Nasema Pharmacy</div>
+        </div>
       </div>
-    </div>
-    <div>
-      <h3 style="font-family:var(--serif);font-size:22px;font-weight:420;margin:0 0 12px">Frontend</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:6px">
-        <span class="chip chip--evidence" data-evidence="React:Pharmacy POS:2024|AI resume builder:2025|MegaBazar:2024|Email Trucker:2024">React · 4 projects</span>
-        <span class="chip">Next.js</span>
-        <span class="chip">HTML / CSS</span>
-        <span class="chip chip--evidence" data-evidence="Tailwind:MegaBazar:2024|ShoeVista:2023">Tailwind</span>
-      </div>
-    </div>
-    <div>
-      <h3 style="font-family:var(--serif);font-size:22px;font-weight:420;margin:0 0 12px">Backend</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:6px">
-        <span class="chip">Node.js</span>
-        <span class="chip">Express</span>
-        <span class="chip chip--evidence" data-evidence="REST APIs:Pharmacy POS:2024|MegaBazar:2024|Email Trucker:2024">REST APIs · 3 projects</span>
-        <span class="chip">JWT auth</span>
-      </div>
-    </div>
-    <div>
-      <h3 style="font-family:var(--serif);font-size:22px;font-weight:420;margin:0 0 12px">Database</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:6px">
-        <span class="chip chip--evidence" data-evidence="Postgres:Pharmacy POS:2024|Email Trucker:2024">Postgres · 2 projects</span>
-        <span class="chip">MongoDB</span>
-        <span class="chip">SQLite</span>
-      </div>
-    </div>
-    <div>
-      <h3 style="font-family:var(--serif);font-size:22px;font-weight:420;margin:0 0 12px">DevOps</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:6px">
-        <span class="chip">Git</span>
-        <span class="chip">Docker</span>
-        <span class="chip">Linux</span>
-        <span class="chip">GitHub Actions</span>
-      </div>
-    </div>
-    <div>
-      <h3 style="font-family:var(--serif);font-size:22px;font-weight:420;margin:0 0 12px">AI &amp; automation</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:6px">
-        <span class="chip">Claude API</span>
-        <span class="chip chip--evidence" data-evidence="Telegram bots:AIUB Notice Bot:2024|Email Trucker:2024">Telegram bots · 2</span>
-        <span class="chip">Scraping</span>
-      </div>
-    </div>
-    <div>
-      <h3 style="font-family:var(--serif);font-size:22px;font-weight:420;margin:0 0 12px">WordPress</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:6px">
-        <span class="chip">Themes</span>
-        <span class="chip">Plugins</span>
-        <span class="chip">WooCommerce</span>
-      </div>
-    </div>
-    <div>
-      <h3 style="font-family:var(--serif);font-size:22px;font-weight:420;margin:0 0 12px">Tools</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:6px">
-        <span class="chip">Figma</span>
-        <span class="chip">Postman</span>
-        <span class="chip">VS Code</span>
-      </div>
-    </div>
-    <div>
-      <h3 style="font-family:var(--serif);font-size:22px;font-weight:420;margin:0 0 12px">Practice</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:6px">
-        <span class="chip">2000+ problems</span>
-        <span class="chip">LeetCode</span>
-        <span class="chip">Codeforces</span>
-        <span class="chip">HackerRank</span>
-      </div>
-    </div>
-  </div>
-</section>
+    </div></div>
+  </section>
 
-<!-- ===== PRACTICE ===== -->
-<section class="sec" id="practice" data-reveal>
-  <span class="sec-eyebrow">06 · Practice</span>
-  <div class="sec-head">
-    <h2>Where the <em>edges</em> get blunt.</h2>
-  </div>
-
-  <div class="bento" style="grid-template-columns:repeat(2,1fr)">
-    <div>
-      <div style="font-family:var(--serif);font-variation-settings:'opsz' 144;line-height:1;font-weight:380;color:var(--accent);font-size:clamp(72px, 9vw, 120px);">2000+</div>
-      <div class="label" style="color:var(--ink-3);margin-top:8px">Problems solved across platforms · Codolio total</div>
-      <a class="btn btn--primary btn--sm" style="margin-top:18px" href="https://codolio.com/siamhossain" target="_blank" rel="noreferrer">Open Codolio ↗</a>
-    </div>
-
-    <div>
-      <table class="ledger">
-        <thead><tr><th>Platform</th><th>Solved</th><th>Source</th></tr></thead>
-        <tbody>
-          <tr>
-            <td><a class="ps-card" data-platform="leetcode" href="https://leetcode.com/u/RedApple47/" target="_blank" rel="noopener" style="padding:8px 10px;gap:8px">
-              <span class="ps-platform">LeetCode</span>
-            </a></td>
-            <td class="num"><span class="ps-stat-num">303</span></td>
-            <td><span class="label" data-src>cached</span></td>
-          </tr>
-          <tr>
-            <td><a class="ps-card" data-platform="codeforces" href="https://codeforces.com/profile/SIAM001" target="_blank" rel="noopener" style="padding:8px 10px;gap:8px">
-              <span class="ps-platform">Codeforces</span>
-            </a></td>
-            <td class="num"><span class="ps-stat-num">318</span></td>
-            <td><span class="label" data-src>cached</span></td>
-          </tr>
-          <tr>
-            <td><a class="ps-card" data-platform="hackerrank" href="https://www.hackerrank.com/profile/BaBaYaGa_A1" target="_blank" rel="noopener" style="padding:8px 10px;gap:8px">
-              <span class="ps-platform">HackerRank</span>
-            </a></td>
-            <td class="num"><span class="ps-stat-num">63</span></td>
-            <td><span class="label" data-src>cached</span></td>
-          </tr>
-          <tr>
-            <td><a class="ps-card" data-platform="codolio" href="https://codolio.com/siamhossain" target="_blank" rel="noopener" style="padding:8px 10px;gap:8px">
-              <span class="ps-platform">Codolio</span>
-            </a></td>
-            <td class="num"><span class="ps-stat-num">2000+</span></td>
-            <td><span class="label" data-src>total</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div>
-      <span class="sec-eyebrow">How I build with AI</span>
-      <h3 style="font-family:var(--serif);font-size:22px;font-weight:420;margin:6px 0 14px">Three <em>tools</em>, three jobs.</h3>
-      <p style="color:var(--ink-2);font-size:14px;line-height:1.6;margin:0"><strong>Claude Code</strong> for plan-then-build sessions. <strong>Cursor</strong> for inline edits across files. <strong>GitHub Copilot</strong> for completions in unknown repos.</p>
-    </div>
-
-    <div>
-      <span class="sec-eyebrow">AI learning topics</span>
-      <details><summary style="cursor:pointer;padding:10px 0;border-top:1px solid var(--rule);font-weight:500">Transformers from scratch</summary><p style="color:var(--ink-2);font-size:13px;padding:0 0 12px;margin:0">Following Karpathy &amp; 3Blue1Brown; rebuilding attention in NumPy.</p></details>
-      <details><summary style="cursor:pointer;padding:10px 0;border-top:1px solid var(--rule);font-weight:500">LLM evaluation</summary><p style="color:var(--ink-2);font-size:13px;padding:0 0 12px;margin:0">Held-out evals for a retrieval-augmented summariser.</p></details>
-      <details><summary style="cursor:pointer;padding:10px 0;border-top:1px solid var(--rule);font-weight:500">RAG patterns</summary><p style="color:var(--ink-2);font-size:13px;padding:0 0 12px;margin:0">Chunking, hybrid retrieval, reranking. Notes from the resume builder.</p></details>
-      <details><summary style="cursor:pointer;padding:10px 0;border-top:1px solid var(--rule);font-weight:500">Prompt regressions</summary><p style="color:var(--ink-2);font-size:13px;padding:0 0 12px;margin:0">Snapshot tests for prompts in CI.</p></details>
-      <details><summary style="cursor:pointer;padding:10px 0;border-top:1px solid var(--rule);font-weight:500">Vector databases</summary><p style="color:var(--ink-2);font-size:13px;padding:0 0 12px;margin:0">pgvector basics.</p></details>
-      <details><summary style="cursor:pointer;padding:10px 0;border-top:1px solid var(--rule);font-weight:500">Production guardrails</summary><p style="color:var(--ink-2);font-size:13px;padding:0 0 12px;margin:0">Timeouts, schemas, retries — what I've learned shipping.</p></details>
-    </div>
-  </div>
-</section>
-
-<!-- ===== ABOUT ===== -->
-<section class="sec" id="about" data-reveal>
-  <span class="sec-eyebrow">07 · About</span>
-  <div class="bento" style="grid-template-columns: 240px 1fr;">
-    <div style="padding:0;overflow:hidden">
-      <img src="images/SIAM.jpeg" width="240" height="320" alt="Siam Hossain" style="width:100%;height:100%;max-height:320px;object-fit:cover;display:block" />
-    </div>
-    <div>
-      <h2>A bit about <em>me</em>.</h2>
-      <p style="color:var(--ink-2);font-size:15px;line-height:1.6;max-width:60ch">I taught myself to code at 14 by rebuilding a small point-of-sale I saw at a family pharmacy. Ten years later I've built three more for actual pharmacies, integrated AI into a real workflow, and shipped a Telegram bot that 200+ students rely on for class notices.</p>
-      <p style="color:var(--ink-2);font-size:15px;line-height:1.6;max-width:60ch">I'm looking for full-time roles where I can keep doing this: close to the data, close to the user, building things people actually use.</p>
-      <dl style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border-radius:10px;overflow:hidden;border:1px solid var(--rule);margin-top:18px">
-        <div style="background:var(--tile);padding:14px"><dt class="label">Based</dt><dd style="margin:6px 0 0;font-weight:500">Dhaka, BD</dd></div>
-        <div style="background:var(--tile);padding:14px"><dt class="label">Time zone</dt><dd style="margin:6px 0 0;font-weight:500">BST (UTC+6)</dd></div>
-        <div style="background:var(--tile);padding:14px"><dt class="label">Languages</dt><dd style="margin:6px 0 0;font-weight:500">English · Bengali</dd></div>
-      </dl>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CONTACT ===== -->
-<section class="sec" id="contact" data-reveal>
-  <span class="sec-eyebrow">08 · Contact</span>
-  <div class="contact-tile">
-    <div>
-      <h2>Let&rsquo;s <em>talk</em>.</h2>
-      <p class="em">siam.cse.aiub@gmail.com</p>
-    </div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap">
-      <button class="btn" type="button" data-copy="siam.cse.aiub@gmail.com" style="background:var(--tile);color:var(--ink)">Copy email</button>
-      <a class="btn btn--ghost" href="Siam-Hossain-CV.pdf" download style="border-color:color-mix(in srgb, var(--tile) 22%, transparent);color:var(--tile)">Download CV</a>
-    </div>
-    <div class="socials">
-      <a href="https://github.com/ALPHAMAN-0" target="_blank" rel="noopener">
-        <span class="lbl">GitHub</span><span class="handle">@ALPHAMAN-0</span>
-      </a>
-      <a href="https://www.linkedin.com/in/siamhossain4/" target="_blank" rel="noopener">
-        <span class="lbl">LinkedIn</span><span class="handle">in/siamhossain4</span>
-      </a>
-      <a href="https://codolio.com/siamhossain" target="_blank" rel="noopener">
-        <span class="lbl">Codolio</span><span class="handle">2000+ problems</span>
-      </a>
-      <a href="mailto:siam.cse.aiub@gmail.com">
-        <span class="lbl">Email</span><span class="handle">siam.cse.aiub…</span>
+  <section class="section g2m" id="clients" aria-labelledby="clients-h">
+    <div class="wrap grid grid--top">
+      <div class="span-5 stack-5">
+        <div class="section-head">
+          <h2 id="clients-h">Pharmacy POS, stock audit and invoices</h2>
+          <p>Client work since 2025: three tools I built and deployed for local businesses. All are live and hold real business data.</p>
+        </div>
+        <ul class="rows">
+          <li><span class="rows__name">Pharmacy POS</span><p>Billing, stock by batch and expiry, invoices and reports, with a login for each kind of staff</p><span class="rows__value">Live</span></li>
+          <li><span class="rows__name">Stock audit app</span><p>Every price and count writes straight to the owner’s Google Sheet</p><span class="rows__value">Live</span></li>
+          <li><span class="rows__name">Invoice generator</span><p>One dashboard for invoices across several businesses</p><span class="rows__value">Live</span></li>
+        </ul>
+        <p><a class="link" href="pos.html">Read the POS case study</a></p>
+      </div>
+      <a class="frame m-zoom frame--split frame--shots span-6 start-7" href="pos.html" aria-label="Open the Pharmacy POS case study">
+        <div class="stage stage--fade-br">
+          <div class="at-corner" style="--ax: 56px; --ay: 56px"><img class="shot" src="parmacyShop/03-pos.png" alt="The POS sell screen: medicines with prices and stock, a cart, and payment by cash, bKash, Nagad or card" width="1380" height="872" loading="lazy" data-source="client" data-subject="Nasema Pharmacy POS"></div>
+        </div>
       </a>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer class="foot">
-  <span>© 2026 Siam Hossain</span>
-  <span>Built as a static site, hosted on GitHub Pages.</span>
-</footer>
+  <section class="section" id="projects" aria-labelledby="projects-h" style="--h: 1; --hm: 2">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="projects-h">Two products I built end to end</h2>
+      </div>
+      <div class="grid">
+        <article class="card card--row span-6">
+          <h3>Scores a résumé against a job</h3>
+          <p>An ATS-style score from 0 to 100, the keywords the job asks for, and a summary drafted by Claude. React and TypeScript.</p>
+          <a class="card__link" href="https://alphaman-0.github.io/AI_Resume_Builder/" target="_blank" rel="noopener">Open the live demo</a>
+          <div class="panel">
+            <div class="stage stage--fade-br">
+              <div class="at-corner" style="--ax: 32px; --ay: 32px"><img class="shot" src="images/ai-resume-builder-preview.png" srcset="images/ai-resume-builder-preview-800.png 800w, images/ai-resume-builder-preview.png 1440w" sizes="(max-width: 639px) 560px, 760px" alt="The résumé builder: a form on the left, the résumé in the middle and an ATS score of 98 out of 100 on the right" width="1440" height="900" loading="lazy" data-source="client" data-subject="AI résumé builder"></div>
+            </div>
+          </div>
+        </article>
+        <article class="card card--row span-6">
+          <h3>Runs an electronics storefront</h3>
+          <p>MegaBazar: categories, product pages, search, a cart and checkout with a test payment screen. Built in Next.js.</p>
+          <a class="card__link" href="ecommerce.html">Read the storefront case study</a>
+          <div class="panel">
+            <div class="stage stage--fade-br">
+              <div class="at-corner" style="--ax: 32px; --ay: 32px"><img class="shot" src="MegaBazar/01-homepage-top.png" srcset="MegaBazar/01-homepage-top-800.png 800w, MegaBazar/01-homepage-top.png 1440w" sizes="(max-width: 639px) 560px, 760px" alt="The MegaBazar home page: search bar, category menu and a sale banner" width="1440" height="900" loading="lazy" data-source="client" data-subject="MegaBazar storefront"></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
+  <section class="section statement" id="statement" data-moment="word-highlight" aria-label="What I build">
+    <div class="wrap">
+      <p class="t-label">What I build</p>
+      <p class="mo-wh__text">Most of my work is <strong>the part nobody sees</strong>: the bill at a pharmacy counter, the stock count in a friend’s shop, the AIUB notice that lands in Telegram already sorted and summed up.</p>
+    </div>
+  </section>
+
+  <section class="section g2m" id="automation" aria-labelledby="automation-h">
+    <div class="wrap grid grid--top">
+      <div class="span-5 stack-5">
+        <div class="section-head">
+          <h2 id="automation-h">Automation that costs $0 a month to run</h2>
+          <p>No server and no database: a scheduled GitHub Actions workflow does the work, then commits its own state back to the repository.</p>
+        </div>
+        <ul class="rows">
+          <li><span class="rows__name">AIUB Notice Bot</span><p>Sorts each new AIUB notice into one of 8 categories and posts a one-line summary to Telegram</p><span class="rows__value">592 runs</span></li>
+          <li><span class="rows__name">Email Trucker</span><p>Opens a Gmail inbox read-only every hour and sends one Telegram digest of new mail</p><span class="rows__value">Hourly</span></li>
+        </ul>
+        <p><a class="link" href="automation.html">Read the automation case study</a></p>
+      </div>
+      <a class="frame m-zoom frame--split frame--shots frame--dark span-6 start-7" href="https://github.com/ALPHAMAN-0/AIUB_NOTICE_BOARD/actions" target="_blank" rel="noopener" aria-label="Open the notice bot’s run history on GitHub">
+        <div class="stage stage--fade-br">
+          <div class="at-corner" style="--ax: 40px; --ay: 60px"><img class="shot shot--gh" src="images/notice-bot-runs.png" alt="GitHub Actions history for the notice bot: 592 scheduled runs, each passed, most in under 20 seconds" width="1080" height="620" loading="lazy" data-source="client" data-subject="AIUB Notice Bot runs"></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="section ground-surface" id="stack" aria-labelledby="stack-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="stack-h">Full stack, AI engineering and AI harness</h2>
+        <p>Node.js, TypeScript, React and Angular over PostgreSQL or MongoDB, shipped with Docker and GitHub Actions.</p>
+      </div>
+      <div class="grid">
+        <article class="card card--row card--open span-4">
+          <h3>Ships full-stack apps</h3>
+          <p>Every route in ParcelFlow API checks sign-in, then role, then the request body.</p>
+          <div class="panel">
+            <div class="stage stage--fade-b">
+              <div class="at-rise fit" style="--fit-max: 400px; --ax: 24px; --ay: 32px">
+                <div class="ui ui-panel ui-code" data-ui="code">
+                  <div class="ui-code__tabs">
+                    <span class="ui-code__tab is-on"><i class="ui-code__lang">JS</i>parcels.routes.js</span>
+                    <span class="ui-spacer"></span>
+                    <span class="ui-chip ui-chip--plain ui-code__chip" data-code-chip>RBAC</span>
+                  </div>
+                  <pre class="ui-code__pre"><code><span class="ui-code__ln" data-n="27">parcelsRouter.<span class="f">patch</span>(</span>
+<span class="ui-code__ln" data-n="28">  '/:id/status',</span>
+<span class="ui-code__ln" data-n="29" data-note="Checks the signed-in user first.">  <span class="f">authenticate</span>,</span>
+<span class="ui-code__ln is-mark" data-n="30">  <span class="f">authorize</span>('DELIVERY_STAFF', 'ADMIN'),</span>
+<span class="ui-code__ln" data-n="31" data-note="Rejects a bad body before the controller.">  <span class="f">validate</span>({ params: idParamsSchema, body: updateStatusSchema }),</span>
+<span class="ui-code__ln" data-n="32">  controller.<span class="f">updateStatus</span>,</span>
+<span class="ui-code__ln" data-n="33">);</span></code></pre>
+                  <div class="ui-code__hint" data-code-hint><span class="ui-dot"></span><span data-code-text>Only delivery staff and admins may move a parcel’s status.</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="card card--row card--open span-4">
+          <h3>Builds AI features</h3>
+          <p>Function calling, RAG over documents and LLM summaries, in FastAPI or in the browser.</p>
+          <div class="panel panel--plain">
+            <div class="tools" role="img" aria-label="Tools: OpenAI, Claude, LangChain, FastAPI, Python and GitHub Models">
+              <span class="ic-chip ic-chip--lg"><img class="ic ic-ink" src="assets/icons/openai.svg" alt="" width="40" height="40" loading="lazy">OpenAI</span>
+              <span class="ic-chip ic-chip--lg"><img class="ic" src="assets/icons/claude.svg" alt="" width="40" height="40" loading="lazy">Claude</span>
+              <span class="ic-chip ic-chip--lg"><img class="ic ic-ink" src="assets/icons/langchain.svg" alt="" width="40" height="40" loading="lazy">LangChain</span>
+              <span class="ic-chip ic-chip--lg"><img class="ic" src="assets/icons/fastapi.svg" alt="" width="40" height="40" loading="lazy">FastAPI</span>
+              <span class="ic-chip ic-chip--lg"><img class="ic" src="assets/icons/python.svg" alt="" width="40" height="40" loading="lazy">Python</span>
+              <span class="ic-chip ic-chip--lg"><img class="ic ic-ink" src="assets/icons/github.svg" alt="" width="40" height="40" loading="lazy">GitHub Models</span>
+            </div>
+          </div>
+        </article>
+        <article class="card card--row card--open span-4">
+          <h3>Builds harnesses for AI agents</h3>
+          <p>Loops with tools, memory, a checker and a human approval gate. Claude Code, Cursor and Copilot daily.</p>
+          <a class="panel panel--dark m-zoom" href="https://github.com/ALPHAMAN-0/Sleep_Loop" target="_blank" rel="noopener" aria-label="Open Sleep Loop on GitHub">
+            <div class="stage stage--fade-br">
+              <div class="at-corner" style="--ax: 24px; --ay: 24px"><img class="shot shot--gh shot--harness" src="images/sleep-loop-readme.png" alt="Sleep Loop’s README: an agent loop with docs, memory, a target and a fleet" width="900" height="820" loading="lazy" data-source="client" data-subject="Sleep Loop README"></div>
+            </div>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section ground-surface" id="repos" aria-labelledby="repos-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="repos-h">100 public repositories on GitHub</h2>
+        <p>Most are coursework and experiments. These four show the backend side.</p>
+      </div>
+      <a class="frame m-zoom frame--shots frame--dark frame--band" href="https://github.com/ALPHAMAN-0" target="_blank" rel="noopener" aria-label="Open Siam’s GitHub profile">
+        <picture><source media="(max-width: 639px)" srcset="images/github-contributions-phone.png"><img class="shot shot--strip" src="images/github-contributions.png" alt="A year of GitHub contributions: 2,867 in all, with commits in most weeks" width="910" height="225" loading="lazy" data-source="client" data-subject="GitHub contributions"></picture>
+      </a>
+      <div class="grid grid--top repo-cols">
+        <ul class="rows rows--repos span-6">
+          <li><span class="rows__name"><img class="ic ic-24" src="assets/icons/nodejs.svg" alt="" width="21" height="24" loading="lazy"><a class="link" href="https://github.com/ALPHAMAN-0/ParcelFlowApi" target="_blank" rel="noopener">ParcelFlow API</a></span><p>Three roles, a strict status flow and an audit trail</p></li>
+          <li><span class="rows__name"><img class="ic ic-24" src="assets/icons/postgres.svg" alt="" width="23" height="24" loading="lazy"><a class="link" href="https://github.com/ALPHAMAN-0/Backend_DB_Bhorsha" target="_blank" rel="noopener">Bhorsha database</a></span><p>13 PostgreSQL 16 tables, rules enforced in the database</p></li>
+        </ul>
+        <ul class="rows rows--repos span-6 start-7">
+          <li><span class="rows__name"><img class="ic ic-24" src="assets/icons/dotnet.svg" alt="" width="24" height="24" loading="lazy"><a class="link" href="https://github.com/ALPHAMAN-0/CV_Management" target="_blank" rel="noopener">CV management</a></span><p>One profile, a tailored CV per position, in .NET 10</p></li>
+          <li><span class="rows__name"><img class="ic ic-24" src="assets/icons/c-sharp.svg" alt="" width="22" height="24" loading="lazy"><a class="link" href="https://github.com/ALPHAMAN-0/ERP_Primary_School" target="_blank" rel="noopener">School ERP</a></span><p>3,000+ students, 8 roles, 12 modules from one spec</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <section class="section" id="about" aria-labelledby="about-h">
+    <div class="wrap grid grid--top">
+      <div class="span-5 stack-5">
+        <div class="section-head">
+          <h2 id="about-h">About Siam</h2>
+          <p>I studied computer science at AIUB and started taking client work in 2025. I like schemas, roles and audit trails, and the checks that keep an AI agent on track.</p>
+        </div>
+        <ul class="rows">
+          <li><span class="rows__name">Education</span><p>BSc in Computer Science and Engineering, AIUB</p><span class="rows__value">2026</span></li>
+          <li><span class="rows__name">Problem solving</span><p>LeetCode 303, Codeforces 318, HackerRank 63; <a class="link" href="https://codolio.com/profile/babaYagaa" target="_blank" rel="noopener">2,000+ in all on Codolio</a></p><span class="rows__value">2,000+</span></li>
+          <li><span class="rows__name">Certificates</span><p>Meta Front-End Developer, Google Generative AI Fundamentals, HackerRank Problem Solving and SQL</p></li>
+          <li><span class="rows__name">Hackathons</span><p><a class="link" href="Certificates/UNESCO.pdf">UNESCO Youth Hackathon 2026</a>, BUP CSE Fest 2026 preliminary</p><span class="rows__value">2026</span></li>
+          <li><span class="rows__name">Languages</span><p>Bangla, English, and German at a beginner level</p></li>
+        </ul>
+      </div>
+      <figure class="develop span-6 start-7" data-moment="picture-develops"><img src="images/SIAM.jpeg" alt="Siam Hossain on a beach at dusk, boats on the water behind him" width="1440" height="1440" loading="lazy" data-source="client" data-subject="Siam Hossain"></figure>
+    </div>
+  </section>
 </main>
 
-<!-- phone action bar (stays hidden until JS observes hero passed) -->
-<div class="actionbar" data-actionbar aria-label="Quick contact">
-  <span class="ttl">Contact</span>
-  <a class="pill pill--accent" href="mailto:siam.cse.aiub@gmail.com">Email</a>
-  <button class="pill" type="button" data-copy="siam.cse.aiub@gmail.com">Copy</button>
-  <a class="pill" href="Siam-Hossain-CV.pdf" download>CV</a>
-</div>
-
-<!-- ⌘K command menu -->
-<dialog class="cmdk" aria-label="Command menu">
-  <input type="text" placeholder="Type a command or search…" aria-label="Command" />
-  <div data-results></div>
-  <div class="foot">
-    <span><kbd>↑</kbd><kbd>↓</kbd> Navigate · <kbd>↵</kbd> Open</span>
-    <span><kbd>Esc</kbd> Close</span>
+<footer class="footer closing footer--dark ground-inverse g2m" id="contact" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closing__cta close--type">
+      <div class="section-head">
+        <h2 id="close-h">Email me about a role or project</h2>
+        <p>I am in Dhaka, UTC+6, and open to full-time, remote and contract work.</p>
+      </div>
+      <a class="btn btn--primary btn--xl btn--wide" href="mailto:siam.cse.aiub@gmail.com">Email Siam<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+    </div>
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-4 stack-4">
+          <a class="nav__logo footer__mark" href="#top"><span class="mark" data-mark="ring" aria-hidden="true"></span>Siam Hossain</a>
+          <p class="footer__lede">Full-stack and AI engineer in Dhaka.</p>
+        </div>
+        <div class="span-2 footer__col"><h3>Work</h3><ul><li><a href="#clients">Client work</a></li><li><a href="#projects">Products</a></li><li><a href="#automation">Automation</a></li><li><a href="#repos">Repositories</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Case studies</h3><ul><li><a href="pos.html">Pharmacy POS</a></li><li><a href="automation.html">Bots</a></li><li><a href="ai-dev.html">AI tools</a></li><li><a href="ecommerce.html">Storefronts</a></li><li><a href="websites.html">Business tools</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Profiles</h3><ul><li><a href="https://github.com/ALPHAMAN-0" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://www.linkedin.com/in/siamhossain4/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://leetcode.com/u/RedApple47/" target="_blank" rel="noopener">LeetCode</a></li><li><a href="https://codeforces.com/profile/SIAM001" target="_blank" rel="noopener">Codeforces</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Contact</h3><ul><li><a href="Siam-Hossain-CV.pdf" download>Download CV</a></li><li><a href="#about">About</a></li><li><a href="https://codolio.com/profile/babaYagaa" target="_blank" rel="noopener">Codolio</a></li></ul></div>
+      </div>
+      <div class="footer__legal">
+        <span>&copy; 2026 Siam Hossain. Product names and logos are trademarks of their owners.</span>
+      </div>
+    </div>
   </div>
-</dialog>
+</footer>
 
-<script src="js/script.js" defer></script>
 
+<script type="module" src="assets/system.js"></script>
+<script type="module" src="assets/motion/motion.js"></script>
+<script type="module" src="assets/layout/layout.js"></script>
 </body>
 </html>

@@ -1,927 +1,289 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-type="service" data-radius="soft" data-buttons="block" data-motion>
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>Automation — AIUB Notice Bot &amp; Email Trucker — Siam Hossain</title>
-<meta name="description" content="Two serverless automation pipelines by Siam Hossain: AIUB Notice Board, an AI-powered Telegram bot that scrapes & classifies university notices, and Email Trucker, an hourly Gmail-to-Telegram digest bot. Both free, on GitHub Actions." />
-
-<link rel="icon" type="image/svg+xml" href="images/logo.svg" />
-<meta name="color-scheme" content="light dark" />
-<meta name="theme-color" content="#F2F0EA" media="(prefers-color-scheme: light)" />
-<meta name="theme-color" content="#131311" media="(prefers-color-scheme: dark)" />
-
-<script>
-  (function(){
-    try {
-var t = localStorage.getItem('theme');
-      if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
-    } catch (e) {}
-  })();
-</script>
-
-<link rel="canonical" href="https://alphaman-0.github.io/AboutMe/automation.html" />
-
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://alphaman-0.github.io/AboutMe/automation.html" />
-<meta property="og:title" content="Automation — AIUB Notice Bot &amp; Email Trucker — Siam Hossain" />
-<meta property="og:description" content="Two serverless, GitHub-Actions-run bots: an AI-powered Telegram notice board, and an hourly Gmail-to-Telegram digest watcher. The stories and the architectures." />
-<meta property="og:image" content="https://alphaman-0.github.io/AboutMe/images/siam-headshot.jpg" />
-<meta property="og:image:alt" content="Siam Hossain — Software Engineer" />
-
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Automation — AIUB Notice Bot &amp; Email Trucker — Siam Hossain" />
-<meta name="twitter:description" content="Two serverless, GitHub-Actions-run bots: an AI-powered Telegram notice board, and an hourly Gmail-to-Telegram digest watcher." />
-<meta name="twitter:image" content="https://alphaman-0.github.io/AboutMe/images/siam-headshot.jpg" />
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AIUB Notice Bot and Email Trucker: two Telegram bots by Siam Hossain</title>
+<meta name="description" content="Two Telegram bots that run on GitHub Actions for $0 a month: AIUB Notice Bot sorts and sums up new university notices, Email Trucker sends a digest of new Gmail.">
+<meta name="author" content="Siam Hossain">
+<link rel="canonical" href="https://alphaman-0.github.io/AboutMe/automation.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://alphaman-0.github.io/AboutMe/automation.html">
+<meta property="og:title" content="AIUB Notice Bot and Email Trucker: two Telegram bots by Siam Hossain">
+<meta property="og:description" content="Two Telegram bots that run on GitHub Actions for $0 a month: AIUB Notice Bot sorts and sums up new university notices, Email Trucker sends a digest of new Gmail.">
+<meta property="og:image" content="https://alphaman-0.github.io/AboutMe/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#eef0f3">
+<meta name="site-kind" content="other">
+<meta name="page-type" content="service">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="css/style.css">
-
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..700&family=Hanken+Grotesk:wght@400..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<link rel="stylesheet" href="assets/ui/cards.css">
+<link rel="stylesheet" href="assets/motion/motion.css">
+<link rel="stylesheet" href="assets/backgrounds/backgrounds.css">
+<link rel="stylesheet" href="assets/layout/layout.css">
+<link rel="stylesheet" href="assets/icons/icon.css">
 <style>
-  /* ── shared light case-study top bar — matches index.html / ai-dev.html ── */
-  .topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:24px;padding:14px clamp(20px,4vw,56px);background:rgba(251,250,247,.82);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
-  .topbar .brand{display:inline-flex;align-items:center;gap:8px;font-family:var(--serif);font-style:italic;font-size:20px;font-weight:500;color:var(--ink);letter-spacing:-.01em;flex-shrink:0;transition:color .2s var(--ease)}
-  .topbar .brand:hover{color:var(--accent)}
-  .topbar .brand .arr{font-style:normal;font-size:15px;color:var(--ink-3)}
-  .topbar nav{display:flex;gap:24px;margin-left:8px}
-  .topbar nav a{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--ink-2);position:relative;padding:2px 0;transition:color .2s var(--ease)}
-  .topbar nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:2px;background:var(--accent);transition:right .3s var(--ease)}
-  .topbar nav a:hover{color:var(--ink)}
-  .topbar nav a:hover::after{right:0}
-  .topbar .page-tag{margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-2);padding:6px 12px;border:1px solid var(--rule-2);border-radius:999px;background:var(--surface)}
-  @media (max-width:640px){.topbar nav{display:none}}
-
-  .auto-wrap{padding:48px clamp(20px,4vw,56px) 80px;max-width:1180px;margin:0 auto}
-
-  /* ── page header ── */
-  .auto-head{display:grid;grid-template-columns:200px 1fr;gap:48px;margin-bottom:72px;align-items:baseline}
-  .auto-head .num{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3)}
-  .auto-head .num b{color:var(--accent);font-weight:600;margin-right:8px}
-  .auto-head h1{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(48px,7vw,92px);line-height:1;letter-spacing:-.015em;color:var(--ink)}
-  .auto-head .sub{color:var(--ink-2);margin-top:20px;font-size:15px;max-width:62ch;line-height:1.7}
-  .auto-head .sub b{color:var(--ink);font-weight:600}
-
-  /* ── section rhythm ── */
-  .case{padding:52px 0;border-top:1px solid var(--rule)}
-  .proj-panel > .case:first-of-type{border-top:0;padding-top:0}
-
-  /* ── project tabs (switch between case studies) ── */
-  .proj-tabs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:56px;border:1px solid var(--rule);background:var(--surface);padding:4px;border-radius:999px;width:max-content;max-width:100%}
-  .proj-tab{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);padding:10px 20px;border-radius:999px;white-space:nowrap;transition:color .2s var(--ease),background .2s var(--ease)}
-  .proj-tab:hover{color:var(--ink)}
-  .proj-tab.active{background:var(--accent);color:#fff}
-  @media (max-width:560px){.proj-tabs{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}}
-  .case-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
-  .case-h{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(28px,3.6vw,46px);line-height:1.05;letter-spacing:-.01em;color:var(--ink);margin-bottom:18px}
-  .case-p{font-size:16px;line-height:1.75;color:var(--ink-2);max-width:64ch}
-  .case-p b{color:var(--ink);font-weight:600}
-  .case-p code{font-family:var(--mono);font-size:.86em;background:var(--surface-2);border:1px solid var(--rule);border-radius:5px;padding:1px 6px;color:var(--accent-deep)}
-
-  /* eye-catch highlighter for the most important keywords */
-  :root{ --mark: rgba(255,204,64,.62); }
-  mark, .hl{
-    background:linear-gradient(180deg, transparent 10%, var(--mark) 10%, var(--mark) 90%, transparent 90%);
-    color:var(--ink); font-weight:600; padding:0 .12em; border-radius:2px;
-    -webkit-box-decoration-break:clone; box-decoration-break:clone;
+:root {
+  --p-bg: #eef0f3; --p-surface: #e2e5ea; --p-ink: #0b0c0e; --p-muted: #5d6470;
+  --p-accent: #1f2de6; --p-accent-ink: #ffffff; --p-action: #1f2de6; --p-action-ink: #ffffff;
+  --p-inv-bg: #0b0c0e; --p-inv-surface: #17181a; --p-inv-ink: #eef0f3; --p-inv-muted: #8e8f92;
+  --p-inv-accent: #eef0f3; --p-inv-accent-ink: #0b0c0e; --p-inv-action: #eef0f3; --p-inv-action-ink: #0b0c0e;
+  --font-display: "Newsreader", Georgia, serif;
+  --font-text: "Hanken Grotesk", system-ui, sans-serif;
+  --display-weight: 400;
+  --display-tracking: -0.018em;
+  --display-tracking-xl: -0.025em;
+  --ly-scale: 1.06;
+}
+</style>
+<link rel="stylesheet" href="assets/ui/base.css">
+<link rel="stylesheet" href="assets/ui/code/fragment.css">
+<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+<script src="assets/backgrounds/backgrounds.js"></script>
+<script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
+<link rel="modulepreload" href="assets/moments/moments.js">
+<link rel="modulepreload" href="assets/moments/lib.js">
+<link rel="modulepreload" href="assets/moments/picture-develops/moment.js">
+<!-- page CSS: only inside the visuals -->
+<style>
+  .shot { display: block; max-width: none; width: 880px; height: auto; border-radius: 12px; border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent); background: #fff; box-shadow: 0 1px 2px rgb(11 12 14 / .06), 0 18px 40px -24px rgb(11 12 14 / .35); }
+  .shot--dark { border-color: rgb(255 255 255 / .12); background: #0d1117; }
+  .frame--shots, .hero__media.frame--shots { background: var(--p-surface); border: 0; }
+  .frame--dark, .hero__media.frame--dark { background: #0d1117; }
+  .panel { --ground-bg: var(--p-surface); }
+  .develop { margin: 0; border-radius: var(--r-lg); overflow: hidden; height: min(620px, var(--ly-fit, 620px)); }
+  .develop > img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 0 0; }
+  @media (max-width: 1023px) { .develop { height: auto; aspect-ratio: 4 / 3; margin-top: var(--s-7); } }
+  @media (max-width: 639px) { .shot { width: 620px; } .develop { aspect-ratio: 4 / 5; } }
+  #schedule .panel { --p-h: 330px; }
+  #schedule .ui-code__ln { white-space: pre-wrap; }
+  #faq .ic-row-tools { display: flex; gap: var(--s-3); }
+  /* tablet: the cards stand side by side, their editor panes run down the section */
+  @media (min-width: 640px) and (max-width: 1023px) {
+    #schedule .grid { flex: 1 1 auto; grid-template-rows: minmax(0, 1fr); }
+    #schedule .card { display: flex; flex-direction: column; }
+    #schedule .card > .panel { flex: 1 1 auto; height: auto; }
+    #schedule .ui-code { min-height: 560px; display: flex; flex-direction: column; }
+    #schedule .ui-code__pre { flex: 1 1 auto; }
   }
-
-  /* ── flagship hero: text + telegram mock ── */
-  .case-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,5vw,64px);align-items:center}
-  .hero-logo{width:62px;height:62px;display:block;margin-bottom:20px;border-radius:16px;box-shadow:0 10px 26px -10px rgba(31,68,224,.55)}
-  .hero-name{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(38px,5.4vw,72px);line-height:1;letter-spacing:-.01em;color:var(--ink);margin:6px 0 22px}
-  .lede{font-size:clamp(16px,1.7vw,18px);line-height:1.7;color:var(--ink-2);max-width:52ch}
-  .lede b{color:var(--ink);font-weight:600}
-
-  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0}
-  .tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);background:var(--surface-2);border:1px solid var(--rule);border-radius:7px;padding:6px 11px}
-
-  .links{display:flex;gap:20px;flex-wrap:wrap}
-  .lnk{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);display:inline-flex;align-items:center;gap:6px;border-bottom:1px solid var(--rule-2);padding-bottom:3px;transition:color .25s var(--ease),border-color .25s var(--ease)}
-  .lnk:hover{color:var(--accent);border-color:var(--accent)}
-  .lnk.primary{color:var(--ink);border-color:var(--ink)}
-  .lnk.primary:hover{color:var(--accent);border-color:var(--accent)}
-
-  /* telegram notification mock */
-  .tg{background:var(--surface);border:1px solid var(--rule);border-radius:18px;overflow:hidden;box-shadow:0 1px 2px rgba(24,25,28,.04),0 22px 50px -26px rgba(24,25,28,.4)}
-  .tg-head{display:flex;align-items:center;gap:11px;padding:14px 16px;border-bottom:1px solid var(--rule);background:var(--surface-2)}
-  .tg-av{width:38px;height:38px;border-radius:999px;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--mono);font-size:12px;font-weight:500;flex-shrink:0}
-  .tg-id{display:flex;flex-direction:column;line-height:1.2}
-  .tg-id b{font-size:14px;color:var(--ink);font-weight:700}
-  .tg-id span{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--ink-3)}
-  .tg-bot{margin-left:auto;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-deep);background:var(--accent-soft);border:1px solid #d9e1ff;border-radius:5px;padding:3px 7px}
-  .tg-body{padding:16px;display:flex;flex-direction:column;gap:12px;background:
-    radial-gradient(circle at 20% 10%, rgba(31,68,224,.04), transparent 60%)}
-  .tg-msg{background:var(--surface-2);border:1px solid var(--rule);border-radius:4px 14px 14px 14px;padding:11px 13px;max-width:92%}
-  .tg-cat{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);font-weight:500;margin-bottom:5px}
-  .tg-txt{font-size:13.5px;line-height:1.5;color:var(--ink)}
-  .tg-foot{display:flex;align-items:center;gap:8px;margin-top:8px}
-  .tg-link{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--accent)}
-  .tg-time{margin-left:auto;font-family:var(--mono);font-size:9.5px;color:var(--ink-3)}
-
-  /* ── KPI strip ── */
-  .kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:14px;overflow:hidden;margin-top:44px}
-  .kpi-item{background:var(--surface);padding:22px 20px;display:flex;flex-direction:column;gap:7px}
-  .kpi-num{font-family:var(--serif);font-style:italic;font-size:clamp(26px,3vw,38px);line-height:1;color:var(--ink)}
-  .kpi-lab{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);line-height:1.5}
-
-  /* ── pipeline (the story) ── */
-  .pipe{margin-top:34px;display:flex;flex-direction:column}
-  .pstep{display:grid;grid-template-columns:54px 1fr;gap:24px;padding:24px 0;border-top:1px solid var(--rule)}
-  .pstep:first-child{border-top:0}
-  .pstep-n{font-family:var(--mono);font-size:13px;color:#fff;background:var(--accent);width:34px;height:34px;border-radius:999px;display:grid;place-items:center;letter-spacing:0}
-  .pstep h4{font-size:17px;font-weight:700;color:var(--ink);letter-spacing:-.01em;margin-bottom:7px}
-  .pstep h4 .file{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--ink-3);letter-spacing:.02em;margin-left:10px;text-transform:none}
-  .pstep p{font-size:14.5px;line-height:1.65;color:var(--ink-2);max-width:62ch}
-  .pstep p b{color:var(--ink);font-weight:600}
-  .pstep p code{font-family:var(--mono);font-size:.85em;background:var(--surface-2);border:1px solid var(--rule);border-radius:5px;padding:1px 5px;color:var(--accent-deep)}
-
-  /* ── category chips ── */
-  .cats{display:flex;flex-wrap:wrap;gap:9px;margin-top:30px}
-  .cat{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:999px;padding:7px 13px}
-  .cat .e{font-size:14px;line-height:1}
-
-  /* ── architecture diagram ── */
-  .arch-scroll{margin-top:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--rule);border-radius:16px;background:var(--surface);padding:clamp(14px,2.5vw,28px)}
-  .arch{display:block;width:100%;min-width:760px;height:auto}
-  .arch .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.1em;fill:var(--ink-3)}
-  .arch .lbl-a{font-family:var(--mono);font-size:11px;letter-spacing:.09em;fill:var(--accent-deep)}
-  .arch .ttl{font-family:var(--sans);font-weight:700;font-size:15px;fill:var(--ink)}
-  .arch .sub{font-family:var(--mono);font-size:10.5px;fill:var(--ink-2)}
-  .arch .det{font-family:var(--sans);font-size:11.5px;fill:var(--ink-3)}
-  .arch .name{font-family:var(--sans);font-weight:600;font-size:13px;fill:var(--ink)}
-  .arch .nbadge{font-family:var(--mono);font-size:12px;fill:#fff}
-  .arch-cap{font-family:var(--sans);font-size:13.5px;line-height:1.65;color:var(--ink-3);margin-top:18px;max-width:72ch}
-  .arch-cap code{font-family:var(--mono);font-size:.86em;color:var(--accent-deep)}
-
-  /* ── architecture animation: one run of the pipeline plays out, station by station.
-        The packet travels the real arrow routes, PAUSES at each stage, and while it
-        is parked there that stage's board lights up cobalt — so a human can follow
-        the flow step by step. AIUB cycle = 10s, Email Trucker cycle = 12s. ── */
-  .arch .packet{opacity:0}
-  .arch-aiub .packet{offset-path:path("M330,80 L330,176 L169,176 L169,237 L787,237 L787,406")}
-  .arch-et .packet{offset-path:path("M295,80 L295,176 L215,176 L215,237 L530,237 L530,310 L205,310 L205,375 L205,480 L350,480 L350,535 L480,535 L290,535 L20,535 L20,51 L155,51 L295,51")}
-
-  @media (prefers-reduced-motion:no-preference){
-    /* directional dashes on the arrows — slow, readable drift */
-    .arch .flow{stroke-dasharray:7 6;animation:arch-flow 2.4s linear infinite}
-    .arch .flow-slow{animation-duration:4s}
-    .arch .flow-err{animation-duration:3s}
-    @keyframes arch-flow{ to{ stroke-dashoffset:-52 } }
-
-    /* each station's board lights up while the packet is parked on it */
-    .arch .live-card{animation:card-live linear infinite}
-    .arch-aiub .live-card{animation-duration:10s}
-    .arch-et .live-card{animation-duration:12s}
-    @keyframes card-live{
-      0%        {fill:#FFFFFF;stroke:#D9D6CD;stroke-width:1}
-      3%,12%    {fill:#DFE7FF;stroke:#1F44E0;stroke-width:2.4;filter:drop-shadow(0 0 8px rgba(31,68,224,.45))}
-      17%,100%  {fill:#FFFFFF;stroke:#D9D6CD;stroke-width:1}
-    }
-
-    /* number badges ping once, exactly when their stage becomes active */
-    .arch .pulse{opacity:0;animation:arch-pulse linear infinite;transform-origin:center;transform-box:fill-box}
-    .arch-aiub .pulse{animation-duration:10s}
-    .arch-et .pulse{animation-duration:12s}
-    @keyframes arch-pulse{
-      0%   { transform:scale(.6); opacity:.85 }
-      13%  { transform:scale(2.3); opacity:0 }
-      100% { transform:scale(2.3); opacity:0 }
-    }
-
-    /* the packet — hidden entirely on browsers without offset-path support */
-    @supports (offset-path: path("M0,0 L1,1")){
-      .arch-aiub .packet{animation:packet-aiub 10s linear infinite}
-      .arch-et .packet{animation:packet-et 12s linear infinite}
-    }
-    @keyframes packet-aiub{
-      0%       {offset-distance:0%;   opacity:0}
-      3%       {opacity:1}
-      12%,24%  {offset-distance:28.8%}   /* parked on 1 · Scrape   */
-      34%,44%  {offset-distance:47.4%}   /* parked on 2 · Dedup    */
-      54%,64%  {offset-distance:66.1%}   /* parked on 3 · Classify */
-      74%,84%  {offset-distance:84.7%}   /* parked on 4 · Notify   */
-      94%      {offset-distance:100%; opacity:1}  /* delivered to Telegram */
-      97%,100% {offset-distance:100%; opacity:0}
-    }
-    @keyframes packet-et{
-      0%       {offset-distance:0%;   opacity:0}
-      2%       {opacity:1}
-      10%,20%  {offset-distance:8.9%}    /* parked on 1 · Checkout & secrets */
-      28%,38%  {offset-distance:20.7%}   /* parked on 2 · Read mail          */
-      47%,57%  {offset-distance:38%}     /* parked on Send Telegram digest   */
-      65%,75%  {offset-distance:54.3%}   /* parked on the state store        */
-      97%      {offset-distance:99.5%; opacity:1}  /* rides the loop back to cron */
-      100%     {offset-distance:100%; opacity:0}
-    }
-  }
-
-  /* ── reliability grid ── */
-  .rel{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
-  .rel-item{background:var(--surface);border:1px solid var(--rule);border-radius:13px;padding:20px}
-  .rel-item h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
-  .rel-item p{font-size:13.5px;line-height:1.6;color:var(--ink-2)}
-  .rel-item p code{font-family:var(--mono);font-size:.85em;background:var(--surface-2);border:1px solid var(--rule);border-radius:5px;padding:1px 5px;color:var(--accent-deep)}
-
-  /* ── more automation grid ── */
-  .more-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:30px}
-  @media (max-width:560px){.more-grid{grid-template-columns:1fr}}
-
-  /* ── footer ── */
-  .auto-foot{margin-top:64px;padding-top:32px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);gap:24px;flex-wrap:wrap}
-  .auto-foot a{transition:color .25s var(--ease)}
-  .auto-foot a:hover{color:var(--accent)}
-
-  /* ── responsive ── */
-  @media (max-width:900px){
-    .case-hero{grid-template-columns:1fr;gap:36px}
-    .tg{max-width:420px}
-    .rel{grid-template-columns:repeat(2,1fr)}
-  }
-  @media (max-width:820px){
-    .auto-wrap{padding-top:88px}
-    .auto-head{grid-template-columns:1fr;gap:14px;margin-bottom:48px}
-  }
-  @media (max-width:560px){
-    .auto-wrap{padding:80px 16px 56px}
-    .auto-head h1{font-size:44px}
-    .kpi{grid-template-columns:1fr 1fr}
-    .rel{grid-template-columns:1fr}
-    .pstep{grid-template-columns:40px 1fr;gap:16px}
-    .pstep h4 .file{display:block;margin-left:0;margin-top:3px}
-    .auto-foot{flex-direction:column;align-items:flex-start;gap:12px}
+  /* phone: each two-screen section fills both screens */
+  @media (max-width: 639px) {
+    #schedule .ui-code__ln { padding-left: 40px; }
+    #notice-bot .develop { aspect-ratio: auto; height: auto; min-height: 420px; align-self: stretch; margin-top: 0; }
+    #schedule .grid { flex: 1 1 auto; grid-template-rows: auto minmax(0, 1fr); }
+    #schedule .card:last-child { display: flex; flex-direction: column; }
+    #schedule .card:last-child > .panel { flex: 1 1 auto; height: auto; }
+    #schedule .card:last-child .stage > .at-rise { bottom: 24px; }
+    #schedule .card:last-child .ui-code { height: 100%; display: flex; flex-direction: column; }
+    #schedule .card:last-child .ui-code__pre { flex: 1 1 auto; }
+    #faq .faq { display: flex; flex-direction: column; justify-content: space-between; align-self: stretch; }
   }
 </style>
 </head>
 <body>
-
-<a class="skip-link" href="#top">Skip to content</a>
-
-<header class="topbar">
-  <a class="brand" href="index.html#work"><span class="arr" aria-hidden="true">←</span> Siam&nbsp;Hossain</a>
-  <nav aria-label="primary">
-    <a href="index.html#work">Work</a>
-    <a href="index.html#about">About</a>
-    <a href="index.html#contact">Contact</a>
-  </nav>
-  <span class="page-tag">Automation</span>
-  <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme" style="margin-left:8px">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-  </button>
+<!-- type: service (case study). hero split (statement on the short page), palette cool-grey-cobalt, type newsreader, nav nav-mega, close close-type, footer footer-dark, buttons block, mark ring; moments: picture-develops -->
+<header class="nav">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">Skip to content</a>
+    <a class="nav__logo" href="index.html"><span class="mark" data-mark="ring" aria-hidden="true"></span>Siam Hossain</a>
+    <nav class="nav__links" aria-label="Main">
+      <div class="nav__item">
+        <a class="nav__link" href="index.html#clients" aria-current="page">Work <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav__menu">
+          <div class="wrap grid">
+            <div class="menu-col span-3">
+              <p class="t-label">On the home page</p>
+              <a href="index.html#clients">Client work<span>A POS and two business tools</span></a>
+              <a href="index.html#projects">Personal products<span>Résumé builder and a storefront</span></a>
+              <a href="index.html#repos">Repositories<span>Eight of 100 on GitHub</span></a>
+            </div>
+            <div class="menu-col span-3">
+              <p class="t-label">Case studies</p>
+              <a href="pos.html">Pharmacy POS<span>Billing, stock and staff logins</span></a>
+              <a href="automation.html">Notice and mail bots<span>Python, cron and Telegram</span></a>
+              <a href="ai-dev.html">AI tools<span>Résumé scoring and agents</span></a>
+            </div>
+            <div class="menu-col span-3">
+              <p class="t-label">More</p>
+              <a href="ecommerce.html">Storefronts<span>MegaBazar and ShoeVista</span></a>
+              <a href="websites.html">Business tools<span>Stock audit and invoices</span></a>
+              <a href="wpdev.html">Scroll animation<span>52 frames on a canvas</span></a>
+            </div>
+            <a class="menu-card span-3" href="pos.html">
+              <div class="panel"><img class="frame__img" src="images/pos-dashboard-640.png" alt="The Nasema Pharmacy POS dashboard with sales and stock figures" width="640" height="404" loading="lazy"></div>
+              <span class="t-card">Pharmacy POS case study</span>
+              <span class="t-small muted">How the counter software works</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav__item"><a class="nav__link" href="index.html#automation">Automation</a></div>
+      <div class="nav__item"><a class="nav__link" href="index.html#stack">Stack</a></div>
+      <div class="nav__item"><a class="nav__link" href="index.html#about">About</a></div>
+    </nav>
+    <div class="nav__actions">
+      <a class="nav__link" href="Siam-Hossain-CV.pdf" download>Download CV</a>
+      <a class="btn btn--primary" href="mailto:siam.cse.aiub@gmail.com">Email Siam</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
 </header>
 
-<main id="top" class="auto-wrap">
-
-  <div class="auto-head">
-    <div class="num"><b>05</b> / automation</div>
-    <div>
-      <h1>Automation.</h1>
-      <p class="sub">Small <b>serverless pipelines</b> that remove repetitive work and run themselves. Pick a project below.</p>
-    </div>
-  </div>
-
-  <div class="proj-tabs" role="tablist" aria-label="Automation projects">
-    <button type="button" class="proj-tab active" data-proj="aiub" role="tab" aria-selected="true" id="tab-aiub" aria-controls="panel-aiub">AIUB Notice Board</button>
-    <button type="button" class="proj-tab" data-proj="email-trucker" role="tab" aria-selected="false" id="tab-email-trucker" aria-controls="panel-email-trucker">Email Trucker</button>
-  </div>
-
-  <div class="proj-panel" id="panel-aiub" data-proj="aiub" role="tabpanel" aria-labelledby="tab-aiub">
-
-  <!-- ════════════════ FLAGSHIP ════════════════ -->
-  <section class="case">
-    <div class="case-hero">
-      <div>
-        <img class="hero-logo" src="images/automation-logo.svg" width="62" height="62" alt="AIUB Notice Bot logo" decoding="async">
-        <div class="case-kicker">Flagship · 2026 · live</div>
-        <h2 class="hero-name">AIUB Notice Board</h2>
-        <p class="lede">
-          An <mark>AI-powered Telegram bot</mark> that watches the American International
-          University-Bangladesh notices page and pings me the moment a new notice
-          appears — already <b>categorized</b> and <mark>summarized in one line</mark>. It runs
-          entirely on <b>GitHub Actions</b>, four times a day, with no server, no
-          database and no API bill. <mark>$0 a month.</mark>
-        </p>
-
-        <div class="tags">
-          <span class="tag">Python 3.12</span>
-          <span class="tag">GitHub Actions</span>
-          <span class="tag">BeautifulSoup</span>
-          <span class="tag">GitHub Models</span>
-          <span class="tag">Telegram Bot API</span>
-          <span class="tag">Cron</span>
-          <span class="tag">Serverless</span>
-        </div>
-
-        <div class="links">
-          <a class="lnk primary" href="https://github.com/ALPHAMAN-0/AIUB_NOTICE_BOARD" target="_blank" rel="noopener">github repo <span aria-hidden="true">↗</span></a>
-          <a class="lnk" href="https://github.com/ALPHAMAN-0/AIUB_NOTICE_BOARD/actions" target="_blank" rel="noopener">live actions <span aria-hidden="true">↗</span></a>
+<main id="top">
+  <section class="hero hero--split" data-enter aria-labelledby="hero-h">
+    <div class="wrap"><div class="hero-text grid hero__grid">
+      <div class="hero__text span-5">
+        <p class="hero__kicker"><span class="dot" aria-hidden="true"></span>2 bots · $0 a month · no server</p>
+        <h1 id="hero-h">Two Telegram bots on GitHub Actions</h1>
+        <p class="hero__lead">AIUB Notice Bot posts each new university notice, sorted and summed up in one line. Email Trucker sends a digest of new Gmail. Both run on a schedule, with no server or database.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="mailto:siam.cse.aiub@gmail.com">Email Siam<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+          <a class="btn btn--secondary" href="#notice-bot">See the notice bot</a>
         </div>
       </div>
-
-      <!-- sample telegram delivery -->
-      <div class="tg" aria-hidden="true">
-        <div class="tg-head">
-          <span class="tg-av" aria-hidden="true">AB</span>
-          <span class="tg-id">
-            <b>AIUB Notice Bot</b>
-            <span>@aiub_notice_bot</span>
-          </span>
-          <span class="tg-bot">bot</span>
-        </div>
-        <div class="tg-body">
-          <div class="tg-msg">
-            <div class="tg-cat">[EXAM]</div>
-            <div class="tg-txt">Spring 2026 mid-term routine published — exams begin June 28.</div>
-            <div class="tg-foot"><span class="tg-link">View notice ↗</span><span class="tg-time">just now</span></div>
-          </div>
-          <div class="tg-msg">
-            <div class="tg-cat">[REGISTRATION]</div>
-            <div class="tg-txt">Add/Drop for Summer 2026 closes June 24, 11:59 PM.</div>
-            <div class="tg-foot"><span class="tg-link">View notice ↗</span><span class="tg-time">1h</span></div>
-          </div>
-          <div class="tg-msg">
-            <div class="tg-cat">[FEE/SCHOLARSHIP]</div>
-            <div class="tg-txt">3rd installment due July 5 — late fee applies afterward.</div>
-            <div class="tg-foot"><span class="tg-link">View notice ↗</span><span class="tg-time">3h</span></div>
-          </div>
+      <div class="hero__media frame--dark span-6 start-7" data-enter-media>
+        <div class="stage stage--fade-br">
+          <div class="at-corner" style="--ax: 48px; --ay: 48px"><img class="shot shot--dark" style="width: 900px" src="images/notice-bot-readme.png" alt="The bot’s README with an example Telegram message for an exam seat plan notice" width="900" height="760" fetchpriority="high" data-source="client" data-subject="AIUB Notice Bot README"></div>
         </div>
       </div>
-    </div>
+    </div></div>
+  </section>
 
-    <div class="kpi">
-      <div class="kpi-item"><span class="kpi-num">$0</span><span class="kpi-lab">running cost<br>/ month</span></div>
-      <div class="kpi-item"><span class="kpi-num">4×</span><span class="kpi-lab">runs / day<br>09 · 13 · 17 · 21 Dhaka</span></div>
-      <div class="kpi-item"><span class="kpi-num">8</span><span class="kpi-lab">auto<br>categories</span></div>
-      <div class="kpi-item"><span class="kpi-num">~20</span><span class="kpi-lab">AI calls / day<br>free tier: 150</span></div>
+  <section class="section g2m" id="notice-bot" aria-labelledby="notice-bot-h">
+    <div class="wrap grid grid--top">
+      <div class="span-5 stack-5">
+        <div class="section-head">
+          <h2 id="notice-bot-h">AIUB Notice Bot, 4 steps a run</h2>
+          <p>Each run takes seconds on a fresh GitHub runner.</p>
+        </div>
+        <ul class="rows">
+          <li><span class="rows__name">Scrape</span><p>Reads the notices list on AIUB’s site with BeautifulSoup</p><span class="rows__value">scraper.py</span></li>
+          <li><span class="rows__name">Skip what was seen</span><p>Checks each notice against seen.json, so nothing is sent twice</p><span class="rows__value">seen.json</span></li>
+          <li><span class="rows__name">Classify</span><p>GitHub Models picks 1 of 8 categories and writes a one-line summary</p><span class="rows__value">classifier.py</span></li>
+          <li><span class="rows__name">Notify and save</span><p>Sends one Telegram message per notice, then commits its state</p><span class="rows__value">notifier.py</span></li>
+        </ul>
+        <p><a class="link" href="https://github.com/ALPHAMAN-0/AIUB_NOTICE_BOARD" target="_blank" rel="noopener">Read the code on GitHub</a></p>
+      </div>
+      <figure class="develop frame--dark span-6 start-7" data-moment="picture-develops"><img src="images/notice-bot-runs.png" alt="GitHub Actions history for the notice bot: 592 scheduled runs, each passed, most in under 20 seconds" width="1080" height="620" loading="lazy" data-source="client" data-subject="AIUB Notice Bot runs"></figure>
     </div>
   </section>
 
-  <!-- ════════════════ THE STORY ════════════════ -->
-  <section class="case">
-    <div class="case-kicker">AIUB Notice Board · the story</div>
-    <h3 class="case-h">How it works.</h3>
-    <p class="case-p">
-      Students and staff used to refresh the AIUB notices page hoping to catch
-      something important in time. The bot replaces that habit with a single
-      Telegram chat that only ever speaks when there's <mark>genuinely new</mark> news.
-      Each run is a short four-step pipeline, orchestrated by <code>src/main.py</code>.
-    </p>
-
-    <ol class="pipe">
-      <li class="pstep">
-        <span class="pstep-n">1</span>
-        <div>
-          <h4>Scrape<span class="file">src/scraper.py</span></h4>
-          <p>Reads the AIUB notices listing as <b>static HTML</b> with <b>BeautifulSoup</b>, extracting each notice's title, date and detail-page URL.</p>
-        </div>
-      </li>
-      <li class="pstep">
-        <span class="pstep-n">2</span>
-        <div>
-          <h4>Deduplicate<span class="file">state/seen.json</span></h4>
-          <p>Every scraped notice is checked against <code>seen.json</code>. Only ones never seen before move forward — so nothing is sent twice, and nothing is missed even if a scheduled run is skipped.</p>
-        </div>
-      </li>
-      <li class="pstep">
-        <span class="pstep-n">3</span>
-        <div>
-          <h4>Classify &amp; summarize<span class="file">src/classifier.py</span></h4>
-          <p>Each new notice is sent to <b>GitHub Models</b> (free, via the workflow's <code>GITHUB_TOKEN</code>) to assign one of eight categories and write a <b>one-line summary</b>. A keyword fallback keeps things sensible if the model is unavailable.</p>
-        </div>
-      </li>
-      <li class="pstep">
-        <span class="pstep-n">4</span>
-        <div>
-          <h4>Notify &amp; persist<span class="file">src/notifier.py</span></h4>
-          <p>Sends <b>one Telegram message per new notice</b>, then commits the updated <code>seen.json</code> and a <code>last_check.txt</code> heartbeat back to the repo — keeping dedup persistent and the schedule alive.</p>
-        </div>
-      </li>
-    </ol>
-
-    <div class="cats" aria-label="Notice categories the bot assigns">
-      <span class="cat"><span class="e" aria-hidden="true">📝</span> Exam</span>
-      <span class="cat"><span class="e" aria-hidden="true">🗓️</span> Registration / Add-Drop</span>
-      <span class="cat"><span class="e" aria-hidden="true">🎓</span> Admission</span>
-      <span class="cat"><span class="e" aria-hidden="true">📊</span> Result</span>
-      <span class="cat"><span class="e" aria-hidden="true">💳</span> Fee / Scholarship</span>
-      <span class="cat"><span class="e" aria-hidden="true">🏖️</span> Holiday</span>
-      <span class="cat"><span class="e" aria-hidden="true">🎉</span> Event</span>
-      <span class="cat"><span class="e" aria-hidden="true">📢</span> General</span>
-    </div>
-  </section>
-
-  <!-- ════════════════ ARCHITECTURE ════════════════ -->
-  <section class="case">
-    <div class="case-kicker">AIUB Notice Board · the design</div>
-    <h3 class="case-h">Architecture.</h3>
-    <p class="case-p">
-      There is <mark>no backend to maintain</mark>. A <b>GitHub Actions</b> cron job is the entire
-      runtime: it boots a fresh runner four times a day, runs the pipeline, talks to
-      three external services, and commits its own state back to the repository.
-    </p>
-
-    <div class="arch-scroll">
-      <svg class="arch arch-aiub" viewBox="0 0 960 500" role="img" aria-label="Architecture diagram: a GitHub Actions cron job runs main.py, which scrapes the AIUB notices page, deduplicates against seen.json, classifies and summarizes each new notice with GitHub Models, and sends Telegram messages — committing state back to the repo each run.">
-        <defs>
-          <marker id="arr" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
-            <path d="M0,0 L7,3 L0,6 Z" fill="#1F44E0"/>
-          </marker>
-          <marker id="arrn" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
-            <path d="M0,0 L7,3 L0,6 Z" fill="#6B6E76"/>
-          </marker>
-        </defs>
-
-        <!-- ── triggers ── -->
-        <g>
-          <rect class="live-card" style="animation-delay:0s" x="205" y="22" width="250" height="58" rx="11" fill="#FFFFFF" stroke="#D9D6CD"/>
-          <text class="lbl-a" x="225" y="48">CRON · 4× DAILY</text>
-          <text class="sub" x="225" y="68">09 · 13 · 17 · 21 — Asia/Dhaka</text>
-
-          <rect x="505" y="22" width="250" height="58" rx="11" fill="#FFFFFF" stroke="#D9D6CD"/>
-          <text class="lbl-a" x="525" y="48">MANUAL · workflow_dispatch</text>
-          <text class="sub" x="525" y="68">mode: run | test</text>
-
-          <path class="flow" d="M330,80 L330,118" fill="none" stroke="#6B6E76" stroke-width="1.4" marker-end="url(#arrn)"/>
-          <path class="flow" d="M630,80 L630,118" fill="none" stroke="#6B6E76" stroke-width="1.4" marker-end="url(#arrn)"/>
-        </g>
-
-        <!-- ── github actions runner frame ── -->
-        <rect x="60" y="120" width="840" height="252" rx="16" fill="#F8F6F0" stroke="#D9D6CD" stroke-width="1.4"/>
-        <text class="lbl-a" x="82" y="146">GITHUB ACTIONS RUNNER · UBUNTU · PYTHON 3.12</text>
-        <rect x="762" y="130" width="118" height="24" rx="12" fill="#ECF0FF" stroke="#d9e1ff"/>
-        <text class="lbl-a" x="821" y="146" text-anchor="middle" style="font-size:10px">$0 / MONTH</text>
-        <text class="lbl" x="82" y="167">main.py — orchestrator</text>
-
-        <!-- ── stage cards ── -->
-        <!-- 1 Scrape -->
-        <g>
-          <rect class="live-card" style="animation-delay:1.2s" x="80" y="182" width="178" height="110" rx="11" fill="#FFFFFF" stroke="#D9D6CD"/>
-          <circle class="pulse" cx="106" cy="208" r="13" fill="#1F44E0" style="animation-delay:1.2s"/>
-          <circle cx="106" cy="208" r="13" fill="#1F44E0"/>
-          <text class="nbadge" x="106" y="212" text-anchor="middle">1</text>
-          <text class="name" x="128" y="213">Scrape</text>
-          <text class="sub" x="98" y="244">scraper.py</text>
-          <text class="det" x="98" y="263">BeautifulSoup</text>
-          <text class="det" x="98" y="279">static HTML</text>
-        </g>
-        <!-- 2 Dedup -->
-        <g>
-          <rect class="live-card" style="animation-delay:3.4s" x="286" y="182" width="178" height="110" rx="11" fill="#FFFFFF" stroke="#D9D6CD"/>
-          <circle class="pulse" cx="312" cy="208" r="13" fill="#1F44E0" style="animation-delay:3.4s"/>
-          <circle cx="312" cy="208" r="13" fill="#1F44E0"/>
-          <text class="nbadge" x="312" y="212" text-anchor="middle">2</text>
-          <text class="name" x="334" y="213">Dedup</text>
-          <text class="sub" x="304" y="244">diff vs seen.json</text>
-          <text class="det" x="304" y="263">new notices</text>
-          <text class="det" x="304" y="279">only</text>
-        </g>
-        <!-- 3 Classify -->
-        <g>
-          <rect class="live-card" style="animation-delay:5.4s" x="492" y="182" width="178" height="110" rx="11" fill="#FFFFFF" stroke="#D9D6CD"/>
-          <circle class="pulse" cx="518" cy="208" r="13" fill="#1F44E0" style="animation-delay:5.4s"/>
-          <circle cx="518" cy="208" r="13" fill="#1F44E0"/>
-          <text class="nbadge" x="518" y="212" text-anchor="middle">3</text>
-          <text class="name" x="540" y="213">Classify</text>
-          <text class="sub" x="510" y="244">classifier.py</text>
-          <text class="det" x="510" y="263">AI category +</text>
-          <text class="det" x="510" y="279">1-line summary</text>
-        </g>
-        <!-- 4 Notify -->
-        <g>
-          <rect class="live-card" style="animation-delay:7.4s" x="698" y="182" width="178" height="110" rx="11" fill="#FFFFFF" stroke="#D9D6CD"/>
-          <circle class="pulse" cx="724" cy="208" r="13" fill="#1F44E0" style="animation-delay:7.4s"/>
-          <circle cx="724" cy="208" r="13" fill="#1F44E0"/>
-          <text class="nbadge" x="724" y="212" text-anchor="middle">4</text>
-          <text class="name" x="746" y="213">Notify</text>
-          <text class="sub" x="716" y="244">notifier.py</text>
-          <text class="det" x="716" y="263">1 Telegram</text>
-          <text class="det" x="716" y="279">msg / notice</text>
-        </g>
-
-        <!-- ── inter-stage arrows ── -->
-        <path class="flow" d="M258,237 L286,237" fill="none" stroke="#1F44E0" stroke-width="1.6" marker-end="url(#arr)"/>
-        <path class="flow" d="M464,237 L492,237" fill="none" stroke="#1F44E0" stroke-width="1.6" marker-end="url(#arr)"/>
-        <path class="flow" d="M670,237 L698,237" fill="none" stroke="#1F44E0" stroke-width="1.6" marker-end="url(#arr)"/>
-
-        <!-- ── external services ── -->
-        <!-- AIUB notices -->
-        <g>
-          <rect class="live-card" style="animation-delay:1.2s" x="80" y="408" width="178" height="60" rx="11" fill="#FFFFFF" stroke="#D9D6CD"/>
-          <text class="lbl" x="98" y="434">AIUB NOTICES</text>
-          <text class="name" x="98" y="454" style="font-size:12.5px">aiub.edu · source</text>
-        </g>
-        <path class="flow" d="M169,406 L169,294" fill="none" stroke="#1F44E0" stroke-width="1.4" marker-end="url(#arr)"/>
-        <text class="lbl" x="176" y="356">fetch</text>
-
-        <!-- seen.json state -->
-        <g>
-          <rect class="live-card" style="animation-delay:3.4s" x="286" y="408" width="178" height="60" rx="11" fill="#FFFFFF" stroke="#D9D6CD"/>
-          <text class="lbl" x="304" y="434">STATE STORE</text>
-          <text class="name" x="304" y="454" style="font-size:12.5px">seen.json + heartbeat</text>
-        </g>
-        <path class="flow flow-slow" d="M375,406 L375,294" fill="none" stroke="#6B6E76" stroke-width="1.4" stroke-dasharray="4 4" marker-start="url(#arrn)" marker-end="url(#arrn)"/>
-        <text class="lbl" x="382" y="356">read / write</text>
-
-        <!-- github models -->
-        <g>
-          <rect class="live-card" style="animation-delay:5.4s" x="492" y="408" width="178" height="60" rx="11" fill="#FFFFFF" stroke="#D9D6CD"/>
-          <text class="lbl" x="510" y="434">GITHUB MODELS</text>
-          <text class="name" x="510" y="454" style="font-size:12.5px">free · GITHUB_TOKEN</text>
-        </g>
-        <path class="flow flow-slow" d="M581,406 L581,294" fill="none" stroke="#6B6E76" stroke-width="1.4" stroke-dasharray="4 4" marker-start="url(#arrn)" marker-end="url(#arrn)"/>
-        <text class="lbl" x="588" y="356">prompt / label</text>
-
-        <!-- telegram -->
-        <g>
-          <rect class="live-card" style="animation-delay:7.4s" x="698" y="408" width="178" height="60" rx="11" fill="#FFFFFF" stroke="#D9D6CD"/>
-          <text class="lbl" x="716" y="434">TELEGRAM BOT API</text>
-          <text class="name" x="716" y="454" style="font-size:12.5px">→ your phone</text>
-        </g>
-        <path class="flow" d="M787,294 L787,406" fill="none" stroke="#1F44E0" stroke-width="1.6" marker-end="url(#arr)"/>
-        <text class="lbl" x="794" y="356">send</text>
-
-        <!-- travelling packet — leaves cron, parks on each stage while it lights up, ends at Telegram.
-             cx/cy stay 0: the offset-path supplies the absolute position, and an element offset
-             would be ADDED to it, pushing the dot off-route. -->
-        <circle class="packet" cx="0" cy="0" r="5.5" fill="#1F44E0"/>
-      </svg>
-    </div>
-
-    <p class="arch-cap">
-      State is the clever part. Every run commits <code>seen.json</code> and a
-      <code>last_check.txt</code> heartbeat back to the repository. The heartbeat resets
-      GitHub's 60-day inactivity timer — so the scheduled workflow never gets
-      auto-disabled — while <code>seen.json</code> gives a serverless job the persistent
-      memory it would otherwise lack.
-    </p>
-
-    <div class="rel">
-      <div class="rel-item">
-        <h4>First-run seeding</h4>
-        <p>On setup the bot silently records the ~20 existing notices with no messages, then only alerts on genuinely new ones.</p>
+  <section class="section ground-surface" id="schedule" aria-labelledby="schedule-h" style="--h: 1; --hm: 2">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="schedule-h">4 scheduled runs a day, never 2 at once</h2>
       </div>
-      <div class="rel-item">
-        <h4>Flood guard</h4>
-        <p>If a run finds an abnormal burst of "new" notices, it re-seeds instead of flooding your chat — covering site redesigns and long downtime.</p>
-      </div>
-      <div class="rel-item">
-        <h4>Fail-safe state</h4>
-        <p>If scraping returns zero notices, <code>main.py</code> exits with an error and refuses to overwrite state — a layout change can't wipe history.</p>
-      </div>
-      <div class="rel-item">
-        <h4>No run loops</h4>
-        <p>State pushes use the built-in <code>GITHUB_TOKEN</code>, which doesn't trigger new workflow runs — preventing cascading automation.</p>
-      </div>
-      <div class="rel-item">
-        <h4>Single run at a time</h4>
-        <p>A <code>concurrency</code> group ensures only one workflow instance runs at once, so overlapping schedules can't race on state.</p>
-      </div>
-      <div class="rel-item">
-        <h4>Free forever</h4>
-        <p>Public-repo Actions minutes are unlimited and the free GitHub Models tier (150 calls/day) dwarfs the bot's ~20 — no paid keys, DB or server.</p>
-      </div>
-    </div>
-  </section>
-
-  </div><!-- /panel-aiub -->
-
-  <div class="proj-panel" id="panel-email-trucker" data-proj="email-trucker" role="tabpanel" aria-labelledby="tab-email-trucker" hidden>
-
-  <!-- ════════════════ EMAIL TRUCKER ════════════════ -->
-  <section class="case">
-    <div class="case-hero">
-      <div>
-        <img class="hero-logo" src="images/email-trucker-logo.svg" width="62" height="62" alt="Email Trucker logo" decoding="async">
-        <div class="case-kicker">Second build · 2026 · live</div>
-        <h2 class="hero-name">Email Trucker <span aria-hidden="true">📬</span></h2>
-        <p class="lede">
-          Checks a Gmail inbox roughly every hour via <b>GitHub Actions</b> and sends a
-          <mark>Telegram digest</mark> — sender + subject — for every new email in the
-          <b>Primary</b> tab. Promotions, Social and Updates are silently skipped, and the
-          mailbox is opened strictly <mark>read-only</mark>: nothing is ever marked as read.
-          No server, no database. <mark>$0 a month.</mark>
-        </p>
-
-        <div class="tags">
-          <span class="tag">Python</span>
-          <span class="tag">IMAP</span>
-          <span class="tag">GitHub Actions</span>
-          <span class="tag">Telegram Bot API</span>
-          <span class="tag">Cron</span>
-          <span class="tag">Serverless</span>
-        </div>
-      </div>
-
-      <!-- sample telegram delivery -->
-      <div class="tg" aria-hidden="true">
-        <div class="tg-head">
-          <span class="tg-av" aria-hidden="true">ET</span>
-          <span class="tg-id">
-            <b>Email Trucker</b>
-            <span>@email_trucker_bot</span>
-          </span>
-          <span class="tg-bot">bot</span>
-        </div>
-        <div class="tg-body">
-          <div class="tg-msg">
-            <div class="tg-cat">[INBOX] 3 new · Primary</div>
-            <div class="tg-txt">
-              <b>Vercel</b> — Your deployment is ready<br>
-              <b>Jane Doe</b> — Re: portfolio feedback<br>
-              <b>GitHub</b> — New sign-in to your account
+      <div class="grid">
+        <article class="card card--row card--open m-nolift span-6">
+          <h3>Runs at 09:00, 13:00, 17:00 and 21:00</h3>
+          <p>The workflow’s cron lines, with the Dhaka time beside each one.</p>
+          <div class="panel">
+            <div class="stage stage--fade-b">
+              <div class="at-rise fit" style="--fit-max: 520px; --ax: max(24px, 50% - 260px); --ay: 40px">
+                <div class="ui ui-panel ui-code" data-ui="code">
+                  <div class="ui-code__tabs">
+                    <span class="ui-code__tab is-on"><i class="ui-code__lang">YML</i>check-notices.yml</span>
+                    <span class="ui-spacer"></span>
+                    <span class="ui-chip ui-chip--plain ui-code__chip" data-code-chip>cron</span>
+                  </div>
+                  <pre class="ui-code__pre"><code><span class="ui-code__ln" data-n="6"><span class="k">on</span>:</span>
+<span class="ui-code__ln" data-n="7">  <span class="k">schedule</span>:</span>
+<span class="ui-code__ln is-mark" data-n="8">    - <span class="k">cron</span>: '0 3 * * *'  <span class="c"># 09:00 Dhaka</span></span>
+<span class="ui-code__ln" data-n="9">    - <span class="k">cron</span>: '0 7 * * *'  <span class="c"># 13:00 Dhaka</span></span>
+<span class="ui-code__ln" data-n="10">    - <span class="k">cron</span>: '0 11 * * *' <span class="c"># 17:00 Dhaka</span></span>
+<span class="ui-code__ln" data-n="11">    - <span class="k">cron</span>: '0 15 * * *' <span class="c"># 21:00 Dhaka</span></span></code></pre>
+                  <div class="ui-code__hint" data-code-hint><span class="ui-dot"></span><span data-code-text>GitHub cron runs in UTC: each Dhaka time is written 6 hours earlier.</span></div>
+                </div>
+              </div>
             </div>
-            <div class="tg-foot"><span class="tg-link">check_mail.py ↗</span><span class="tg-time">just now</span></div>
           </div>
-          <div class="tg-msg" style="opacity:.55">
-            <div class="tg-cat">[OK] Email watcher is live</div>
-            <div class="tg-txt">Baselined at the current inbox — you'll hear from me from here on.</div>
-            <div class="tg-foot"><span class="tg-time">first run</span></div>
+        </article>
+        <article class="card card--row card--open m-nolift span-6">
+          <h3>Queues runs behind one in progress</h3>
+          <p>A concurrency group stops two runs from racing on the saved state.</p>
+          <div class="panel">
+            <div class="stage stage--fade-b">
+              <div class="at-rise fit" style="--fit-max: 520px; --ax: max(24px, 50% - 260px); --ay: 40px">
+                <div class="ui ui-panel ui-code" data-ui="code">
+                  <div class="ui-code__tabs">
+                    <span class="ui-code__tab is-on"><i class="ui-code__lang">YML</i>check-notices.yml</span>
+                    <span class="ui-spacer"></span>
+                    <span class="ui-chip ui-chip--plain ui-code__chip" data-code-chip>1 run</span>
+                  </div>
+                  <pre class="ui-code__pre"><code><span class="ui-code__ln" data-n="26"><span class="k">permissions</span>:</span>
+<span class="ui-code__ln" data-n="27">  <span class="k">contents</span>: write</span>
+<span class="ui-code__ln" data-n="28">  <span class="k">models</span>: read</span>
+<span class="ui-code__ln" data-n="29"></span>
+<span class="ui-code__ln" data-n="30"><span class="c"># Never let two runs overlap</span></span>
+<span class="ui-code__ln" data-n="31"><span class="k">concurrency</span>:</span>
+<span class="ui-code__ln" data-n="32">  <span class="k">group</span>: ${{ github.workflow }}</span>
+<span class="ui-code__ln is-mark" data-n="33">  <span class="k">cancel-in-progress</span>: false</span></code></pre>
+                  <div class="ui-code__hint" data-code-hint><span class="ui-dot"></span><span data-code-text>A second run waits in line behind the first.</span></div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="kpi">
-      <div class="kpi-item"><span class="kpi-num">$0</span><span class="kpi-lab">running cost<br>/ month</span></div>
-      <div class="kpi-item"><span class="kpi-num">~24×</span><span class="kpi-lab">checks / day<br>hourly, best-effort</span></div>
-      <div class="kpi-item"><span class="kpi-num">0</span><span class="kpi-lab">emails ever<br>marked read</span></div>
-      <div class="kpi-item"><span class="kpi-num">3</span><span class="kpi-lab">Gmail tabs<br>silently skipped</span></div>
-    </div>
-  </section>
-
-  <section class="case">
-    <div class="case-kicker">Email Trucker · the story</div>
-    <h3 class="case-h">How it works.</h3>
-    <p class="case-p">
-      No more refreshing Gmail hoping something important slipped in. A single
-      Telegram chat gets one message per run — and only when there's actually
-      something new. Every run is a short pipeline, defined in
-      <code>.github/workflows/check-mail.yml</code> and executed by
-      <code>check_mail.py</code>.
-    </p>
-
-    <ol class="pipe">
-      <li class="pstep">
-        <span class="pstep-n">1</span>
-        <div>
-          <h4>Trigger<span class="file">check-mail.yml</span></h4>
-          <p>Fires on a <b>cron schedule</b> at <code>:17</code> past every hour — deliberately off the top-of-the-hour slot, which is the most congested time on GitHub's shared runners — or via a manual <code>workflow_dispatch</code> run for testing.</p>
-        </div>
-      </li>
-      <li class="pstep">
-        <span class="pstep-n">2</span>
-        <div>
-          <h4>Checkout &amp; secrets<span class="file">check-mail.yml</span></h4>
-          <p>Checks out the repo and loads four repository secrets — <code>GMAIL_ADDRESS</code>, <code>GMAIL_APP_PASSWORD</code>, <code>TELEGRAM_BOT_TOKEN</code>, <code>TELEGRAM_CHAT_ID</code> — as environment variables for the script.</p>
-        </div>
-      </li>
-      <li class="pstep">
-        <span class="pstep-n">3</span>
-        <div>
-          <h4>Read mail<span class="file">check_mail.py</span></h4>
-          <p>Logs into Gmail over <b>IMAP</b> with an App Password, mailbox opened <mark>read-only</mark>, and searches <code>category:primary</code> for messages newer than the last-notified UID in <code>state.json</code>.</p>
-        </div>
-      </li>
-      <li class="pstep">
-        <span class="pstep-n">4</span>
-        <div>
-          <h4>Digest &amp; persist<span class="file">check_mail.py · state.json</span></h4>
-          <p>New mail sends <b>one plain-text Telegram digest</b> (sender + subject per email); nothing new just logs and exits. Either way, the last-seen UID (+ <code>UIDVALIDITY</code>) is committed back to <code>state.json</code> so the next stateless run stays duplicate-free. A failed run sends a <b>"⚠️ Email watcher failed"</b> alert through the same bot instead.</p>
-        </div>
-      </li>
-    </ol>
-
-    <div class="cats" aria-label="How each Gmail tab is handled">
-      <span class="cat"><span class="e" aria-hidden="true">📥</span> Primary — digested</span>
-      <span class="cat"><span class="e" aria-hidden="true">🏷️</span> Promotions — skipped</span>
-      <span class="cat"><span class="e" aria-hidden="true">👥</span> Social — skipped</span>
-      <span class="cat"><span class="e" aria-hidden="true">🔔</span> Updates — skipped</span>
-    </div>
-  </section>
-
-  <section class="case">
-    <div class="case-kicker">Email Trucker · the design</div>
-    <h3 class="case-h">Architecture.</h3>
-    <p class="case-p">
-      Same philosophy as the notice board: <mark>no backend to maintain</mark>. A GitHub
-      Actions cron job <b>is</b> the runtime — it boots a fresh, disposable runner
-      roughly every hour, reads mail once, and commits its own state back to the repo
-      so the next run — on a completely different machine — knows where it left off.
-    </p>
-
-    <div class="arch-scroll">
-      <svg class="arch arch-et" viewBox="0 0 960 600" role="img" aria-label="Architecture diagram: an hourly cron, or a manual dispatch, runs check_mail.py on a GitHub Actions runner. It checks out the repo with its secrets, then logs into Gmail over read-only IMAP and searches for new Primary mail. New mail sends a Telegram digest, no new mail just logs and exits, and an error sends a failure alert. Successful runs commit the last-seen UID to state.json, which the next scheduled run reads back.">
-        <defs>
-          <marker id="arr2" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
-            <path d="M0,0 L7,3 L0,6 Z" fill="#1F44E0"/>
-          </marker>
-          <marker id="arrn2" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
-            <path d="M0,0 L7,3 L0,6 Z" fill="#6B6E76"/>
-          </marker>
-          <marker id="arrr2" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
-            <path d="M0,0 L7,3 L0,6 Z" fill="#E5484D"/>
-          </marker>
-        </defs>
-
-        <!-- ── triggers ── -->
-        <g>
-          <rect class="live-card" style="animation-delay:0s" x="155" y="22" width="280" height="58" rx="11" fill="#FFFFFF" stroke="#D9D6CD"/>
-          <text class="lbl-a" x="175" y="48">CRON · HOURLY, :17 PAST</text>
-          <text class="sub" x="175" y="68">off the top-of-hour rush</text>
-
-          <rect x="525" y="22" width="280" height="58" rx="11" fill="#FFFFFF" stroke="#D9D6CD"/>
-          <text class="lbl-a" x="545" y="48">MANUAL · workflow_dispatch</text>
-          <text class="sub" x="545" y="68">local / on-demand test</text>
-
-          <path class="flow" d="M295,80 L295,118" fill="none" stroke="#6B6E76" stroke-width="1.4" marker-end="url(#arrn2)"/>
-          <path class="flow" d="M665,80 L665,118" fill="none" stroke="#6B6E76" stroke-width="1.4" marker-end="url(#arrn2)"/>
-        </g>
-
-        <!-- ── github actions runner frame ── -->
-        <rect x="60" y="120" width="840" height="340" rx="16" fill="#F8F6F0" stroke="#D9D6CD" stroke-width="1.4"/>
-        <text class="lbl-a" x="82" y="146">GITHUB ACTIONS RUNNER · UBUNTU</text>
-        <rect x="762" y="130" width="118" height="24" rx="12" fill="#ECF0FF" stroke="#d9e1ff"/>
-        <text class="lbl-a" x="821" y="146" text-anchor="middle" style="font-size:10px">$0 / MONTH</text>
-        <text class="lbl" x="82" y="167">check_mail.py — single-file pipeline</text>
-
-        <!-- 1 Checkout & secrets -->
-        <g>
-          <rect class="live-card" style="animation-delay:1.2s" x="90" y="182" width="250" height="110" rx="11" fill="#FFFFFF" stroke="#D9D6CD"/>
-          <circle class="pulse" cx="116" cy="208" r="13" fill="#1F44E0" style="animation-delay:1.2s"/>
-          <circle cx="116" cy="208" r="13" fill="#1F44E0"/>
-          <text class="nbadge" x="116" y="212" text-anchor="middle">1</text>
-          <text class="name" x="138" y="213">Checkout &amp; secrets</text>
-          <text class="sub" x="108" y="244">.github/workflows</text>
-          <text class="det" x="108" y="263">4 repo secrets</text>
-          <text class="det" x="108" y="279">→ env vars</text>
-        </g>
-        <!-- 2 Read mail -->
-        <g>
-          <rect class="live-card" style="animation-delay:3.4s" x="390" y="182" width="280" height="110" rx="11" fill="#FFFFFF" stroke="#D9D6CD"/>
-          <circle class="pulse" cx="416" cy="208" r="13" fill="#1F44E0" style="animation-delay:3.4s"/>
-          <circle cx="416" cy="208" r="13" fill="#1F44E0"/>
-          <text class="nbadge" x="416" y="212" text-anchor="middle">2</text>
-          <text class="name" x="438" y="213">Read mail (IMAP)</text>
-          <text class="sub" x="408" y="244">check_mail.py</text>
-          <text class="det" x="408" y="263">Gmail · read-only login</text>
-          <text class="det" x="408" y="279">category:primary, new UIDs</text>
-        </g>
-        <path class="flow" d="M340,237 L390,237" fill="none" stroke="#1F44E0" stroke-width="1.6" marker-end="url(#arr2)"/>
-
-        <!-- branch trunk -->
-        <path class="flow" d="M530,292 L530,310" fill="none" stroke="#1F44E0" stroke-width="1.4"/>
-        <path class="flow" d="M530,310 L205,310 L205,330" fill="none" stroke="#1F44E0" stroke-width="1.6" marker-end="url(#arr2)"/>
-        <path class="flow flow-slow" d="M530,310 L495,310 L495,330" fill="none" stroke="#6B6E76" stroke-width="1.4" marker-end="url(#arrn2)"/>
-        <path class="flow flow-err" d="M530,310 L785,310 L785,330" fill="none" stroke="#E5484D" stroke-width="1.4" stroke-dasharray="4 4" marker-end="url(#arrr2)"/>
-
-        <!-- D new mail -->
-        <g>
-          <rect class="live-card" style="animation-delay:5.6s" x="90" y="330" width="230" height="90" rx="11" fill="#FFFFFF" stroke="#D9D6CD"/>
-          <text class="lbl-a" x="108" y="354">NEW PRIMARY MAIL</text>
-          <text class="name" x="108" y="376">Send Telegram digest</text>
-          <text class="sub" x="108" y="398">sender + subject · Bot API</text>
-        </g>
-        <!-- E no new mail -->
-        <g>
-          <rect x="380" y="330" width="230" height="90" rx="11" fill="#FFFFFF" stroke="#D9D6CD"/>
-          <text class="lbl-a" x="398" y="354">NO NEW MAIL</text>
-          <text class="name" x="398" y="376">Log only, exit</text>
-          <text class="sub" x="398" y="398">run ends quietly</text>
-        </g>
-        <!-- F error -->
-        <g>
-          <rect x="670" y="330" width="230" height="90" rx="11" fill="#FFFFFF" stroke="#F0C4C0"/>
-          <text class="lbl-a" x="688" y="354" style="fill:#E5484D">ERROR</text>
-          <text class="name" x="688" y="376">Send failure alert</text>
-          <text class="sub" x="688" y="398">same bot · Bot API</text>
-        </g>
-
-        <!-- D, E → state store -->
-        <path class="flow flow-slow" d="M205,420 L205,480 L350,480 L350,500" fill="none" stroke="#6B6E76" stroke-width="1.4" stroke-dasharray="4 4" marker-end="url(#arrn2)"/>
-        <path class="flow flow-slow" d="M495,420 L495,480 L610,480 L610,500" fill="none" stroke="#6B6E76" stroke-width="1.4" stroke-dasharray="4 4" marker-end="url(#arrn2)"/>
-
-        <!-- state store -->
-        <g>
-          <rect class="live-card" style="animation-delay:7.8s" x="290" y="500" width="380" height="70" rx="11" fill="#FFFFFF" stroke="#D9D6CD"/>
-          <text class="lbl" x="308" y="524">STATE STORE</text>
-          <text class="name" x="308" y="546" style="font-size:12.5px">state.json — last UID + UIDVALIDITY</text>
-          <text class="sub" x="308" y="562">committed back to the repo</text>
-        </g>
-
-        <!-- loop back to next scheduled run -->
-        <path class="flow flow-slow" d="M290,535 L20,535 L20,51 L155,51" fill="none" stroke="#6B6E76" stroke-width="1.4" stroke-dasharray="4 4" marker-end="url(#arrn2)"/>
-        <text class="lbl" x="34" y="293" transform="rotate(-90 34 293)" text-anchor="middle">STATE FEEDS NEXT RUN</text>
-
-        <!-- travelling packet — leaves cron, parks on each station, then rides the state loop back to cron.
-             cx/cy stay 0: the offset-path supplies the absolute position (see the AIUB packet note). -->
-        <circle class="packet" cx="0" cy="0" r="5.5" fill="#1F44E0"/>
-      </svg>
-    </div>
-
-    <p class="arch-cap">
-      State is what makes a disposable runner reliable. Every successful run commits the
-      last-notified UID (plus <code>UIDVALIDITY</code>) to <code>state.json</code>, and the
-      very next scheduled run — on a brand-new machine — reads it straight back, so
-      duplicate-free delivery survives GitHub throwing the runner away every single time.
-      The IMAP session never issues a mark-as-read command, so the inbox itself keeps no
-      trace of the bot ever visiting it.
-    </p>
-
-    <div class="rel">
-      <div class="rel-item">
-        <h4>First-run baseline</h4>
-        <p>No flood of old mail: the first run silently baselines at the current newest email and sends one "✅ Email watcher is live" confirmation instead.</p>
-      </div>
-      <div class="rel-item">
-        <h4>Stateless-safe dedup</h4>
-        <p>GitHub runners are thrown away after every run — <code>state.json</code>, committed back to the repo, is the only memory the bot has between them.</p>
-      </div>
-      <div class="rel-item">
-        <h4>Best-effort schedule, zero loss</h4>
-        <p>GitHub's cron is best-effort and occasionally skips a slot; a missed hour's mail simply arrives folded into the next digest.</p>
+        </article>
       </div>
     </div>
   </section>
 
-  </div><!-- /panel-email-trucker -->
-
-  <!-- ════════════════ MORE AUTOMATION ════════════════ -->
-  <section class="case">
-    <div class="case-kicker">More</div>
-    <h2 class="case-h">More automation.</h2>
-    <p class="case-p">Other scripts &amp; pipelines that take repetitive work off my plate. More case studies on the way.</p>
-
-    <div class="more-grid">
-      <!-- ▼ NEXT AUTOMATION PROJECT — replace this placeholder when ready:
-           set href to the repo (or build a full case study above like the flagship),
-           swap the thumb glyph, and fill in name · year · description · tags. -->
-      <a class="work-card work-card-soon" href="#top">
-        <div class="wc-thumb wc-thumb-code" aria-hidden="true"><span>+</span></div>
-        <div class="wc-body">
-          <div class="wc-top"><span class="wc-name">Next automation</span><span class="wc-yr">soon</span></div>
-          <p class="wc-desc">Reserved for the next automation project — case study coming soon.</p>
-          <ul class="wc-tags"><li>In progress</li></ul>
+  <section class="section g2m" id="faq" aria-labelledby="faq-h">
+    <div class="wrap grid grid--top">
+      <div class="span-5 stack-5">
+        <div class="section-head">
+          <h2 id="faq-h">Questions about the bots</h2>
+          <p>What happens when a site changes, a run fails or the inbox is busy.</p>
         </div>
-        <span class="wc-arrow" aria-hidden="true">↗</span>
-      </a>
+        <div class="ic-row-tools" aria-label="Built with Python, GitHub Actions, Gmail and Telegram" role="img"><span class="ic-tile ic-tile--40"><img class="ic ic-40" src="assets/icons/python.svg" alt="" width="40" height="40" loading="lazy"></span><span class="ic-tile ic-tile--40"><img class="ic ic-40" src="assets/icons/github-actions.svg" alt="" width="40" height="40" loading="lazy"></span><span class="ic-tile ic-tile--40"><img class="ic ic-40 ic-land" src="assets/icons/gmail.svg" alt="" width="40" height="32" loading="lazy"></span><span class="ic-tile ic-tile--40"><img class="ic ic-40" src="assets/icons/telegram.svg" alt="" width="40" height="40" loading="lazy"></span></div>
+        <p><a class="link" href="index.html#automation">See the bots on the home page</a></p>
+      </div>
+      <div class="faq span-6 start-7">
+        <div class="faq__item"><h3>What if AIUB changes its notices page?</h3><p>If a scrape finds no notices, the run stops with an error and keeps the old state, so a new layout cannot wipe the history.</p></div>
+        <div class="faq__item"><h3>What if fifty old notices look new?</h3><p>A flood guard sees the burst and records them quietly instead of sending fifty messages.</p></div>
+        <div class="faq__item"><h3>Why does each run commit to GitHub?</h3><p>The commit saves seen.json and a heartbeat file. The heartbeat keeps GitHub from turning the schedule off after 60 days.</p></div>
+        <div class="faq__item"><h3>Does Email Trucker mark mail as read?</h3><p>No. It opens the inbox read-only over IMAP and checks at 17 minutes past each hour, away from the busy top of the hour.</p></div>
+        <div class="faq__item"><h3>What do the bots cost to run?</h3><p>Nothing. Actions minutes are free on a public repository, and about 20 model calls a day fit the free tier of 150.</p></div>
+      </div>
     </div>
   </section>
-
-  <div class="auto-foot">
-    <div>© 2026 siam hossain · automation</div>
-    <a href="index.html#work"><span aria-hidden="true">←</span> back to work</a>
-  </div>
-
 </main>
 
-<script src="js/script.js" defer></script>
-
-<!-- ⌘K command menu + phone action bar for case pages -->
-<div class="actionbar" data-actionbar aria-label="Quick contact">
-  <span class="ttl">Contact</span>
-  <a class="pill pill--accent" href="mailto:siam.cse.aiub@gmail.com">Email</a>
-  <button class="pill" type="button" data-copy="siam.cse.aiub@gmail.com">Copy</button>
-  <a class="pill" href="Siam-Hossain-CV.pdf" download>CV</a>
-</div>
-
-<dialog class="cmdk" aria-label="Command menu">
-  <input type="text" placeholder="Type a command…" aria-label="Command" />
-  <div data-results></div>
-  <div class="foot">
-    <span><kbd>↑</kbd><kbd>↓</kbd> Navigate · <kbd>↵</kbd> Open</span>
-    <span><kbd>Esc</kbd> Close</span>
+<footer class="footer closing footer--dark ground-inverse g2m" id="contact" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closing__cta close--type">
+      <div class="section-head">
+        <h2 id="close-h">Email me about automating a job</h2>
+        <p>Scheduled scrapers, bots and pipelines that run on their own and tell you when they fail.</p>
+      </div>
+      <a class="btn btn--primary btn--xl btn--wide" href="mailto:siam.cse.aiub@gmail.com">Email Siam<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+    </div>
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-4 stack-4">
+          <a class="nav__logo footer__mark" href="index.html"><span class="mark" data-mark="ring" aria-hidden="true"></span>Siam Hossain</a>
+          <p class="footer__lede">Full-stack and AI engineer in Dhaka.</p>
+        </div>
+        <div class="span-2 footer__col"><h3>Work</h3><ul><li><a href="index.html#clients">Client work</a></li><li><a href="index.html#projects">Products</a></li><li><a href="index.html#automation">Automation</a></li><li><a href="index.html#repos">Repositories</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Case studies</h3><ul><li><a href="pos.html">Pharmacy POS</a></li><li><a href="automation.html">Bots</a></li><li><a href="ai-dev.html">AI tools</a></li><li><a href="ecommerce.html">Storefronts</a></li><li><a href="websites.html">Business tools</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Profiles</h3><ul><li><a href="https://github.com/ALPHAMAN-0" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://www.linkedin.com/in/siamhossain4/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://leetcode.com/u/RedApple47/" target="_blank" rel="noopener">LeetCode</a></li><li><a href="https://codeforces.com/profile/SIAM001" target="_blank" rel="noopener">Codeforces</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Contact</h3><ul><li><a href="Siam-Hossain-CV.pdf" download>Download CV</a></li><li><a href="index.html#about">About</a></li><li><a href="https://codolio.com/profile/babaYagaa" target="_blank" rel="noopener">Codolio</a></li></ul></div>
+      </div>
+      <div class="footer__legal">
+        <span>&copy; 2026 Siam Hossain. Product names and logos are trademarks of their owners.</span>
+      </div>
+    </div>
   </div>
-</dialog>
+</footer>
 
-<!-- legacy tabs + deep-link script (kept on automation) -->
-<script>
-  (function(){
-    var tabs   = Array.prototype.slice.call(document.querySelectorAll('.proj-tab'));
-    var panels = Array.prototype.slice.call(document.querySelectorAll('.proj-panel'));
-    if (!tabs.length || !panels.length) return;
-
-    function activate(proj, focus){
-      tabs.forEach(function(t){
-        var on = t.dataset.proj === proj;
-        t.classList.toggle('active', on);
-        t.setAttribute('aria-selected', on ? 'true' : 'false');
-        if (on && focus) t.focus();
-      });
-      panels.forEach(function(p){ p.hidden = p.dataset.proj !== proj; });
-    }
-
-    tabs.forEach(function(t){
-      t.addEventListener('click', function(){
-        activate(t.dataset.proj, false);
-        history.replaceState(null, '', '#' + t.dataset.proj);
-      });
-    });
-
-    var fromHash = (location.hash || '').replace('#', '');
-    if (tabs.some(function(t){ return t.dataset.proj === fromHash; })) activate(fromHash, false);
-  })();
-</script>
+<script type="module" src="assets/system.js"></script>
+<script type="module" src="assets/motion/motion.js"></script>
+<script type="module" src="assets/layout/layout.js"></script>
 </body>
 </html>

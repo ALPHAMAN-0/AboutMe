@@ -13,3 +13,7 @@ videos/*
 !videos/README.md
 !videos/*.vtt
 node_modules
+
+# design-check working files (screenshots, checker reports)
+.taste-skill/
+shots/
