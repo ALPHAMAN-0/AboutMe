@@ -122,6 +122,14 @@
   }
   /* footer name on one line: its 4-column cell is narrowest at 1024-1048 and the name wrapped there */
   @media (min-width: 1024px) { .footer__mark { white-space: nowrap; font-size: min(var(--t-h2), 3.85vw); } }
+  /* a short desktop window (an 800px-tall browser) cannot hold Repositories or About in one screen, and
+     their last rows ran into the next section: a section grows past one screen when it must, as the
+     kit's own rule does below 1280, and keeps exactly one screen whenever its content fits */
+  @media (min-width: 1280px) {
+    :where(main > .section) { display: flex; flex-direction: column; }
+    main > .section { height: auto; min-height: 100vh; min-height: 100svh; }
+    main > .section > .wrap { flex: 1 0 auto; height: auto; min-height: 0; }
+  }
 </style>
 <script type="application/ld+json">
 {
